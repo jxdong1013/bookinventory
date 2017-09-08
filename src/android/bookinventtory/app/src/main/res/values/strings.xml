@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">BookInventory</string>
+    <string name="title_booksearch">图书检索</string>
+    <string name="title_shelfsearch">架位检索</string>
+    <string name="title_shelfadapt">架位更新</string>
+    <string name="title_shelfarrage">架位整理</string>
+    <string name="title_differencemanage">差异管理</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
