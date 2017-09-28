@@ -1,0 +1,75 @@
+﻿@using bookweb.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "登录";
+    Layout = "~/views/Shared/_LayoutHeaderFooter.cshtml";
+}
+
+
+<div class="row" >
+    <div class="col-md-12 divcenter divborder  divshadow loginContent" style="margin-top:50px;">
+
+        <h2 class="text-center divcenter" style="margin-bottom:20px;">欢迎回来-@ViewBag.Title</h2>
+     
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()            
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                
+                <div class="form-group">
+                                       
+                            @*@Html.TextBoxFor(m => m.Username, new { @class = "form-control center-block", placeholder = "请输入用户名" })*@
+                            <input type="text" name="Username" id="Username" class="form-control center-block" placeholder="请输入用户名" />
+                                            
+                </div>
+                <div class="form-group">                   
+                        <input type="password" name="Password" id="Password" class="form-control center-block" placeholder="请输入密码" />                               
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <input type="text" name="code" id="code" maxlength="4" placeholder="验证码" style="float:left;max-width:100px;" class="form-control" />
+                        <div style="width: 110px; float: right; padding-top: 14px; padding-left: 14px;">
+                            看不清？<a id="switchCode" href="javascript:void();" style="text-decoration: none;">换一张</a>
+                            <img id="imgcode" class="authcode" src="~/Account/GetAuthCode" width="80" height="25" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-6">
+                        <div class="checkbox" style="margin-left:20px;padding-left:20px;">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>
+                        </div>
+                        <div class="col-md-6 text-right" style="padding-top:7px;padding-right:30px;">
+                            @Html.ActionLink("注册为新用户", "Register")
+                        </div>
+                    </div>
+                    
+         
+                <div class="form-group">
+                    <div class="" style="margin-top:10px;margin-bottom:20px;">
+                        <input type="submit" value="登录" class="btn btn-default btn-block btn-success center-block" />
+                    </div>
+                </div>
+              
+                @* 在为密码重置功能启用帐户确认后启用此项
+                    <p>
+                        @Html.ActionLink("忘记了密码?", "ForgotPassword")
+                    </p>*@
+            }
+     
+    </div>
+  
+      @*<div class="col-md-4">
+        <section id="socialLoginForm">
+            @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+        </section>
+    </div>*@
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

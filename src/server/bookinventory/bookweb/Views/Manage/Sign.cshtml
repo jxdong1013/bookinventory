@@ -1,0 +1,104 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign</title>
+    <link href="~/Content/jquery.zsign.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet"/>
+</head>
+<body>
+    <div class="signbody">
+        <div class="price-title">
+            浙江杭州市火图科技有限公司
+        </div>
+        <div class="price-subtitle">
+            <p>杭州市滨江区阡陌路428号</p>
+            <p>电话：0571-85154668&nbsp;&nbsp;传真：0571-85154668</p>
+        </div> 
+        <div class="price-title">
+            报&nbsp;&nbsp;价&nbsp;&nbsp;单
+        </div>
+        <div class="price-info">
+            <table class="form">
+                <tr style="padding:4px;">
+                    <th class="formTitle">公&nbsp;&nbsp;&nbsp;&nbsp;司：</th>
+                    <td class="formValue" style="padding-right: 20px;">
+                        <input type="text" class="form-control"  style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;" value="中国节能环保集团公司" />
+                    </td>
+                    <th class="formTitle">联系人：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="南天亮" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">电&nbsp;&nbsp;&nbsp;&nbsp;话：</th>
+                    <td class="formValue" style="padding-right: 20px;">
+                        <input type="text" class="form-control " style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="0592-88888888" />
+                    </td>
+                    <th class="formTitle">传&nbsp;&nbsp;&nbsp;&nbsp;真：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control " style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="0592-88888886" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</th>
+                    <td class="formValue" style="padding-right: 20px;">
+                        <input type="text" class="form-control" style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;" />
+                    </td>
+                    <th class="formTitle">地&nbsp;&nbsp;&nbsp;&nbsp;址：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control " style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="北京市海淀区西直门北大街42号" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">报价人：</th>
+                    <td class="formValue" style="padding-right: 20px;">
+                        <input type="text" class="form-control " style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="李天福" />
+                    </td>
+                    <th class="formTitle">日&nbsp;&nbsp;&nbsp;&nbsp;期：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control " style="border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  value="2017-09-28" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="price-info">
+            <table class="form">
+                <tr>
+                    <th class="formTitle">日&nbsp;&nbsp;&nbsp;&nbsp;期：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" style="width: 150px; border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;" />
+                    </td>
+                </tr>
+            </table>
+            <table class="form">
+                <tr>
+                    <th class="formTitle">签&nbsp;&nbsp;&nbsp;&nbsp;字：</th>
+                    <td class="formValue">
+                        <input type="text" class="form-control" style="width: 150px;border-top:none;border-left:none;border-right:none;box-shadow:none;border-radius:0px;"  />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="~/Scripts/jquery.zsign.js"></script>
+    <script type="text/javascript">
+
+        $(function () {
+            $(".signbody").zSign({ img: '/Content/images/signet.gif' });
+        })
+
+    </script>
+
+</body>
+</html>

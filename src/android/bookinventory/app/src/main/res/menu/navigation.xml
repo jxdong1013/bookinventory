@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_booksearch"
+        android:icon="@drawable/vector_booksearch_24dp"
+        android:title="@string/title_booksearch"/>
+
+    <item
+        android:id="@+id/navigation_shelfsearch"
+        android:icon="@drawable/vector_shelfsearch_24dp"
+        android:title="@string/title_shelfsearch"/>
+
+    <item
+        android:id="@+id/navigation_shelfadapt"
+        android:icon="@drawable/vector_shelfadapt_24dp"
+        android:title="@string/title_shelfadapt"/>
+
+    <item
+    android:id="@+id/navigation_shelfarrage"
+    android:icon="@drawable/vector_shelfarrage_24dp"
+    android:title="@string/title_shelfarrage"/>
+
+    <item
+        android:id="@+id/navigation_differencemanage"
+        android:icon="@drawable/vector_difference_24dp"
+        android:title="@string/title_differencemanage"/>
+
+</menu>

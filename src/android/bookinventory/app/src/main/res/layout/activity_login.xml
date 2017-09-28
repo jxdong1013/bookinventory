@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    tools:context="com.jxd.android.bookinventtory.LoginActivity">
+
+    <ImageView
+        android:id="@+id/imgAvatar"
+        android:src="@mipmap/avatar"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="10dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"/>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgUsername"
+            android:src="@mipmap/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.huotu.android.library.libedittext.EditText
+            app:style="transparent"
+            android:id="@+id/username"
+            android:hint="请输入用户名"
+            android:layout_gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_height="1px"></View>
+
+    <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="0dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/imgPassword"
+            android:src="@mipmap/pwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <com.huotu.android.library.libedittext.EditText
+            android:id="@+id/password"
+            android:layout_gravity="center_vertical"
+            android:hint="请输入密码"
+            app:style="transparent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
+    <View
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="1px"></View>
+
+    <Button
+        android:layout_marginTop="30dp"
+        android:id="@+id/btnLogin"
+        android:text="登录"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:textSize="18sp"
+        android:textColor="@android:color/white"
+        android:background="@drawable/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

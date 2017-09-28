@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="book,inventory,图书,盘点">
+    <meta name="description" content="" >
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+</head>
+
+<body>
+
+    <div class="navbar navbar-default navbar-static-top pageheader" role="navigation">
+        <div class="container-fluid">
+            <div class="row" role="row">
+                    <div class="pageheadercolor ">
+                        Book Inventory Web
+                    </div>    
+                
+            </div>
+        </div>
+    </div>
+  
+
+    <div class="container body-content">
+       
+                @RenderBody()   
+ 
+    </div>
+     
+    <div class="navbar navbar-fixed-bottom pagebottom pagebottomcolor text-center">
+        <footer>&copy; @DateTime.Now.Year - 金向东</footer>
+    </div>
+
+
+</body>
+</html>

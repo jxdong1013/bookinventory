@@ -1,0 +1,69 @@
+﻿
+@{ 
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="book,inventory,图书,盘点">
+    <meta name="description" content="" >
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/site")
+    @*@RenderSection("scripts", required: false)*@
+
+</head>
+
+<body>
+    <!-- 页头 start-->
+    <div class="navbar navbar-default navbar-static-top pageheader" role="navigation">
+        <div class="container-fluid">
+            <div class="row" >
+                    <div class="pageheadercolor col-lg-5 col-md-6 col-sm-4">
+                        Book Inventory Web
+                    </div>
+                    <div class="text-right col-lg-7 col-md-6 col-sm-8" style="float:right">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                
+            </div>
+        </div>
+    </div>
+    <!--页头 end -->
+
+    <!--页内容区域start-->
+    <div class="container-fluid body-content">
+
+        <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-5">
+                
+                    @Html.Partial("_LeftMenuPartial")
+                
+            </div>
+
+            <div class="col-lg-10 col-md-10 col-sm-7">
+                @*@RenderBody()*@
+                <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="" seamless></iframe>
+            </div>
+
+        </div>
+   
+    </div>
+    <!--页内容区域 end -->
+    
+    <!--页尾start -->
+    <div class="navbar navbar-fixed-bottom pagebottom pagebottomcolor text-center">
+        <footer>&copy; @DateTime.Now.Year - 金向东</footer>
+    </div>
+    <!--页尾end -->
+
+</body>
+</html>

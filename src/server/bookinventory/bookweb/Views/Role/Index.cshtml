@@ -1,0 +1,37 @@
+﻿@model bookweb.Models.ApplicationRole
+
+@{
+    ViewBag.Title = "角色管理";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="panel panel-heading">
+    <input type="button" class="btn btn-default" value="新增角色" id="btnadd"  />
+</div>
+
+<div class="panel panel-default" >
+    <div class="panel panel-default">
+       
+            <div class="row"><label class="col-md-3">角色ID</label><label class="col-md-3">角色名称</label><label class="col-md-6">描述</label></div>
+
+        @foreach(var item in ViewBag.Roles)
+        {
+            <div class="row"><label class="col-md-3">@item.Id</label><label class="col-md-3">@item.Name</label><label class="col-md-6">@item.Description</label></div>
+        }
+    </div>
+
+</div>
+
+<script type="text/javascript">
+
+    $(function () {
+
+        $("#btnadd").click(function () {
+
+            window.location.href = "/role/addrole";
+        });
+
+    });
+
+</script>
