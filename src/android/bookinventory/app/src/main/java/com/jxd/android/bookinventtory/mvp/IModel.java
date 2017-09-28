@@ -5,4 +5,5 @@ package com.jxd.android.bookinventtory.mvp;
  */
 
 public interface IModel {
+    void onDestory();
 }

@@ -119,8 +119,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @OnClick({R.id.laySearchbar})
     public void onClick(View view){
         if(view.getId() == R.id.laySearchbar){
-            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-            this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
+            //Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+            //this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
         }
     }
 
