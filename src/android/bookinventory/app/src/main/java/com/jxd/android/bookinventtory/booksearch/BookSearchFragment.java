@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.base.BaseFragment;
+import com.trello.rxlifecycle2.LifecycleTransformer;
 
 /**
  * 图书检索界面
@@ -49,5 +50,26 @@ public class BookSearchFragment extends BaseFragment implements IBookSearchView{
     @Override
     public int getNavigateMenuId() {
         return R.id.navigation_booksearch;
+    }
+
+
+    @Override
+    public void showProgress() {
+
+    }
+
+    @Override
+    public void hideProgress() {
+
+    }
+
+    @Override
+    public void toast(String msg) {
+
+    }
+
+    @Override
+    public LifecycleTransformer bindLifecycle() {
+        return null;
     }
 }

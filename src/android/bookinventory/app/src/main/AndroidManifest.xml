@@ -28,7 +28,7 @@
             android:name=".MainActivity"
             android:theme="@style/AppNoActionBar">
         </activity>
-        <activity android:name=".SearchActivity">
+        <activity android:name=".search.SearchActivity">
         </activity>
     </application>
 

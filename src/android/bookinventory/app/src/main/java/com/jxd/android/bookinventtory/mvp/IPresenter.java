@@ -5,4 +5,6 @@ package com.jxd.android.bookinventtory.mvp;
  */
 
 public interface IPresenter {
+
+    void onDestory();
 }
