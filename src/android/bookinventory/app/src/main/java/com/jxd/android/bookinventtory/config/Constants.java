@@ -8,5 +8,7 @@ public class Constants {
     public static int CONNECT_TIMEOUT=15;
     public static int  WRITE_TIMEOUT=15;
 
+    public static long REALM_VERSION=1;
+
     public static String BASE_URL ="";
 }

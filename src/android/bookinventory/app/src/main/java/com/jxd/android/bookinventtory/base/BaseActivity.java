@@ -2,6 +2,7 @@ package com.jxd.android.bookinventtory.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 
 import com.jxd.android.bookinventtory.mvp.IPresenter;
@@ -29,7 +30,7 @@ public class BaseActivity<P extends IPresenter>
     BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Inject
-    P iPresenter;
+    protected P iPresenter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -91,7 +92,7 @@ public class BaseActivity<P extends IPresenter>
 
     @Override
     public void toast(String msg) {
-
+        Snackbar.make(this.getWindow().getDecorView(),msg,Snackbar.LENGTH_LONG).show();
     }
 
     @Override

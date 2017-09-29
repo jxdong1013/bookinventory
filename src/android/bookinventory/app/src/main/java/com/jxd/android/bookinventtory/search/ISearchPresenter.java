@@ -1,5 +1,6 @@
 package com.jxd.android.bookinventtory.search;
 
+import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 import com.jxd.android.bookinventtory.mvp.PreActivity;
 
@@ -10,6 +11,10 @@ import java.util.List;
  */
 public interface ISearchPresenter extends IPresenter{
 
-    List<String> getSearchKeysList();
+    void getSearchKeysListAsync(String key);
+
+    void addSearchKey(SearchKeyBean key);
+
+    void deleteSearkey();
 
 }

@@ -14,6 +14,7 @@ import com.jxd.android.bookinventtory.adapter.FragmentAdapter;
 import com.jxd.android.bookinventtory.base.BaseActivity;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.booksearch.BookSearchFragment;
+import com.jxd.android.bookinventtory.search.SearchActivity;
 import com.jxd.android.bookinventtory.shelfadapt.ShelfAdaptFragment;
 import com.jxd.android.bookinventtory.shelfarrage.ShelfArrageFragment;
 import com.jxd.android.bookinventtory.shelfsearch.ShelfSearchFragment;
@@ -119,8 +120,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @OnClick({R.id.laySearchbar})
     public void onClick(View view){
         if(view.getId() == R.id.laySearchbar){
-            //Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-            //this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
+            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+            this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
         }
     }
 

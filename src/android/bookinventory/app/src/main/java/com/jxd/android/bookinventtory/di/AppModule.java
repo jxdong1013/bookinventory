@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.base.BaseApplciation;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
+import com.jxd.android.bookinventtory.utils.RealmUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -11,6 +12,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
@@ -20,17 +22,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by Administrator on 2017/9/8.
  */
+@Singleton
 @Module
 public class AppModule {
-    BaseApplciation applciation;
-    public AppModule(BaseApplciation applciation) {
-        this.applciation = applciation;
+    BaseApplciation application;
+    public AppModule(BaseApplciation application) {
+        this.application = application;
     }
 
     @Singleton
     @Provides
     public BaseApplciation provideApplication(){
-        return applciation;
+        return application;
     }
 
     @Singleton
@@ -75,6 +78,5 @@ public class AppModule {
                 .build();
         return retrofit;
     }
-
 
 }

@@ -7,6 +7,7 @@ import com.jxd.android.bookinventtory.mvp.PreActivity;
 
 import dagger.Component;
 import dagger.Provides;
+import io.realm.Realm;
 
 /**
  * Created by jinxiangdong on 2017/9/28.
@@ -20,5 +21,7 @@ public interface SearchComponent {
 
 
     ISearchPresenter getSearchPresenter();
+
+    Realm getRealm();
 
 }

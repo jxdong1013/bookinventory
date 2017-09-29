@@ -18,6 +18,41 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/AndroidManifest.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/assets/ShareSDK.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/assets/color.properties">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/res/values/strings.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/res/xml/merchant_info.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/src/com/huotu/mall/xidiancity/wxapi/WXEntryActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/xidiancity/src/com/huotu/mall/xidiancity/wxapi/WXPayEntryActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/huobanmall/src/buyer/sis/custom/yingyan/res/values/colors.xml">
           <value>
             <set />
@@ -73,6 +108,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/adapter/SearchKeyAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/adapter/SearchKeySection.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/base/BaseActivity.java">
           <value>
             <set />
@@ -89,6 +134,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bconfig/Constants.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/DataBase.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/SearchKeyBean.java">
           <value>
             <set />
           </value>
@@ -143,6 +198,41 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/ISearchPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/ISearchView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/SearchActivity.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/SearchComponent.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/SearchModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/SearchModule.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/search/SearchPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfadapt/ShelfAdaptFragment.java">
           <value>
             <set />
@@ -154,6 +244,26 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/ShelfSearchFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/MatrixCursorUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/RealmUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/RealmVersionMigration.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/ThirdPartyInit.java">
           <value>
             <set />
           </value>
@@ -188,6 +298,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/style_searchkey.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
           <value>
             <set />
@@ -204,6 +319,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/activity_splash.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_search_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_search_section.xml">
           <value>
             <set />
           </value>

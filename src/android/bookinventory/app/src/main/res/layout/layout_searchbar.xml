@@ -19,7 +19,6 @@
         android:id="@+id/tvSearchBar"
         android:text="搜索"
         android:padding="3dp"
-        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
