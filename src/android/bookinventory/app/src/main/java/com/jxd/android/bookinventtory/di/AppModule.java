@@ -2,7 +2,8 @@ package com.jxd.android.bookinventtory.di;
 
 import com.google.gson.Gson;
 import com.jxd.android.bookinventtory.config.Constants;
-import com.jxd.android.bookinventtory.base.BaseApplciation;
+import com.jxd.android.bookinventtory.base.BaseApplication;
+import com.jxd.android.bookinventtory.http.ApiService;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
 import com.jxd.android.bookinventtory.utils.RealmUtil;
 
@@ -25,14 +26,14 @@ import retrofit2.converter.gson.GsonConverterFactory;
 @Singleton
 @Module
 public class AppModule {
-    BaseApplciation application;
-    public AppModule(BaseApplciation application) {
+    BaseApplication application;
+    public AppModule(BaseApplication application) {
         this.application = application;
     }
 
     @Singleton
     @Provides
-    public BaseApplciation provideApplication(){
+    public BaseApplication provideApplication(){
         return application;
     }
 
@@ -79,4 +80,10 @@ public class AppModule {
         return retrofit;
     }
 
+    @Singleton
+    @Provides
+    public ApiService provideApiService(Retrofit retrofit){
+        ApiService apiService = retrofit.create(ApiService.class);
+        return apiService;
+    }
 }

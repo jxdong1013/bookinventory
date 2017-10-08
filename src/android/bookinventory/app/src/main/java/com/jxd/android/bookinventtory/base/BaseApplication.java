@@ -13,7 +13,7 @@ import com.uphyca.stetho_realm.RealmInspectorModulesProvider;
  * Created by Administrator on 2017/9/8.
  */
 
-public class BaseApplciation extends Application {
+public class BaseApplication extends Application {
     AppComponent appComponent;
 
     @Override

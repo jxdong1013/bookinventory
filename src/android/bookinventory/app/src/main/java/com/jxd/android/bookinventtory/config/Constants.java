@@ -10,5 +10,15 @@ public class Constants {
 
     public static long REALM_VERSION=1;
 
+    /**
+     * 接口地址
+     */
     public static String BASE_URL ="";
+    /**
+     * 界面显示的最多关键字数量
+     */
+    public static int MAX_SEARCHKEY_COUNT = 5;
+
+    public static String Key_SearchKey="searchkey";
+
 }

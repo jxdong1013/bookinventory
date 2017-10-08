@@ -1,5 +1,6 @@
 package com.jxd.android.bookinventtory.search;
 
+import android.content.Intent;
 import android.database.MatrixCursor;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
@@ -17,8 +18,9 @@ import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.adapter.SearchKeyAdapter;
 import com.jxd.android.bookinventtory.adapter.SearchKeySection;
 import com.jxd.android.bookinventtory.base.BaseActivity;
-import com.jxd.android.bookinventtory.base.BaseApplciation;
+import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.bean.SearchKeyBean;
+import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.utils.MatrixCursorUtil;
 
 import java.util.ArrayList;
@@ -29,6 +31,9 @@ import butterknife.ButterKnife;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
+/**
+ * 搜索界面
+ */
 public class SearchActivity extends BaseActivity<ISearchPresenter>
     implements ISearchView , SearchView.OnQueryTextListener , SearchView.OnCloseListener , BaseQuickAdapter.OnItemChildClickListener {
 
@@ -54,7 +59,7 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
         //searchInput.setHintTextColor( ContextCompat.getColor(this , R.color.white) );//设置提示字体颜色
 
         DaggerSearchComponent.builder()
-                .appComponent( ((BaseApplciation)this.getApplication()).getAppComponent() )
+                .appComponent( ((BaseApplication)this.getApplication()).getAppComponent() )
                 .searchModule(new SearchModule(this))
                 .build()
                 .inject(this);
@@ -76,9 +81,12 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     }
 
     @Override
-    public boolean onQueryTextSubmit(String query) {
-        toast(query);
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 
+    @Override
+    public boolean onQueryTextSubmit(String query) {
         searchView.clearFocus();
         //searchView.onActionViewCollapsed();
 //        SearchKeyBean key = new SearchKeyBean();
@@ -87,12 +95,14 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
 
         iPresenter.addSearchKey( key );
 
+        //finish();
+
         return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
-        toast(newText);
+        //toast(newText);
         return false;
     }
 
@@ -100,34 +110,6 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     public boolean onClose() {
         toast("onClose");
         return false;
-    }
-
-    @Override
-    public void onChange(RealmResults<SearchKeyBean> element) {
-
-        element=element.sort("hot", Sort.DESCENDING);
-
-        transfer(element);
-
-    }
-
-    protected void transfer(List<SearchKeyBean> list){
-        if( data==null){
-            data=new ArrayList<>();
-        }else{
-            data.clear();
-        }
-
-        data.add( new SearchKeySection(true,"最近搜索") );
-        for(SearchKeyBean item :  list){
-            SearchKeySection section = new SearchKeySection(item);
-            data.add(section);
-        }
-
-
-
-        searchKeyAdapter.setNewData( data );
-
     }
 
     /**
@@ -161,7 +143,7 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         if(view.getId() == R.id.ivDelete){
-            iPresenter.deleteSearkey();
+            iPresenter.deleteSearchKey();
         }
     }
 
@@ -176,8 +158,11 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     }
 
     @Override
-    public void onRefresh() {
+    public void onRefresh( List<SearchKeySection> data ) {
+        this.data = data;
+        searchKeyAdapter.setNewData(this.data);
 
+        hideProgress();
     }
 
     @Override
@@ -186,5 +171,14 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
         SearchKeySection bean=new SearchKeySection(true,"最近搜索");
         data.add(bean);
         searchKeyAdapter.setNewData(data);
+    }
+
+
+    @Override
+    public void onAdded( SearchKeyBean searchKeyBean) {
+        Intent intent = this.getIntent();
+        intent.putExtra(Constants.Key_SearchKey, searchKeyBean);
+        this.setResult(RESULT_OK , intent);
+        this.finish();
     }
 }

@@ -13,11 +13,17 @@ import android.widget.TextView;
 import com.jxd.android.bookinventtory.adapter.FragmentAdapter;
 import com.jxd.android.bookinventtory.base.BaseActivity;
 import com.jxd.android.bookinventtory.base.BaseFragment;
+import com.jxd.android.bookinventtory.bean.BookBean;
+import com.jxd.android.bookinventtory.bean.SearchKeyBean;
+import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.booksearch.BookSearchFragment;
+import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.search.SearchActivity;
 import com.jxd.android.bookinventtory.shelfadapt.ShelfAdaptFragment;
 import com.jxd.android.bookinventtory.shelfarrage.ShelfArrageFragment;
 import com.jxd.android.bookinventtory.shelfsearch.ShelfSearchFragment;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -98,8 +104,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             BaseFragment fragment = fragmentList.get(i);
             menuList.put(i, fragment.getNavigateMenuId());
         }
+
+        //EventBus.getDefault().register(this);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        //EventBus.getDefault().unregister(this);
+    }
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -122,6 +135,30 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         if(view.getId() == R.id.laySearchbar){
             Intent intent = new Intent(MainActivity.this,SearchActivity.class);
             this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if( resultCode== RESULT_OK && requestCode == REQUEST_CODE_SEARCH ){
+            SearchKeyBean key= (SearchKeyBean) data.getExtras().getSerializable(Constants.Key_SearchKey);
+            sendEvent( key );
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    protected void sendEvent(SearchKeyBean key){
+        int currentItem = viewPager.getCurrentItem();
+        BaseFragment baseFragment = (BaseFragment) fragmentAdapter.getItem( currentItem);
+        if( baseFragment.getNavigateMenuId() == R.id.navigation_booksearch ){
+            BookBean condition = new BookBean();
+            condition.setBookName(key.getKey());
+            EventBus.getDefault().post( condition );
+        }else if( baseFragment.getNavigateMenuId() == R.id.navigation_shelfsearch ){
+            ShelfBean condition = new ShelfBean();
+            condition.setShelfName(key.getKey());
+            EventBus.getDefault().post(condition);
         }
     }
 

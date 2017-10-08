@@ -1,7 +1,9 @@
 package com.jxd.android.bookinventtory.di;
 
-import com.jxd.android.bookinventtory.base.BaseApplciation;
+import com.jxd.android.bookinventtory.base.BaseApplication;
+import com.jxd.android.bookinventtory.http.ApiService;
 
+import javax.annotation.Signed;
 import javax.inject.Singleton;
 
 import dagger.Component;
@@ -19,8 +21,11 @@ public interface AppComponent {
      * @return
      */
     @Singleton
-    BaseApplciation getApplication();
+    BaseApplication getApplication();
 
     @Singleton
     Retrofit getRetrofit();
+
+    @Singleton
+    ApiService getApiService();
 }

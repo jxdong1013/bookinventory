@@ -51,4 +51,10 @@ public class ShelfAdaptFragment extends BaseFragment {
     public int getNavigateMenuId() {
         return R.id.navigation_shelfadapt;
     }
+
+
+    @Override
+    protected void fetchData() {
+
+    }
 }

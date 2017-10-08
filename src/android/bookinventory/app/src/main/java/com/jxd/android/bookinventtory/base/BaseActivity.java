@@ -77,6 +77,11 @@ public class BaseActivity<P extends IPresenter>
             unbinder.unbind();
             unbinder=null;
         }
+
+        if(iPresenter!=null){
+            iPresenter.onDestory();
+            iPresenter=null;
+        }
     }
 
 
@@ -97,7 +102,7 @@ public class BaseActivity<P extends IPresenter>
 
     @Override
     public LifecycleTransformer bindLifecycle() {
-        return null;
+        return bindToLifecycle();
     }
 
     //@Nonnull

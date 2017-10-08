@@ -10,12 +10,16 @@ import android.view.ViewGroup;
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 
+import butterknife.ButterKnife;
+
 /**
- * A simple {@link Fragment} subclass.
+ * 架位搜索界面
  * Use the {@link ShelfSearchFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ShelfSearchFragment extends BaseFragment {
+public class ShelfSearchFragment
+        extends BaseFragment<IShelfSearchPresenter>
+        implements IShelfSearchView{
 
     public ShelfSearchFragment() {
         // Required empty public constructor
@@ -38,13 +42,16 @@ public class ShelfSearchFragment extends BaseFragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_shelf_search, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_shelf_search, container, false);
+        unbinder = ButterKnife.bind(this , rootView);
+        return rootView;
     }
 
 
@@ -52,4 +59,12 @@ public class ShelfSearchFragment extends BaseFragment {
     public int getNavigateMenuId() {
         return R.id.navigation_shelfsearch;
     }
+
+
+    @Override
+    protected void fetchData() {
+
+    }
+
+
 }

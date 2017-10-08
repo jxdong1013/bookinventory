@@ -2,14 +2,8 @@ package com.jxd.android.bookinventtory.search;
 
 import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.mvp.IModel;
-
-import java.util.List;
-
-import javax.inject.Inject;
-
 import io.realm.Realm;
 import io.realm.RealmChangeListener;
-import io.realm.RealmList;
 import io.realm.RealmResults;
 
 /**
@@ -17,7 +11,6 @@ import io.realm.RealmResults;
  */
 
 public class SearchModel implements IModel {
-
     Realm realm;
 
     public SearchModel(Realm realm) {
@@ -26,12 +19,22 @@ public class SearchModel implements IModel {
 
     @Override
     public void onDestory() {
+        if(realm!=null){
+            realm.removeAllChangeListeners();
+            realm.close();
+            realm=null;
+        }
 
     }
 
-    public void getSearchKeysAsync(String key , RealmChangeListener<RealmResults<SearchKeyBean>> resultsRealmChangeListener ){
-         RealmResults<SearchKeyBean> realmResults = realm.where( SearchKeyBean.class  ).contains(  "key" , key ).findAllAsync();
-        realmResults.addChangeListener( resultsRealmChangeListener);
+    /**
+     * 获得所有搜索过的关键字
+     * @param key
+     * @param resultsRealmChangeListener
+     */
+    public void getSearchKeysAsync(String key , RealmChangeListener<RealmResults<SearchKeyBean>> resultsRealmChangeListener ) {
+        RealmResults<SearchKeyBean> realmResults = realm.where(SearchKeyBean.class).contains("key", key).findAllAsync();
+        realmResults.addChangeListener(resultsRealmChangeListener);
     }
 
     public void addSearchKey(final SearchKeyBean key , Realm.Transaction.OnSuccess onSuccess , Realm.Transaction.OnError onError){
@@ -43,7 +46,7 @@ public class SearchModel implements IModel {
         } , onSuccess , onError );
     }
 
-    public void deleteSearkey(Realm.Transaction.OnSuccess onSuccess , Realm.Transaction.OnError onError){
+    public void deleteSearchKey(Realm.Transaction.OnSuccess onSuccess , Realm.Transaction.OnError onError){
 
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
