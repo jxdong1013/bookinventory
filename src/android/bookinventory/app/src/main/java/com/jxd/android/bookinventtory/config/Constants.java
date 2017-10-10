@@ -13,12 +13,15 @@ public class Constants {
     /**
      * 接口地址
      */
-    public static String BASE_URL ="";
+    public static String BASE_URL ="http://192.168.1.36/bookweb/";
     /**
      * 界面显示的最多关键字数量
      */
     public static int MAX_SEARCHKEY_COUNT = 5;
 
     public static String Key_SearchKey="searchkey";
+
+    public static String PREF_FILENAME="pref_config";
+    public static String PREF_USER="user";
 
 }

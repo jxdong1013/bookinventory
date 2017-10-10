@@ -1,6 +1,7 @@
 package com.jxd.android.bookinventtory.booksearch;
 
 import com.jxd.android.bookinventtory.bean.BookBean;
+import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.mvp.IView;
 
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
 
 public interface IBookSearchView extends IView {
 
-    void callback(List<BookBean> data);
+    void callback(Page<BookBean> data);
 
+    void login();
 }

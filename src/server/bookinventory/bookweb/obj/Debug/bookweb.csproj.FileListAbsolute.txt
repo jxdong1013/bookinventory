@@ -90,3 +90,12 @@ F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.Migratio
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.csproj.GenerateResource.Cache
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.Migrations.aspnetusers2t_users1.resources
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.Migrations.rename.resources
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Net.Http.Formatting.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Web.Http.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Web.Http.WebHost.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Net.Http.Formatting.xml
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Web.Http.xml
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\System.Web.Http.WebHost.xml
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Net.Http.Formatting.resources.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Web.Http.resources.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Web.Http.WebHost.resources.dll

@@ -14,6 +14,7 @@ import com.jxd.android.bookinventtory.adapter.FragmentAdapter;
 import com.jxd.android.bookinventtory.base.BaseActivity;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
+import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.booksearch.BookSearchFragment;
@@ -152,7 +153,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         int currentItem = viewPager.getCurrentItem();
         BaseFragment baseFragment = (BaseFragment) fragmentAdapter.getItem( currentItem);
         if( baseFragment.getNavigateMenuId() == R.id.navigation_booksearch ){
-            BookBean condition = new BookBean();
+            BookCondition condition = new BookCondition();
             condition.setBookName(key.getKey());
             EventBus.getDefault().post( condition );
         }else if( baseFragment.getNavigateMenuId() == R.id.navigation_shelfsearch ){

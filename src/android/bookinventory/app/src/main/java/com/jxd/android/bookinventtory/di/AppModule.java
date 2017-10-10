@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.http.ApiService;
+import com.jxd.android.bookinventtory.http.HeaderIntercepter;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
 import com.jxd.android.bookinventtory.utils.RealmUtil;
 
@@ -39,14 +40,20 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public OkHttpClient provideOkHttpClient(Interceptor interceptor){
+    public OkHttpClient provideOkHttpClient(Interceptor interceptor , HeaderIntercepter headerIntercepter){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.READ_TIMEOUT , TimeUnit.SECONDS)
                 .connectTimeout( Constants.CONNECT_TIMEOUT , TimeUnit.SECONDS )
                 .writeTimeout(Constants.WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor( interceptor)
+                .addInterceptor( headerIntercepter)
                 .build();
         return  okHttpClient;
+    }
+
+    @Provides
+    public HeaderIntercepter provideHeaderIntercepter(){
+        return new HeaderIntercepter();
     }
 
     @Provides
@@ -72,8 +79,9 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public Retrofit provideRetroft(GsonConverterFactory gsonConverterFactory , RxJava2CallAdapterFactory rxJava2CallAdapterFactory){
+    public Retrofit provideRetroft( OkHttpClient okHttpClient , GsonConverterFactory gsonConverterFactory , RxJava2CallAdapterFactory rxJava2CallAdapterFactory){
         Retrofit retrofit = new Retrofit.Builder().baseUrl( Constants.BASE_URL )
+                .client(okHttpClient)
                 .addConverterFactory( gsonConverterFactory )
                 .addCallAdapterFactory( rxJava2CallAdapterFactory)
                 .build();

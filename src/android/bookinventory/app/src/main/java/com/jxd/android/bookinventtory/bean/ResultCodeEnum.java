@@ -7,7 +7,9 @@ package com.jxd.android.bookinventtory.bean;
 public enum ResultCodeEnum {
 
     SUCCESS(1,"success"),
-    ERROR(400,"ERROR");
+    ERROR(400,"ERROR"),
+    LOGIN(1000,"LOGIN"),
+    LOGOUT(1010,"LOGOUT");
 
 
     private int code;

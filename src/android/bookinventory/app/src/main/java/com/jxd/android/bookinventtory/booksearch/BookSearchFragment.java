@@ -1,30 +1,43 @@
 package com.jxd.android.bookinventtory.booksearch;
 
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.provider.ContactsContract;
+import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.adapter.BookSearchAdapter;
+import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
-import com.trello.rxlifecycle2.LifecycleTransformer;
+import com.jxd.android.bookinventtory.bean.BookCondition;
+import com.jxd.android.bookinventtory.bean.DataBase;
+import com.jxd.android.bookinventtory.bean.Page;
+import com.jxd.android.bookinventtory.config.Constants;
+import com.jxd.android.bookinventtory.login.LoginActivity;
+import com.jxd.android.bookinventtory.search.SearchModule;
+import com.jxd.android.bookinventtory.utils.GsonUtil;
+import com.jxd.android.bookinventtory.utils.PreferenceHelper;
+import com.jxd.android.bookinventtory.widgets.ErrorWidget;
+import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.Observer;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
+import butterknife.OnClick;
 
 /**
  * 图书检索界面
@@ -37,9 +50,16 @@ public class BookSearchFragment
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
+    @BindView(R.id.progress)
+    ProgressWidget progressWidget;
+    @BindView(R.id.error)
+    ErrorWidget errorWidget;
+    @BindView(R.id.errorText)
+    TextView tvErrorText;
 
     BookSearchAdapter bookSearchAdapter;
     List<BookBean> bookBeanList;
+    int currentPageIndex=0;
 
 
     public BookSearchFragment() {
@@ -61,6 +81,46 @@ public class BookSearchFragment
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        application = (BaseApplication) getActivity().getApplication();
+        DaggerBookSearchComponent
+                .builder()
+                .appComponent( application.getAppComponent() )
+                .bookSearchModule( new BookSearchModule(this))
+                .build()
+                .inject(this);
+
+        //test();
+    }
+
+    protected void test(){
+        Page<BookBean> data = new Page<>();
+        data.setPageIdx(0);
+        data.setPageCount(0);
+        data.setPageSize(20);
+        data.setTotalCount(0);
+        List<BookBean> bs=new ArrayList<>();
+        BookBean b=new BookBean();
+        b.setAuthor("aaa");
+        b.setBookcode("ccc");
+        b.setBookId("ddd");
+        b.setPublish("sss");
+        b.setBookName("rrr");
+        b.setPublishDate("sssss");
+        bs.add(b);
+        data.setData(bs);
+        DataBase<Page<BookBean>> r =new DataBase<>();
+        r.setCode(1000);
+        r.setMessage("login");
+        r.setData(data);
+        String json = GsonUtil.getGson().toJson( r );
+
+        DataBase<Object> r2 = new DataBase<>();
+        r2.setCode(1);
+        r2.setMessage("sss");
+        String json2 = GsonUtil.getGson().toJson(r2);
+
+       r = GsonUtil.getGson().fromJson( json2 , r.getClass() );
     }
 
     @Override
@@ -73,7 +133,16 @@ public class BookSearchFragment
 
         EventBus.getDefault().register(this);
 
+        initView();
+
         return rootView;
+    }
+
+    protected void initView(){
+        bookBeanList = new ArrayList<>();
+        bookSearchAdapter = new BookSearchAdapter(bookBeanList);
+        recyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
+        recyclerView.setAdapter(bookSearchAdapter);
     }
 
     @Override
@@ -106,27 +175,46 @@ public class BookSearchFragment
 
     @Override
     public void showProgress() {
-
+        errorWidget.setVisibility(View.GONE);
+        progressWidget.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
-
+        errorWidget.setVisibility(View.GONE);
+        progressWidget.setVisibility(View.GONE);
     }
 
     @Override
     public void toast(String msg) {
+        hideProgress();
+        Snackbar.make(recyclerView,msg,Snackbar.LENGTH_LONG).show();
+    }
 
+    @Override
+    public void error(String msg) {
+        progressWidget.setVisibility(View.GONE);
+        errorWidget.setVisibility(View.VISIBLE);
+        tvErrorText.setText(msg);
     }
 
     @Override
     protected void fetchData() {
-        //iPresenter.getBookList(  );
+        BookCondition condition =new BookCondition();
+        condition.setPageIdx( currentPageIndex );
+        iPresenter.getBookList(  condition );
+    }
+
+    @OnClick({R.id.layError})
+    public void onClick(View v){
+        if( v.getId()==R.id.layError){
+            fetchData();
+        }
     }
 
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void searchBook( BookBean condition ){
+    public void searchBook( BookCondition condition ){
         toast("start search....");
         //// TODO: 2017/9/30
         iPresenter.getBookList(condition );
@@ -134,8 +222,17 @@ public class BookSearchFragment
 
 
     @Override
-    public void callback(List<BookBean> data) {
+    public void callback(Page<BookBean> data) {
         //bookBeanList.add( data );
-        bookSearchAdapter.addData(data);
+        bookSearchAdapter.addData(data.getData() );
+    }
+
+    @Override
+    public void login() {
+        PreferenceHelper.remove( BaseApplication.single , Constants.PREF_FILENAME, Constants.PREF_USER);
+
+        Intent intent =new Intent();
+        intent.setClass(this.getActivity() , LoginActivity.class);
+        getActivity().startActivity(intent);
     }
 }

@@ -13,4 +13,6 @@ import dagger.Component;
 public interface ShelfSearchComponent {
 
     void inject(ShelfSearchFragment shelfSearchFragment);
+
+    IShelfSearchPresenter getShelfSearchPresenter();
 }

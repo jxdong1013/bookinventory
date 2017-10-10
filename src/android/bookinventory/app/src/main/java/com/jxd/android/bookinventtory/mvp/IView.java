@@ -13,5 +13,7 @@ public interface IView {
 
     void toast(String msg);
 
+    void error(String msg );
+
     LifecycleTransformer bindLifecycle();
 }

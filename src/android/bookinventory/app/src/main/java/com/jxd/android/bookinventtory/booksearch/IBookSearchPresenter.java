@@ -1,6 +1,7 @@
 package com.jxd.android.bookinventtory.booksearch;
 
 import com.jxd.android.bookinventtory.bean.BookBean;
+import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 
 import io.reactivex.Observer;
@@ -10,5 +11,5 @@ import io.reactivex.Observer;
  */
 
 public interface IBookSearchPresenter extends IPresenter {
-    void getBookList(BookBean condition);
+    void getBookList( BookCondition condition);
 }

@@ -19,8 +19,18 @@ public class BookSearchModule {
     }
 
     @Provides
-    public IBookSearchModel provideBookSearchModel(ApiService apiService ){
-        return new BookSearchModel( apiService,  bookSearchFragment);
+    public IBookSearchView provideBookSearchView(){
+        return bookSearchFragment;
+    }
+
+    @Provides
+    public IBookSearchModel provideBookSearchModel( ApiService apiService ){
+        return new BookSearchModel( apiService ,  bookSearchFragment);
+    }
+
+    @Provides
+    public IBookSearchPresenter provideBookSearchPresenter( IBookSearchView iBookSearchView , IBookSearchModel iBookSearchModel ){
+        return new BookSearchPresenter( iBookSearchView , iBookSearchModel);
     }
 
 }

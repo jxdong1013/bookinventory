@@ -3,6 +3,8 @@ package com.jxd.android.bookinventtory.http;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookBeanResult;
 import com.jxd.android.bookinventtory.bean.DataBase;
+import com.jxd.android.bookinventtory.bean.Page;
+import com.jxd.android.bookinventtory.bean.UserBean;
 
 import java.util.List;
 
@@ -20,6 +22,13 @@ import retrofit2.http.Query;
 public interface ApiService {
 
     @FormUrlEncoded
-    @GET("book/search")
-    Observable<DataBase<List<BookBean>>> getBookList(@Query("key") String key , @Query("code") String code);
+    @POST("login/login")
+    Observable<DataBase<UserBean>> login(@Field("username") String userName , @Field("password") String password);
+
+    @GET("login/logout")
+    Observable<DataBase<Object>> logout();
+
+    //@FormUrlEncoded
+    @GET("book/getbooklist")
+    Observable<DataBase<Page<BookBean>>> getBookList(@Query("key") String key , @Query("code") String code , @Query("pageidx") int pageidx );
 }

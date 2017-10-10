@@ -1,6 +1,7 @@
 package com.jxd.android.bookinventtory.booksearch;
 
 import com.jxd.android.bookinventtory.di.AppComponent;
+import com.jxd.android.bookinventtory.mvp.PerActivity;
 import com.jxd.android.bookinventtory.mvp.PerFragment;
 
 import dagger.Component;
@@ -14,6 +15,6 @@ public interface BookSearchComponent {
 
     void inject(BookSearchFragment bookSearchFragment);
 
-    IBookSearchModel getBookSearchModel();
+    IBookSearchPresenter getBookSearchPresenter();
 
 }

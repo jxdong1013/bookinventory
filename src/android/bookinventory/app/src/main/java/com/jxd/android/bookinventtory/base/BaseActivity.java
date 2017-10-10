@@ -1,5 +1,6 @@
 package com.jxd.android.bookinventtory.base;
 
+import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 import com.jxd.android.bookinventtory.mvp.IView;
+import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 import com.trello.rxlifecycle2.LifecycleProvider;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 import com.trello.rxlifecycle2.RxLifecycle;
@@ -20,13 +22,16 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 
 /**
- * Created by Administrator on 2017/9/8.
+ * Created by jinxiangdong on 2017/9/8.
  */
 public class BaseActivity<P extends IPresenter>
         extends AppCompatActivity
         implements IView , LifecycleProvider<ActivityEvent>{
 
     protected Unbinder unbinder;
+    @Inject
+    protected  BaseApplication baseApplication;
+
     BehaviorSubject<ActivityEvent> lifecycleSubject = BehaviorSubject.create();
 
     @Inject
@@ -87,7 +92,6 @@ public class BaseActivity<P extends IPresenter>
 
     @Override
     public void showProgress() {
-
     }
 
     @Override
@@ -98,6 +102,11 @@ public class BaseActivity<P extends IPresenter>
     @Override
     public void toast(String msg) {
         Snackbar.make(this.getWindow().getDecorView(),msg,Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void error(String msg) {
+
     }
 
     @Override

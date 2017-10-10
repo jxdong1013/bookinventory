@@ -34,9 +34,8 @@ public abstract class BaseFragment<P extends IPresenter>
 
     BehaviorSubject<FragmentEvent> lifecycleSubject = BehaviorSubject.create();
 
-    //@Inject
-    //BaseApplication application;
-
+    protected BaseApplication application;
+    @Inject
     protected P iPresenter;
     protected Unbinder unbinder;
 
@@ -47,6 +46,7 @@ public abstract class BaseFragment<P extends IPresenter>
 
     public BaseFragment() {
         super();
+
     }
 
     @Override
@@ -187,6 +187,11 @@ public abstract class BaseFragment<P extends IPresenter>
     @Override
     public void toast(String msg) {
         Snackbar.make(this.getView(),msg,Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void error(String msg) {
+
     }
 
     @Override

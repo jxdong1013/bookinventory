@@ -20,12 +20,9 @@ public interface AppComponent {
      * 提供全局唯一Application
      * @return
      */
-    @Singleton
     BaseApplication getApplication();
 
-    @Singleton
     Retrofit getRetrofit();
 
-    @Singleton
     ApiService getApiService();
 }

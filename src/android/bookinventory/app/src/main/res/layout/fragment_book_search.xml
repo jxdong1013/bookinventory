@@ -9,4 +9,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.jxd.android.bookinventtory.widgets.ProgressWidget
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.jxd.android.bookinventtory.widgets.ErrorWidget
+        android:id="@+id/error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 </FrameLayout>

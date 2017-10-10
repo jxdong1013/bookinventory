@@ -1,6 +1,7 @@
 package com.jxd.android.bookinventtory.booksearch;
 
 import com.jxd.android.bookinventtory.bean.BookBean;
+import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.mvp.IModel;
 
 import io.reactivex.Observer;
@@ -11,6 +12,6 @@ import io.reactivex.Observer;
 
 public interface IBookSearchModel extends IModel {
 
-    void getBookList(BookBean condition , Observer subscriber);
+    void getBookList(BookCondition condition , Observer subscriber);
 
 }
