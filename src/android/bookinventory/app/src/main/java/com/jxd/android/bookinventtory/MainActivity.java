@@ -49,8 +49,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     ViewPager viewPager;
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigationView;
-    @BindView(R.id.laySearchbar)
-    LinearLayout laySearchbar;
+//    @BindView(R.id.laySearchbar)
+//    LinearLayout laySearchbar;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -130,37 +130,36 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     }
 
+//    @OnClick({R.id.laySearchbar})
+//    public void onClick(View view){
+//        if(view.getId() == R.id.laySearchbar){
+//            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
+//            this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
+//        }
+//    }
 
-    @OnClick({R.id.laySearchbar})
-    public void onClick(View view){
-        if(view.getId() == R.id.laySearchbar){
-            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-            this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
-        }
-    }
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        if( resultCode== RESULT_OK && requestCode == REQUEST_CODE_SEARCH ){
+//            SearchKeyBean key= (SearchKeyBean) data.getExtras().getSerializable(Constants.Key_SearchKey);
+//            sendEvent( key );
+//        }else {
+//            super.onActivityResult(requestCode, resultCode, data);
+//        }
+//    }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if( resultCode== RESULT_OK && requestCode == REQUEST_CODE_SEARCH ){
-            SearchKeyBean key= (SearchKeyBean) data.getExtras().getSerializable(Constants.Key_SearchKey);
-            sendEvent( key );
-        }else {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    protected void sendEvent(SearchKeyBean key){
-        int currentItem = viewPager.getCurrentItem();
-        BaseFragment baseFragment = (BaseFragment) fragmentAdapter.getItem( currentItem);
-        if( baseFragment.getNavigateMenuId() == R.id.navigation_booksearch ){
-            BookCondition condition = new BookCondition();
-            condition.setBookName(key.getKey());
-            EventBus.getDefault().post( condition );
-        }else if( baseFragment.getNavigateMenuId() == R.id.navigation_shelfsearch ){
-            ShelfBean condition = new ShelfBean();
-            condition.setShelfName(key.getKey());
-            EventBus.getDefault().post(condition);
-        }
-    }
+//    protected void sendEvent(SearchKeyBean key){
+//        int currentItem = viewPager.getCurrentItem();
+//        BaseFragment baseFragment = (BaseFragment) fragmentAdapter.getItem( currentItem);
+//        if( baseFragment.getNavigateMenuId() == R.id.navigation_booksearch ){
+//            BookCondition condition = new BookCondition();
+//            condition.setBookName(key.getKey());
+//            EventBus.getDefault().post( condition );
+//        }else if( baseFragment.getNavigateMenuId() == R.id.navigation_shelfsearch ){
+//            ShelfBean condition = new ShelfBean();
+//            condition.setShelfName(key.getKey());
+//            EventBus.getDefault().post(condition);
+//        }
+//    }
 
 }

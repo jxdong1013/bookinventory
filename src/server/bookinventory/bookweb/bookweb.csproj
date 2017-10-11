@@ -184,6 +184,7 @@
     <Compile Include="beans\Config.cs" />
     <Compile Include="beans\DataBase.cs" />
     <Compile Include="beans\Page.cs" />
+    <Compile Include="beans\Shelf.cs" />
     <Compile Include="beans\User.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BookController.cs" />

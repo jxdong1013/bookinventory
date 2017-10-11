@@ -13,5 +13,7 @@ namespace bookweb.beans
         public string publishDate { get; set; }
         public string bookId { get; set; }
         public string bookcode { get; set; }
+
+        public string position { get; set; }
     }
 }

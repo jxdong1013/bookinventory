@@ -20,8 +20,10 @@ public class BookSearchAdapter extends BaseQuickAdapter<BookBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, BookBean item) {
+        helper.setText(R.id.bookitem_bookid , item.getBookId());
         helper.setText(R.id.bookitem_bookname , item.getBookName());
         helper.setText(R.id.bookitem_author,item.getAuthor());
         helper.setText(R.id.bookitem_bookcode , item.getBookcode());
+        helper.setText(R.id.bookitem_position,item.getPosition());
     }
 }

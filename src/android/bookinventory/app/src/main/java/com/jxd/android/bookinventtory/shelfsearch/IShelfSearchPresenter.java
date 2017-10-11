@@ -1,5 +1,6 @@
 package com.jxd.android.bookinventtory.shelfsearch;
 
+import com.jxd.android.bookinventtory.bean.ShelfCondition;
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 
 /**
@@ -7,4 +8,7 @@ import com.jxd.android.bookinventtory.mvp.IPresenter;
  */
 
 public interface IShelfSearchPresenter extends IPresenter{
+
+    void getShelfList(ShelfCondition condition);
+
 }

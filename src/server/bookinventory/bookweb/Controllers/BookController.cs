@@ -6,7 +6,7 @@ using bookweb.Utils;
 
 namespace bookweb.Controllers
 {
-    //[HandlerLoginAttribute]
+    [HandlerLoginAttribute]
     public class BookController : Controller
     {
         [HttpGet]
@@ -15,17 +15,21 @@ namespace bookweb.Controllers
             JsonResult result = new JsonResult();
             result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
 
-            List<Book> books = new List<Book>();
-            for(int i = 0; i < pagesize; i++)
+         
+                List<Book> books = new List<Book>();
+            if (pageidx < 8)
             {
-                Book b = new Book();
-                b.author = "金向东";
-                b.bookcode = Guid.NewGuid().ToString();
-                b.bookId = b.bookcode;
-                b.bookName = Guid.NewGuid().ToString();
-                b.publish = "浙江杭州人民出版社";
-                b.publishDate = DateTime.Now.ToString("yyyy-MM-dd");
-                books.Add(b);
+                for (int i = 0; i < pagesize; i++)
+                {
+                    Book b = new Book();
+                    b.author = "金向东";
+                    b.bookcode = Guid.NewGuid().ToString();
+                    b.bookId = (pageidx * pagesize + i).ToString();
+                    b.bookName = Guid.NewGuid().ToString();
+                    b.publish = "浙江杭州人民出版社";
+                    b.publishDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    books.Add(b);
+                }
             }
 
             Page<Book> page = new Page<Book>();

@@ -5,7 +5,9 @@ import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.ResultCodeEnum;
+import com.jxd.android.bookinventtory.config.Constants;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -29,16 +31,13 @@ public class BookSearchPresenter implements IBookSearchPresenter ,Observer<DataB
 
     @Override
     public void getBookList(BookCondition key ) {
-
-        iBookSearchView.showProgress();
-
         this.iBookSearchModel.getBookList( key , this );
     }
 
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-
+        iBookSearchView.showProgress();
     }
 
     @Override
@@ -54,7 +53,11 @@ public class BookSearchPresenter implements IBookSearchPresenter ,Observer<DataB
 
     @Override
     public void onError(@NonNull Throwable e) {
-        iBookSearchView.error(e.getMessage());
+        if( e instanceof SocketTimeoutException){
+            iBookSearchView.error(Constants.MESSAGE_TIMEOUT);
+        }else {
+            iBookSearchView.error(Constants.MESSAGE_ERROR);
+        }
     }
 
     @Override

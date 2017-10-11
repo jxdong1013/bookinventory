@@ -16,6 +16,7 @@ import static com.jxd.android.bookinventtory.utils.GsonUtil.getGson;
 import static com.jxd.android.bookinventtory.utils.PreferenceHelper.readString;
 
 /**
+ * 这个拦截器，主要是在http请求头添加 token 值
  * Created by Administrator on 2017/10/10.
  */
 
@@ -25,8 +26,10 @@ public class HeaderIntercepter implements Interceptor {
     public Response intercept(Chain chain) throws IOException {
 
         Request request = chain.request();
-        Request newRequest = request.newBuilder()
-                .addHeader("token" , getToken() ).build();
+        Request newRequest = request
+                .newBuilder()
+                .addHeader("token" , getToken() )
+                .build();
 
         return chain.proceed(newRequest);
     }

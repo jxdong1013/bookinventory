@@ -1,10 +1,13 @@
 package com.jxd.android.bookinventtory.di;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.base.BaseApplication;
+import com.jxd.android.bookinventtory.http.AddCookieIntercepter;
 import com.jxd.android.bookinventtory.http.ApiService;
 import com.jxd.android.bookinventtory.http.HeaderIntercepter;
+import com.jxd.android.bookinventtory.http.ReceiveCookieInterceptor;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
 import com.jxd.android.bookinventtory.utils.RealmUtil;
 
@@ -40,13 +43,15 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public OkHttpClient provideOkHttpClient(Interceptor interceptor , HeaderIntercepter headerIntercepter){
+    public OkHttpClient provideOkHttpClient(Interceptor interceptor , HeaderIntercepter headerIntercepter , AddCookieIntercepter addCookieIntercepter , ReceiveCookieInterceptor receiveCookieInterceptor){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.READ_TIMEOUT , TimeUnit.SECONDS)
                 .connectTimeout( Constants.CONNECT_TIMEOUT , TimeUnit.SECONDS )
                 .writeTimeout(Constants.WRITE_TIMEOUT, TimeUnit.SECONDS)
                 .addInterceptor( interceptor)
                 .addInterceptor( headerIntercepter)
+                .addInterceptor(addCookieIntercepter)
+                .addInterceptor(receiveCookieInterceptor)
                 .build();
         return  okHttpClient;
     }
@@ -61,10 +66,20 @@ public class AppModule {
         return new RequestInterceptor(null, RequestInterceptor.Level.ALL);
     }
 
+    @Provides
+    public ReceiveCookieInterceptor provideReceiveCookieInterceptor(BaseApplication baseApplication){
+        return new ReceiveCookieInterceptor(baseApplication);
+    }
+
+    @Provides
+    public AddCookieIntercepter provideAddCookieInterceptor(BaseApplication baseApplication){
+        return new AddCookieIntercepter(baseApplication);
+    }
+
     @Singleton
     @Provides
     public Gson provideGson(){
-        return new Gson();
+        return new GsonBuilder().serializeNulls().create();
     }
     @Singleton
     @Provides

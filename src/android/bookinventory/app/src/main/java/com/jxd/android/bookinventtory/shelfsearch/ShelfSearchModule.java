@@ -8,9 +8,23 @@ import dagger.Provides;
  */
 @Module
 public class ShelfSearchModule {
+    private ShelfSearchFragment shelfSearchFragment;
+
+    public ShelfSearchModule(ShelfSearchFragment shelfSearchFragment){
+        this.shelfSearchFragment = shelfSearchFragment;
+    }
 
     @Provides
-    public IShelfSearchPresenter provideShelfSearchPresenter(){
-        return new ShelfSearchPresenter();
+    public  IShelfSearchView provideShelfSearchView(){
+        return shelfSearchFragment;
+    }
+    @Provides
+    public IShelfSearchModel provideShelfSearchModel(){
+        return  new ShelfSearchModel();
+    }
+
+    @Provides
+    public IShelfSearchPresenter provideShelfSearchPresenter(IShelfSearchView iShelfSearchView , IShelfSearchModel iShelfSearchModel){
+        return new ShelfSearchPresenter(iShelfSearchView, iShelfSearchModel);
     }
 }

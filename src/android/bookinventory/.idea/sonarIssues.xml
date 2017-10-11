@@ -3,6 +3,11 @@
   <component name="issues">
     <option name="index">
       <map>
+        <entry key="/Dummy.txt">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="/a.dummy">
           <value>
             <set />
@@ -133,6 +138,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/adapter/ShelfSearchAdapter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/base/BaseActivity.java">
           <value>
             <set />
@@ -158,7 +168,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookCondition.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookModel.java">
           <value>
             <set />
           </value>
@@ -179,6 +199,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/SearchKeyBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfCondition.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfModel.java">
           <value>
             <set />
           </value>
@@ -243,12 +273,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/http/AddCookieIntercepter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/http/ApiService.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/http/HeaderIntercepter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/http/ReceiveCookieInterceptor.java">
           <value>
             <set />
           </value>
@@ -363,12 +403,27 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/IShelfSearchModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/IShelfSearchPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/ShelfSearchComponent.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/ShelfSearchFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfsearch/ShelfSearchModel.java">
           <value>
             <set />
           </value>
@@ -383,7 +438,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/CrashHandler.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/DateUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/GsonUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/KeyWordUtil.java">
           <value>
             <set />
           </value>
@@ -409,6 +479,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/ThirdPartyInit.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/ToastUtils.java">
           <value>
             <set />
           </value>
@@ -483,7 +558,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_shelf_search.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_book_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_empty.xml">
           <value>
             <set />
           </value>
@@ -494,6 +579,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_header.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_nodata.xml">
           <value>
             <set />
           </value>
@@ -514,6 +604,16 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_searchbar.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_shelfsearch_bookitem.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_shlefsearch_shelfitem.xml">
           <value>
             <set />
           </value>

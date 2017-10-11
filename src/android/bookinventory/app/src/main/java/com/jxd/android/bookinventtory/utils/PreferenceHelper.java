@@ -19,6 +19,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 
+import java.util.Set;
+
 /**
  * SharedPreferences操作工具包<br>
  * 
@@ -61,6 +63,14 @@ public class PreferenceHelper
                 Context.MODE_PRIVATE);
         Editor editor = preference.edit();
         editor.putString(k, v);
+        editor.commit();
+    }
+
+    public static void writeStringSet(Context context , String fileName , String k , Set<String> v){
+        SharedPreferences preference = context.getSharedPreferences(fileName,
+                Context.MODE_PRIVATE);
+        Editor editor = preference.edit();
+        editor.putStringSet(k ,v);
         editor.commit();
     }
 
@@ -117,6 +127,11 @@ public class PreferenceHelper
         SharedPreferences preference = context.getSharedPreferences(fileName,
                 Context.MODE_PRIVATE);
         return preference.getString(k, defV);
+    }
+
+    public static Set<String> readStringSet(Context context, String fileName, String k, Set<String> defV){
+        SharedPreferences preference = context.getSharedPreferences(fileName,Context.MODE_PRIVATE);
+        return preference.getStringSet(k, defV);
     }
 
     public static Long readLong(Context context, String fileName, String k)

@@ -8,7 +8,11 @@ import android.app.Application;
 
 public class ThirdPartyInit {
     public static void init(Application application){
+        CrashHandler.getInstance().init(application);
+
         RealmUtil.init( application);
+
+
 
     }
 }

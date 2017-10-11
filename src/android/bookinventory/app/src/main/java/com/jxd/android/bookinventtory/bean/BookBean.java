@@ -14,6 +14,7 @@ public class BookBean extends RealmObject{
     private String publishDate;
     private String bookId;
     private String bookcode;
+    private String position;
 
     public String getBookName() {
         return bookName;
@@ -61,5 +62,13 @@ public class BookBean extends RealmObject{
 
     public void setBookcode(String bookcode) {
         this.bookcode = bookcode;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
     }
 }

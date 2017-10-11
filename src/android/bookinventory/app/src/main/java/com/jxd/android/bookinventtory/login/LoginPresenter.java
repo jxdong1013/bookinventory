@@ -4,7 +4,9 @@ import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.ResultCodeEnum;
 import com.jxd.android.bookinventtory.bean.UserBean;
+import com.jxd.android.bookinventtory.config.Constants;
 
+import java.net.SocketTimeoutException;
 import java.util.List;
 
 import io.reactivex.Observer;
@@ -49,7 +51,11 @@ public class LoginPresenter implements ILoginPresenter , Observer<DataBase<UserB
     @Override
     public void onError(@NonNull Throwable e) {
         iLoginView.hideProgress();
-        iLoginView.toast("error");
+        if(e instanceof SocketTimeoutException){
+            iLoginView.error(Constants.MESSAGE_TIMEOUT);
+        }else {
+            iLoginView.error(Constants.MESSAGE_ERROR);
+        }
     }
 
     @Override

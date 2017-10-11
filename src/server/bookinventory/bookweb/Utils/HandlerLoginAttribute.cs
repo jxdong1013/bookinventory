@@ -32,11 +32,8 @@ namespace bookweb.Utils
             {
                 DataBase<Object> data = new DataBase<object>();
                 data.code = 1000;
-                data.message = "login";
-                JsonResult result = new JsonResult();
-                result.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
-                result.Data = data;
-                httpContext.Response.Write(result.ToJson());
+                data.message = "login";            
+                httpContext.Response.Write(data.ToJson());
                 httpContext.Response.End();
                 return false;
             }

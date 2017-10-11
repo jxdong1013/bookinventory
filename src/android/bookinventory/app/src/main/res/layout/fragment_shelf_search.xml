@@ -4,10 +4,36 @@
              android:layout_height="match_parent"
              tools:context="com.jxd.android.bookinventtory.shelfsearch.ShelfSearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/layout_searchbar"/>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </LinearLayout>
+
+    <com.jxd.android.bookinventtory.widgets.ProgressWidget
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.jxd.android.bookinventtory.widgets.ErrorWidget
+        android:id="@+id/error"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
 
 </FrameLayout>

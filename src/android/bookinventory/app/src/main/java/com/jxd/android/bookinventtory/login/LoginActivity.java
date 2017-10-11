@@ -1,9 +1,11 @@
 package com.jxd.android.bookinventtory.login;
 
 import android.content.Intent;
+import android.icu.text.IDNA;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.huotu.android.library.libedittext.EditText;
 import com.jxd.android.bookinventtory.MainActivity;
@@ -13,13 +15,16 @@ import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.bean.UserBean;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.utils.GsonUtil;
+import com.jxd.android.bookinventtory.utils.KeyWordUtil;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
+import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.jxd.android.bookinventtory.R.id.errorText;
 import static com.jxd.android.bookinventtory.utils.PreferenceHelper.readString;
 
 public class LoginActivity extends BaseActivity<ILoginPresenter>
@@ -33,6 +38,7 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
     Button btnLogin;
     @BindView(R.id.progress)
     ProgressWidget progressWidget;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +74,22 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
         String uName = username.getText().toString();
         String pword = password.getText().toString();
 
+        KeyWordUtil.closeKeybord( username ,  this);
+        KeyWordUtil.closeKeybord(password , this);
+
         iPresenter.login(uName , pword );
     }
 
+
     @Override
     public void showProgress() {
+        //errorWidget.setVisibility(View.GONE);
         progressWidget.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideProgress() {
+        //errorWidget.setVisibility(View.GONE);
         progressWidget.setVisibility(View.GONE);
     }
 
@@ -89,7 +101,10 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
 
     @Override
     public void error(String msg) {
-        super.error(msg);
+        progressWidget.setVisibility(View.GONE);
+        //errorWidget.setVisibility(View.VISIBLE);
+        //errorText.setText(msg);
+        toast(msg);
     }
 
     @Override

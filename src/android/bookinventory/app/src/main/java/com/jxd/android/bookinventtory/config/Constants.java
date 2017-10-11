@@ -24,4 +24,10 @@ public class Constants {
     public static String PREF_FILENAME="pref_config";
     public static String PREF_USER="user";
 
+    public static String PREF_COOKIE="cookie";
+
+
+    public static String   MESSAGE_TIMEOUT="链接服务器超时，请重试";
+    public static String   MESSAGE_ERROR="发送错误,请重试";
+
 }
