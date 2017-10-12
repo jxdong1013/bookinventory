@@ -1,5 +1,8 @@
 package com.jxd.android.bookinventtory.shelfsearch;
 
+import com.jxd.android.bookinventtory.http.ApiService;
+import com.trello.rxlifecycle2.LifecycleProvider;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -19,8 +22,8 @@ public class ShelfSearchModule {
         return shelfSearchFragment;
     }
     @Provides
-    public IShelfSearchModel provideShelfSearchModel(){
-        return  new ShelfSearchModel();
+    public IShelfSearchModel provideShelfSearchModel(ApiService apiService ){
+        return  new ShelfSearchModel( apiService , shelfSearchFragment);
     }
 
     @Provides

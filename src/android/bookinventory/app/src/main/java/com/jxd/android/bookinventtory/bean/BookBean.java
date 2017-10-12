@@ -1,13 +1,12 @@
 package com.jxd.android.bookinventtory.bean;
 
-import io.realm.RealmObject;
 
 /**
  * 图书信息
  * Created by jinxiangdong on 2017/9/30.
  */
 //// TODO: 2017/9/30
-public class BookBean extends RealmObject{
+public class BookBean {
     private String bookName;
     private String author;
     private String publish;

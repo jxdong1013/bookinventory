@@ -12,4 +12,14 @@ public class BookModel extends BookBean implements MultiItemEntity {
     public int getItemType() {
         return ShelfSearchAdapter.ITEM_TYPE_BOOK;
     }
+
+    public void transfor(BookBean bookBean){
+        this.setPublishDate( bookBean.getPublishDate() );
+        this.setPublish(bookBean.getPublish());
+        this.setBookName(bookBean.getBookName());
+        this.setBookId(bookBean.getBookId());
+        this.setAuthor(bookBean.getAuthor());
+        this.setBookcode(bookBean.getBookcode());
+        this.setPosition(bookBean.getPosition());
+    }
 }

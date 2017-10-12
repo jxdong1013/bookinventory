@@ -11,10 +11,18 @@ import java.security.PublicKey;
  * Created by Administrator on 2017/10/11.
  */
 
-public class ShelfModel extends ShelfBean implements MultiItemEntity {
+public class ShelfModel extends ShelfBean implements MultiItemEntity  {
 
     @Override
     public int getItemType() {
         return ShelfSearchAdapter.ITEM_TYPE_SHELF;
     }
+
+
+    public void transfor(ShelfBean shelfBean){
+        this.setShelfName( shelfBean.getShelfName() );
+        this.setShelfCode(shelfBean.getShelfCode());
+        this.setBooks( shelfBean.getBooks() );
+    }
+
 }

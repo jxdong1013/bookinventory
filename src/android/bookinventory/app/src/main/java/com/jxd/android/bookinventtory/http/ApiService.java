@@ -4,6 +4,7 @@ import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookBeanResult;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.Page;
+import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.UserBean;
 
 import java.util.List;
@@ -31,4 +32,7 @@ public interface ApiService {
     //@FormUrlEncoded
     @GET("book/getbooklist")
     Observable<DataBase<Page<BookBean>>> getBookList(@Query("key") String key , @Query("code") String code , @Query("pageidx") int pageidx );
+
+    @GET("shelf/getshelflist")
+    Observable<DataBase<ShelfBean>> getShelfList(@Query("code") String code);
 }

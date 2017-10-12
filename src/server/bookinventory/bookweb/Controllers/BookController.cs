@@ -28,6 +28,7 @@ namespace bookweb.Controllers
                     b.bookName = Guid.NewGuid().ToString();
                     b.publish = "浙江杭州人民出版社";
                     b.publishDate = DateTime.Now.ToString("yyyy-MM-dd");
+                    b.position = "100架2排";
                     books.Add(b);
                 }
             }

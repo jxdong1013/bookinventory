@@ -47,6 +47,7 @@ public abstract class BaseFragment<P extends IPresenter>
     public BaseFragment() {
         super();
 
+        application= BaseApplication.single;
     }
 
     @Override

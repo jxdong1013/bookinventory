@@ -4,10 +4,51 @@
              android:layout_height="match_parent"
              tools:context="com.jxd.android.bookinventtory.shelfadapt.ShelfAdaptFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment"/>
+        android:layout_height="wrap_content">
+
+        <include layout="@layout/layout_header"/>
+
+        <com.jxd.android.bookinventtory.widgets.ShelfAdaptWidget
+            android:id="@+id/shelfadaptscan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+
+        <!--测试使用-->
+        <LinearLayout
+            android:visibility="visible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+            <TextView
+                android:id="@+id/scanbook"
+                android:text="scanbook"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/scanshelf"
+                android:text="请扫描架位标签"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/swipeRefreshLayout"
+            android:layout_margin="3dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"/>
+        </android.support.v4.widget.SwipeRefreshLayout>
+
+    </LinearLayout>
 
 </FrameLayout>

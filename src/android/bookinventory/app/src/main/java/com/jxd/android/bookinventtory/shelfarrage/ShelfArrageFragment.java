@@ -11,6 +11,7 @@ import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 
 /**
+ *
  * A simple {@link Fragment} subclass.
  * Use the {@link ShelfArrageFragment#newInstance} factory method to
  * create an instance of this fragment.

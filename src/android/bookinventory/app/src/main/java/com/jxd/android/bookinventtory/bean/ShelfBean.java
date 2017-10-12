@@ -9,8 +9,7 @@ import io.realm.RealmObject;
  * 架位信息
  * Created by jinxiangdong on 2017/9/30.
  */
-//// TODO: 2017/9/30
-public class ShelfBean  {
+public class ShelfBean implements Cloneable{
 
     private String shelfCode;
     private String shelfName;
@@ -39,5 +38,18 @@ public class ShelfBean  {
 
     public void setBooks(List<BookBean> books) {
         this.books = books;
+    }
+
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+        Object clone = null;
+        try {
+            //Object中的clone()识别出你要复制的是哪一个对象。
+            clone = super.clone();
+        } catch (CloneNotSupportedException e) {
+            System.out.println(e.toString());
+        }
+        return clone;
     }
 }

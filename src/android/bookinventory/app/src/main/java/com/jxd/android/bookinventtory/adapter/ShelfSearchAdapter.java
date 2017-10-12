@@ -30,6 +30,7 @@ public class ShelfSearchAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
     protected void convert(BaseViewHolder helper, MultiItemEntity item) {
         if(helper.getItemViewType() == ITEM_TYPE_SHELF){
             ShelfModel shelfModel= (ShelfModel)item;
+            helper.setText(R.id.shelf_item_shelfcode , shelfModel.getShelfCode());
             helper.setText( R.id.shelf_item_shelfname , shelfModel.getShelfName());
         }else if(helper.getItemViewType() == ITEM_TYPE_BOOK){
             BookModel bookModel=(BookModel)item;
