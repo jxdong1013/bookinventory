@@ -17,17 +17,26 @@ import com.jxd.android.bookinventtory.adapter.ShelfSearchAdapter;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookShelfAdptBean;
+import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
+import com.jxd.android.bookinventtory.mvp.IPresenter;
+import com.jxd.android.bookinventtory.utils.DateUtils;
+import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ShelfAdaptWidget;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.security.Guard;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
+import java.util.UUID;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.jxd.android.bookinventtory.R.id.bookshelfscan_bookname;
 import static com.jxd.android.bookinventtory.R.id.recyclerView;
 
 /**
@@ -37,7 +46,10 @@ import static com.jxd.android.bookinventtory.R.id.recyclerView;
  */
 public class ShelfAdaptFragment
         extends BaseFragment<IShelfAdaptPresenter>
-        implements IShelfAdaptView ,SwipeRefreshLayout.OnRefreshListener , BaseQuickAdapter.RequestLoadMoreListener{
+        implements IShelfAdaptView
+        ,SwipeRefreshLayout.OnRefreshListener
+        , BaseQuickAdapter.RequestLoadMoreListener
+        ,ShelfAdaptWidget.onSaveScanResultListener{
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -92,6 +104,9 @@ public class ShelfAdaptFragment
         shelfAdaptAdapter = new ShelfAdaptAdapter(data);
         recyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(shelfAdaptAdapter);
+        swipeRefreshLayout.setOnRefreshListener(this);
+
+        shelfAdaptScanWidget.setOnSaveScanResultListener(this);
 
         //emptyView = LayoutInflater.from(getContext()).inflate(R.layout.layout_shelf_empty,(ViewGroup)recyclerView.getParent(),false);
         //shelfSearchAdapter.setEmptyView(emptyView);
@@ -100,19 +115,29 @@ public class ShelfAdaptFragment
         //bookSearchAdapter.isUseEmpty(false);
     }
 
-    @OnClick({R.id.scanbook,R.id.scanshelf})
+    @OnClick({R.id.scanbook,R.id.scanshelf,R.id.tvDeleteAll,R.id.tvlogout,R.id.tvUpload})
     public void onClick(View v){
         if(v.getId()==R.id.scanbook){
             BookBean bookBean=new BookBean();
-            bookBean.setBookcode("sssss");
-            bookBean.setBookName("ssss");
+            bookBean.setBookcode(UUID.randomUUID().toString());
+            bookBean.setBookName(bookBean.getBookcode());
             shelfAdaptScanWidget.setBookInfo(bookBean);
         }else if(v.getId()==R.id.scanshelf){
             ShelfBean shelfBean=new ShelfBean();
-            shelfBean.setShelfCode("ddd");
-            shelfBean.setShelfName("ddd");
+            shelfBean.setShelfCode(UUID.randomUUID().toString());
+            shelfBean.setShelfName(shelfBean.getShelfCode());
             shelfAdaptScanWidget.setShelfInfo(shelfBean);
+        }else if( v.getId()==R.id.tvlogout){
+            EventBus.getDefault().post(new LogoutEvent());
+        }else if(v.getId() == R.id.tvDeleteAll){
+            iPresenter.deleteAll();
+        }else if(v.getId()==R.id.tvUpload){
+            upload();    
         }
+    }
+    
+    protected void upload(){
+        //// TODO: 2017/10/13
     }
 
     @Override
@@ -133,6 +158,41 @@ public class ShelfAdaptFragment
 
     @Override
     protected void fetchData() {
+        iPresenter.getBookShelfScanList();
+    }
 
+    @Override
+    public void saveScanResult(BookBean bookBean, ShelfBean ShelfBean) {
+        BookShelfAdptBean bookShelfAdptBean=new BookShelfAdptBean();
+        bookShelfAdptBean.setShelfName(ShelfBean.getShelfName());
+        bookShelfAdptBean.setBookName(bookBean.getBookName());
+        bookShelfAdptBean.setAdaptTime(Calendar.getInstance().getTime());
+        bookShelfAdptBean.setBookCode(bookBean.getBookcode());
+        bookShelfAdptBean.setShelfCode(ShelfBean.getShelfCode());
+        bookShelfAdptBean.setUserId( application.getUserBean().getUserId());
+        bookShelfAdptBean.setUserName(application.getUserBean().getUserName());
+        bookShelfAdptBean.setId(UUID.randomUUID().toString());
+        iPresenter.saveBookShelfAdaptResult( bookShelfAdptBean);
+    }
+
+    @Override
+    public void saveCallback() {
+        ToastUtils.showLongToast("记录已经保存成功");
+        shelfAdaptScanWidget.reset();
+        //fetchData();
+
+    }
+
+    @Override
+    public void getCallback(List<BookShelfAdptBean> bookShelfAdptBeanList) {
+        swipeRefreshLayout.setRefreshing(false);
+        data = bookShelfAdptBeanList;
+        shelfAdaptAdapter.setNewData(data);
+    }
+
+    @Override
+    public void deleteCallback() {
+        swipeRefreshLayout.setRefreshing(false);
+        toast("删除成功");
     }
 }

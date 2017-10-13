@@ -1,9 +1,11 @@
 package com.jxd.android.bookinventtory.shelfadapt;
 
 import com.jxd.android.bookinventtory.http.ApiService;
+import com.jxd.android.bookinventtory.utils.RealmUtil;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 
 /**
  * Created by Administrator on 2017/10/12.
@@ -21,13 +23,20 @@ public class ShelfAdaptModule {
     }
 
     @Provides
-    public IShelfAdaptModel provideShelfAdaptModel(ApiService apiService){
-        return new ShelfAdaptModel(apiService , shelfAdaptFragment);
+    public Realm provideRealm(){
+        return new RealmUtil().getRealm();
+    }
+
+    @Provides
+    public IShelfAdaptModel provideShelfAdaptModel(ApiService apiService , Realm realm){
+        return new ShelfAdaptModel(apiService , shelfAdaptFragment , realm);
     }
 
     @Provides
     public IShelfAdaptPresenter provideShelfAdaptPresenter(IShelfAdaptView iShelfAdaptView , IShelfAdaptModel iShelfAdaptModel){
         return new ShelfAdaptPresenter( iShelfAdaptView , iShelfAdaptModel);
     }
+
+
 
 }

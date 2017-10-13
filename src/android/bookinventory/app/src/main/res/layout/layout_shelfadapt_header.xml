@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="horizontal"
+              android:layout_margin="0dp"
+              android:padding="2dp"
+              android:gravity="center"
+              android:background="@color/colorPrimary"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+
+
+    <TextView
+        android:layout_weight="1"
+        android:id="@+id/tvTitle"
+        android:text="架位调整"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvUpload"
+        android:drawableLeft="@mipmap/upload"
+        android:text=""
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvDeleteAll"
+        android:drawableLeft="@mipmap/delete"
+        android:text=""
+        android:layout_marginLeft="10dp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tvlogout"
+        android:layout_marginLeft="10dp"
+        android:padding="5dp"
+        android:layout_width="wrap_content"
+        android:drawableLeft="@mipmap/logout"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

@@ -1,10 +1,15 @@
 package com.jxd.android.bookinventtory.base;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 import com.jxd.android.bookinventtory.mvp.IView;
@@ -42,6 +47,8 @@ public class BaseActivity<P extends IPresenter>
         super.onCreate(savedInstanceState);
 
         lifecycleSubject.onNext(ActivityEvent.CREATE);
+
+        setImmerseLayout();
     }
 
     @Override
@@ -86,6 +93,14 @@ public class BaseActivity<P extends IPresenter>
         if(iPresenter!=null){
             iPresenter.onDestory();
             iPresenter=null;
+        }
+    }
+
+
+    public void setImmerseLayout(){
+        if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            Window window = getWindow();
+            window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS, WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
     }
 

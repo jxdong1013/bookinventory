@@ -15,16 +15,21 @@ import com.jxd.android.bookinventtory.base.BaseActivity;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookCondition;
+import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.booksearch.BookSearchFragment;
 import com.jxd.android.bookinventtory.config.Constants;
+import com.jxd.android.bookinventtory.login.LoginActivity;
 import com.jxd.android.bookinventtory.search.SearchActivity;
 import com.jxd.android.bookinventtory.shelfadapt.ShelfAdaptFragment;
 import com.jxd.android.bookinventtory.shelfarrage.ShelfArrageFragment;
 import com.jxd.android.bookinventtory.shelfsearch.ShelfSearchFragment;
+import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -106,13 +111,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             menuList.put(i, fragment.getNavigateMenuId());
         }
 
-        //EventBus.getDefault().register(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //EventBus.getDefault().unregister(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -128,6 +133,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onPageScrollStateChanged(int state) {
 
+    }
+
+    @Subscribe( threadMode= ThreadMode.MAIN)
+    public void  onLogoutEvent(LogoutEvent logoutEvent){
+        PreferenceHelper.remove(this , Constants.PREF_FILENAME , Constants.PREF_COOKIE);
+        PreferenceHelper.remove(this , Constants.PREF_FILENAME , Constants.PREF_USER);
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        this.startActivity(intent);
+        this.finish();
     }
 
 //    @OnClick({R.id.laySearchbar})

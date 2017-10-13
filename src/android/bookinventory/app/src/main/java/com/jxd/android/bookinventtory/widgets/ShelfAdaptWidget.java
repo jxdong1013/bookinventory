@@ -29,6 +29,11 @@ import static android.R.attr.paddingTop;
  * TODO: document your custom view class.
  */
 public class ShelfAdaptWidget extends LinearLayout {
+
+    public interface onSaveScanResultListener{
+        void saveScanResult(BookBean bookBean , ShelfBean ShelfBean);
+    }
+
     Unbinder unbinder;
 
     @BindView(R.id.laybook)
@@ -43,6 +48,18 @@ public class ShelfAdaptWidget extends LinearLayout {
     TextView tvshelfcode;
     @BindView(R.id.bookshelfscan_shelfname)
     TextView tvshelfName;
+    @BindView(R.id.layTip)
+    LinearLayout layTip;
+    @BindView(R.id.tip)
+    TextView tvTip;
+
+    BookBean bookBean;
+    ShelfBean shelfBean;
+    onSaveScanResultListener onSaveScanResultListener;
+
+    public void setOnSaveScanResultListener(ShelfAdaptWidget.onSaveScanResultListener onSaveScanResultListener) {
+        this.onSaveScanResultListener = onSaveScanResultListener;
+    }
 
     public ShelfAdaptWidget(Context context) {
         super(context);
@@ -74,15 +91,12 @@ public class ShelfAdaptWidget extends LinearLayout {
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
-
         unbinder = ButterKnife.bind(this  );
-
     }
 
     @Override
     protected void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-
         unbinder.unbind();
     }
 
@@ -95,12 +109,49 @@ public class ShelfAdaptWidget extends LinearLayout {
         layBook.setVisibility(VISIBLE);
         tvbookcode.setText(bookBean.getBookcode());
         tvbookName.setText(bookBean.getBookName());
-        //this.invalidate();
+        this.bookBean=bookBean;
+
+        saveScanResult();
     }
     public void setShelfInfo(ShelfBean shelfBean){
         layShelf.setVisibility(VISIBLE);
         tvshelfcode.setText(shelfBean.getShelfCode());
         tvshelfName.setText(shelfBean.getShelfName());
-        //this.invalidate();
+        this.shelfBean = shelfBean;
+
+        saveScanResult();
+    }
+
+    protected void saveScanResult(){
+        if(bookBean!=null && shelfBean!=null){
+            layTip.setVisibility(GONE);
+            if( onSaveScanResultListener !=null){
+                onSaveScanResultListener.saveScanResult( bookBean , shelfBean );
+            }else{
+                throw new RuntimeException("lost onSaveScanResultListener");
+            }
+        }else{
+            layTip.setVisibility(VISIBLE);
+            if( bookBean ==null && shelfBean ==null ) {
+                tvTip.setText( this.getContext().getString(R.string.tipmessage1) );
+            }else if(bookBean ==null ){
+                tvTip.setText(this.getContext().getString(R.string.tipmessage2));
+            }else if(shelfBean==null){
+                tvTip.setText(this.getContext().getString(R.string.tipmessage3));
+            }
+        }
+    }
+
+    public void reset(){
+        layBook.setVisibility(GONE);
+        tvbookName.setText("");
+        tvbookcode.setText("");
+        layShelf.setVisibility(GONE);
+        tvshelfcode.setText("");
+        tvshelfName.setText("");
+        layTip.setVisibility(VISIBLE);
+        tvTip.setText(getContext().getString(R.string.tipmessage1));
+        bookBean=null;
+        shelfBean=null;
     }
 }

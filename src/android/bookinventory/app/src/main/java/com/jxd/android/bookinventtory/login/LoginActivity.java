@@ -61,6 +61,7 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
         if(user==null){
             return;
         }
+        baseApplication.setUserBean(user);
 
         Intent intent = new Intent();
         intent.setClass( this, MainActivity.class);
@@ -111,9 +112,11 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
     public void callback(UserBean user) {
 
         PreferenceHelper.writeString( baseApplication , Constants.PREF_FILENAME , Constants.PREF_USER , GsonUtil.getGson().toJson( user));
+        baseApplication.setUserBean(user);
 
         Intent intent = new Intent();
         intent.setClass(this, MainActivity.class);
         this.startActivity(intent);
+        this.finish();
     }
 }

@@ -413,6 +413,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfadapt/IShelfAdaptModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfadapt/IShelfAdaptPresenter.java">
           <value>
             <set />
@@ -674,6 +679,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_shelf_empty.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_shelfadapt_header.xml">
           <value>
             <set />
           </value>

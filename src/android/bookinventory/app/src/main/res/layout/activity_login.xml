@@ -38,8 +38,8 @@
         <ImageView
             android:id="@+id/imgUsername"
             android:src="@mipmap/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
         <com.huotu.android.library.libedittext.EditText
             app:style="transparent"
             android:id="@+id/username"
@@ -68,8 +68,8 @@
         <ImageView
             android:id="@+id/imgPassword"
             android:src="@mipmap/pwd"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_width="48dp"
+            android:layout_height="48dp"/>
         <com.huotu.android.library.libedittext.EditText
             android:id="@+id/password"
             android:layout_gravity="center_vertical"

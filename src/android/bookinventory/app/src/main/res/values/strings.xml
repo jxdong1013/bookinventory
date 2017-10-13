@@ -12,4 +12,8 @@
     <string name="emptyData">暂时没有数据</string>
     <string name="tipMessage">扫描层架标签，查询信息</string>
     <string name="tipshelf">当前架位信息:</string>
+    <string name="tipmessage1">请扫描图书标签和架位标签,进行调整</string>
+    <string name="tipmessage2">请扫描图书标签,进行调整</string>
+    <string name="tipmessage3">请扫描架位标签,进行调整</string>
+
 </resources>
