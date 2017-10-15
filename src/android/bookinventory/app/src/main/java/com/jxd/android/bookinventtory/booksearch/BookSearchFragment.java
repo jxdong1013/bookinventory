@@ -25,6 +25,7 @@ import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.bean.DataBase;
+import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.config.Constants;
@@ -73,6 +74,8 @@ public class BookSearchFragment
     LinearLayout laySearchbar;
     @BindView(R.id.tvSearchBar)
     TextView tvSearchBar;
+    @BindView(R.id.tvUserName)
+    TextView tvUserName;
 
     View noDataView;
     View emptyView;
@@ -139,6 +142,8 @@ public class BookSearchFragment
         bookSearchAdapter.setEmptyView(emptyView);
         bookSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         //bookSearchAdapter.isUseEmpty(false);
+
+        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUserName() );
     }
 
     @Override
@@ -224,13 +229,15 @@ public class BookSearchFragment
         iPresenter.getBookList(  condition );
     }
 
-    @OnClick({R.id.layError,R.id.laySearchbar})
+    @OnClick({R.id.layError,R.id.laySearchbar,R.id.tvLogout})
     public void onClick(View v){
         if( v.getId()==R.id.layError){
             fetchData();
         }else if(v.getId() == R.id.laySearchbar){
             Intent intent = new Intent(this.getActivity(),SearchActivity.class);
             this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
+        }else if(v.getId()==R.id.tvLogout){
+            EventBus.getDefault().post(new LogoutEvent());
         }
     }
 

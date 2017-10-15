@@ -24,6 +24,7 @@ import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.bean.BookModel;
+import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.ShelfCondition;
 import com.jxd.android.bookinventtory.bean.ShelfModel;
@@ -32,6 +33,8 @@ import com.jxd.android.bookinventtory.login.LoginActivity;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +46,7 @@ import butterknife.OnClick;
 import static android.R.attr.key;
 import static com.jxd.android.bookinventtory.R.id.swipeRefreshLayout;
 import static com.jxd.android.bookinventtory.R.id.tvSearchBar;
+import static com.jxd.android.bookinventtory.R.id.tvUserName;
 
 /**
  * 架位搜索界面
@@ -63,6 +67,8 @@ public class ShelfSearchFragment
     TextView tvErrorText;
     @BindView(R.id.tvSearchBar)
     TextView tvSearchBar;
+    @BindView(R.id.tvUserName)
+    TextView tvUserName;
 
     List<MultiItemEntity> data;
     ShelfSearchAdapter shelfSearchAdapter;
@@ -120,6 +126,7 @@ public class ShelfSearchFragment
         //shelfSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         shelfSearchAdapter.setEnableLoadMore(false);
         //bookSearchAdapter.isUseEmpty(false);
+        tvUserName.setText( application.getUserBean() ==null?"":application.getUserBean().getUserName() );
     }
 
     @Override
@@ -193,9 +200,17 @@ public class ShelfSearchFragment
 
     @Override
     public void login() {
-        PreferenceHelper.remove( application , Constants.PREF_FILENAME, Constants.PREF_USER);
-        Intent intent =new Intent();
-        intent.setClass(this.getActivity() , LoginActivity.class);
-        getActivity().startActivity(intent);
+//        PreferenceHelper.remove( application , Constants.PREF_FILENAME, Constants.PREF_USER);
+//        Intent intent =new Intent();
+//        intent.setClass(this.getActivity() , LoginActivity.class);
+//        getActivity().startActivity(intent);
+        EventBus.getDefault().post(new LogoutEvent());
+    }
+
+    @OnClick({R.id.tvLogout})
+    public void onClick(View v){
+        if( v.getId()==R.id.tvLogout){
+            EventBus.getDefault().post(new LogoutEvent());
+        }
     }
 }

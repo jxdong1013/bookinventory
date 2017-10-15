@@ -83,7 +83,9 @@ public class SearchPresenter<V extends ISearchView>
 
         List<SearchKeySection> data = transfer( list );
 
-        searchView.onRefresh(data);
+        if(searchView!=null) {
+            searchView.onRefresh(data);
+        }
     }
 
 

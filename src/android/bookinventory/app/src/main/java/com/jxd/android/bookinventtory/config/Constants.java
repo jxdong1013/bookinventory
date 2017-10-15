@@ -13,7 +13,7 @@ public class Constants {
     /**
      * 接口地址
      */
-    public static String BASE_URL ="http://192.168.1.36/bookweb/";
+    public static String BASE_URL ="http://192.168.1.105/bookweb/";
     /**
      * 界面显示的最多关键字数量
      */

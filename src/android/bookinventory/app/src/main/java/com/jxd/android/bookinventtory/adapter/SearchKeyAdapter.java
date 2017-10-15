@@ -35,11 +35,14 @@ public class SearchKeyAdapter extends BaseSectionQuickAdapter<SearchKeySection ,
 
         helper.addOnClickListener(R.id.ivDelete);
 
+
     }
 
     @Override
     protected void convert(BaseViewHolder helper, SearchKeySection item) {
         helper.setText(R.id.search_item_key , item.t.getKey() );
+
+        helper.addOnClickListener(R.id.search_item_key);
 
 
     }

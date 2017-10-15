@@ -11,6 +11,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -28,6 +31,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -56,6 +60,9 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
         searchInput = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         //searchInput.setTextColor(ContextCompat.getColor( this , R.color.white ));//设置字体颜色
         searchInput.setThreshold(1);//设置自动提示=1
+        ViewGroup.LayoutParams layoutParams = searchInput.getLayoutParams();
+        layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+        searchInput.setLayoutParams(layoutParams);
         //searchInput.setHintTextColor( ContextCompat.getColor(this , R.color.white) );//设置提示字体颜色
 
         DaggerSearchComponent.builder()
@@ -144,6 +151,14 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
         if(view.getId() == R.id.ivDelete){
             iPresenter.deleteSearchKey();
+        }else if(view.getId()==R.id.search_item_key){
+            SearchKeySection searchKeySection= (SearchKeySection)adapter.getItem(position);
+
+            SearchKeyBean searchKeyBean =new SearchKeyBean();
+            searchKeyBean.setKey( searchKeySection.t.getKey() );
+            searchKeyBean.setHot( searchKeySection.t.getHot() + 1);
+
+            iPresenter.addSearchKey( searchKeyBean );
         }
     }
 
@@ -180,5 +195,13 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
         intent.putExtra(Constants.Key_SearchKey, searchKeyBean);
         this.setResult(RESULT_OK , intent);
         this.finish();
+    }
+
+
+    @OnClick({R.id.tvBack})
+    public void onClick(View v){
+        if( v.getId() == R.id.tvBack){
+            finish();
+        }
     }
 }

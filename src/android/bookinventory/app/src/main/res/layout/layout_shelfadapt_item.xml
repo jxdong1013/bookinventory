@@ -14,17 +14,44 @@
                       android:orientation="vertical"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <TextView
+                android:text="图书编号"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/shelfadapte_bookcode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <TextView
+                android:text="架位编号"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/shelfadapte_shelfcode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+            <TextView
+                android:text="操作时间"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
             <TextView
                 android:id="@+id/shelfadapte_adapttime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
+        </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>

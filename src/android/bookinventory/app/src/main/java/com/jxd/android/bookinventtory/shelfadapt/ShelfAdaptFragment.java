@@ -2,6 +2,8 @@ package com.jxd.android.bookinventtory.shelfadapt;
 
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +24,7 @@ import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 import com.jxd.android.bookinventtory.utils.DateUtils;
 import com.jxd.android.bookinventtory.utils.ToastUtils;
+import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 import com.jxd.android.bookinventtory.widgets.ShelfAdaptWidget;
 
 import org.greenrobot.eventbus.EventBus;
@@ -57,9 +60,12 @@ public class ShelfAdaptFragment
     SwipeRefreshLayout swipeRefreshLayout;
     @BindView(R.id.shelfadaptscan)
     ShelfAdaptWidget shelfAdaptScanWidget;
+    @BindView(R.id.progress)
+    ProgressWidget progressWidget;
 
     List<BookShelfAdptBean> data;
     ShelfAdaptAdapter shelfAdaptAdapter;
+    Handler handler;
 
     public ShelfAdaptFragment() {
         // Required empty public constructor
@@ -97,7 +103,17 @@ public class ShelfAdaptFragment
         return rootView;
     }
 
-    protected void initView( View rootView ){
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+
+        if(handler!=null){
+            this.handler.removeCallbacksAndMessages(null);
+        }
+
+    }
+
+    protected void initView(View rootView ){
         unbinder = ButterKnife.bind(this , rootView);
 
         data = new ArrayList<>();
@@ -115,7 +131,7 @@ public class ShelfAdaptFragment
         //bookSearchAdapter.isUseEmpty(false);
     }
 
-    @OnClick({R.id.scanbook,R.id.scanshelf,R.id.tvDeleteAll,R.id.tvlogout,R.id.tvUpload})
+    @OnClick({R.id.scanbook,R.id.scanshelf,R.id.tvDeleteAll,R.id.tvLogout,R.id.tvUpload})
     public void onClick(View v){
         if(v.getId()==R.id.scanbook){
             BookBean bookBean=new BookBean();
@@ -127,7 +143,7 @@ public class ShelfAdaptFragment
             shelfBean.setShelfCode(UUID.randomUUID().toString());
             shelfBean.setShelfName(shelfBean.getShelfCode());
             shelfAdaptScanWidget.setShelfInfo(shelfBean);
-        }else if( v.getId()==R.id.tvlogout){
+        }else if( v.getId()==R.id.tvLogout){
             EventBus.getDefault().post(new LogoutEvent());
         }else if(v.getId() == R.id.tvDeleteAll){
             iPresenter.deleteAll();
@@ -162,29 +178,40 @@ public class ShelfAdaptFragment
     }
 
     @Override
-    public void saveScanResult(BookBean bookBean, ShelfBean ShelfBean) {
-        BookShelfAdptBean bookShelfAdptBean=new BookShelfAdptBean();
+    public void saveScanResult(final BookBean bookBean, final ShelfBean ShelfBean) {
+
+        BookShelfAdptBean bookShelfAdptBean = new BookShelfAdptBean();
         bookShelfAdptBean.setShelfName(ShelfBean.getShelfName());
         bookShelfAdptBean.setBookName(bookBean.getBookName());
         bookShelfAdptBean.setAdaptTime(Calendar.getInstance().getTime());
         bookShelfAdptBean.setBookCode(bookBean.getBookcode());
         bookShelfAdptBean.setShelfCode(ShelfBean.getShelfCode());
-        bookShelfAdptBean.setUserId( application.getUserBean().getUserId());
+        bookShelfAdptBean.setUserId(application.getUserBean().getUserId());
         bookShelfAdptBean.setUserName(application.getUserBean().getUserName());
         bookShelfAdptBean.setId(UUID.randomUUID().toString());
-        iPresenter.saveBookShelfAdaptResult( bookShelfAdptBean);
+        iPresenter.saveBookShelfAdaptResult(bookShelfAdptBean);
+
     }
 
     @Override
     public void saveCallback() {
-        ToastUtils.showLongToast("记录已经保存成功");
-        shelfAdaptScanWidget.reset();
-        //fetchData();
 
+        if (handler == null) {
+            handler = new Handler(Looper.getMainLooper());
+        }
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtils.showLongToast("架位调整信息已经保存成功");
+                shelfAdaptScanWidget.reset();
+                //fetchData();
+            }
+        }, 1000);
     }
 
     @Override
     public void getCallback(List<BookShelfAdptBean> bookShelfAdptBeanList) {
+        hideProgress();
         swipeRefreshLayout.setRefreshing(false);
         data = bookShelfAdptBeanList;
         shelfAdaptAdapter.setNewData(data);
@@ -192,7 +219,30 @@ public class ShelfAdaptFragment
 
     @Override
     public void deleteCallback() {
+        hideProgress();
         swipeRefreshLayout.setRefreshing(false);
         toast("删除成功");
+    }
+
+    @Override
+    public void showProgress() {
+        super.showProgress();
+        progressWidget.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        super.hideProgress();
+        progressWidget.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void toast(String msg) {
+        super.toast(msg);
+    }
+
+    @Override
+    public void error(String msg) {
+        super.error(msg);
     }
 }

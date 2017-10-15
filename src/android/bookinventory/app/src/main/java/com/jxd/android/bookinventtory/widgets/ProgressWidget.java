@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.R;
 
@@ -19,14 +20,8 @@ import com.jxd.android.bookinventtory.R;
  * 进度组件
  */
 public class ProgressWidget extends LinearLayout {
-    //private String mExampleString; // TODO: use a default from R.string...
-    //private int mExampleColor = Color.RED; // TODO: use a default from R.color...
-    //private float mExampleDimension = 0; // TODO: use a default from R.dimen...
-    //private Drawable mExampleDrawable;
+    TextView tvMessage;
 
-    private TextPaint mTextPaint;
-    private float mTextWidth;
-    private float mTextHeight;
 
     public ProgressWidget(Context context) {
         super(context);
@@ -44,49 +39,17 @@ public class ProgressWidget extends LinearLayout {
     }
 
     private void init(AttributeSet attrs, int defStyle) {
-        // Load attributes
-        final TypedArray a = getContext().obtainStyledAttributes(
-                attrs, R.styleable.ProgressWidget, defStyle, 0);
-
-//        mExampleString = a.getString(
-//                R.styleable.ProgressWidget_exampleString);
-//        mExampleColor = a.getColor(
-//                R.styleable.ProgressWidget_exampleColor,
-//                mExampleColor);
-        // Use getDimensionPixelSize or getDimensionPixelOffset when dealing with
-        // values that should fall on pixel boundaries.
-//        mExampleDimension = a.getDimension(
-//                R.styleable.ProgressWidget_exampleDimension,
-//                mExampleDimension);
-
-//        if (a.hasValue(R.styleable.ProgressWidget_exampleDrawable)) {
-//            mExampleDrawable = a.getDrawable(
-//                    R.styleable.ProgressWidget_exampleDrawable);
-//            mExampleDrawable.setCallback(this);
-//        }
-
-        a.recycle();
-
-        // Set up a default TextPaint object
-        mTextPaint = new TextPaint();
-        mTextPaint.setFlags(Paint.ANTI_ALIAS_FLAG);
-        mTextPaint.setTextAlign(Paint.Align.LEFT);
-
-        // Update TextPaint and text measurements from attributes
-        invalidateTextPaintAndMeasurements();
-
         LayoutInflater layoutInflater = LayoutInflater.from(this.getContext() );
         layoutInflater.inflate(R.layout.layout_progress , this , true);
+        tvMessage = findViewById(R.id.progressText);
+
     }
 
-    private void invalidateTextPaintAndMeasurements() {
-//        mTextPaint.setTextSize(mExampleDimension);
-//        mTextPaint.setColor(mExampleColor);
-//        mTextWidth = mTextPaint.measureText(mExampleString);
-
-//        Paint.FontMetrics fontMetrics = mTextPaint.getFontMetrics();
-//        mTextHeight = fontMetrics.bottom;
+    public void setProgressMessage(String message){
+        tvMessage.setText(message);
     }
+
+
 
     @Override
     protected void onDraw(Canvas canvas) {

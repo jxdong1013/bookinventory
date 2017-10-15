@@ -51,5 +51,11 @@ namespace bookweb.Controllers
             return result;
 
         }
+
+        [HttpPost]
+        public JsonResult UploadShelfList(List<BookShelfAdapt> data) 
+        {
+
+        }
     }
 }

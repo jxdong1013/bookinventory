@@ -60,3 +60,6 @@ F:\jxd\bookinventory\src\server\bookinventory\bookweb.Tests\bin\Debug\zh-Hans\Sy
 F:\jxd\bookinventory\src\server\bookinventory\bookweb.Tests\bin\Debug\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 F:\jxd\bookinventory\src\server\bookinventory\bookweb.Tests\obj\Debug\bookweb.Tests.dll
 F:\jxd\bookinventory\src\server\bookinventory\bookweb.Tests\obj\Debug\bookweb.Tests.pdb
+F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb.Tests\obj\Debug\bookweb.Tests.csprojResolveAssemblyReference.cache
+F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb.Tests\obj\Debug\bookweb.Tests.dll
+F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb.Tests\obj\Debug\bookweb.Tests.pdb

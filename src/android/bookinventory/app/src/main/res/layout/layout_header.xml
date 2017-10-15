@@ -7,18 +7,28 @@
     <TextView
         android:id="@+id/left"
         android:text=""
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:id="@+id/tvUserName"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
         android:id="@+id/header"
         android:text=""
+        android:textColor="@color/white"
         android:gravity="center"
         android:layout_weight="1"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/right"
+        android:textColor="@color/white"
         android:text=""
         android:gravity="center"
         android:layout_width="wrap_content"
