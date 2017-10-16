@@ -11,6 +11,7 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.R;
 
@@ -18,6 +19,8 @@ import com.jxd.android.bookinventtory.R;
  *  错误页面
  */
 public class ErrorWidget extends LinearLayout {
+
+    TextView errorText;
 
     public ErrorWidget(Context context) {
         super(context);
@@ -34,6 +37,12 @@ public class ErrorWidget extends LinearLayout {
         init(attrs, defStyle);
     }
 
+    public void setError(String message){
+        errorText.setText(message);
+    }
+
+
+
     private void init(AttributeSet attrs, int defStyle) {
         // Load attributes
 //        final TypedArray a = getContext().obtainStyledAttributes(
@@ -44,6 +53,8 @@ public class ErrorWidget extends LinearLayout {
 
         LayoutInflater layoutInflater = LayoutInflater.from(this.getContext() );
         layoutInflater.inflate(R.layout.layout_error  , this , true);
+
+        errorText= findViewById(R.id.errorText);
     }
 
 

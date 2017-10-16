@@ -13,5 +13,9 @@ namespace bookweb.beans
         public static int login_code = 1000;
         public static int logout_code = 1010;
         public static int error_code = 400;
+
+        public static string book_status_in = "in";
+        public static string book_status_out = "out";
+
     }
 }

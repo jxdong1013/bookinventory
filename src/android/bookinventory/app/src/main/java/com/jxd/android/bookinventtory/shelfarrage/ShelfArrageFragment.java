@@ -102,10 +102,12 @@ public class ShelfArrageFragment
     @OnClick({R.id.right})
     public void onClick(View v){
         if(v.getId()==R.id.right){
-            Intent intent =new Intent(getContext(),ShelfArrageActivity.class);
+            Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
             getContext().startActivity(intent);
         }
     }
+
+
 
 
 

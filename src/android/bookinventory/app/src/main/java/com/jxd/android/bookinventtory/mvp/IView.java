@@ -7,7 +7,7 @@ import com.trello.rxlifecycle2.LifecycleTransformer;
  */
 
 public interface IView {
-    void showProgress();
+    void showProgress(String msg);
 
     void hideProgress();
 

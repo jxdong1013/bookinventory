@@ -6,6 +6,7 @@ import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.ResultCodeEnum;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.ShelfCondition;
+import com.jxd.android.bookinventtory.config.Constants;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -34,7 +35,7 @@ public class ShelfSearchPresenter implements IShelfSearchPresenter ,Observer<Dat
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-        iShelfSearchView.showProgress();
+        iShelfSearchView.showProgress(Constants.TIP_WAITING);
     }
 
     @Override

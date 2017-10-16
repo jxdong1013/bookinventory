@@ -1,24 +1,24 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
+//using Microsoft.AspNet.Identity;
+//using Microsoft.Owin.Security;
 
 namespace bookweb.Models
 {
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }
-        public IList<UserLoginInfo> Logins { get; set; }
+        //public IList<UserLoginInfo> Logins { get; set; }
         public string PhoneNumber { get; set; }
         public bool TwoFactor { get; set; }
         public bool BrowserRemembered { get; set; }
     }
 
-    public class ManageLoginsViewModel
-    {
-        public IList<UserLoginInfo> CurrentLogins { get; set; }
-        public IList<AuthenticationDescription> OtherLogins { get; set; }
-    }
+    //public class ManageLoginsViewModel
+    //{
+    //    public IList<UserLoginInfo> CurrentLogins { get; set; }
+    //    public IList<AuthenticationDescription> OtherLogins { get; set; }
+    //}
 
     public class FactorViewModel
     {
@@ -35,7 +35,7 @@ namespace bookweb.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        //[Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -54,14 +54,14 @@ namespace bookweb.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "确认新密码")]
-        [Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
+        //[Compare("NewPassword", ErrorMessage = "新密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
     }
 
     public class AddPhoneNumberViewModel
     {
         [Required]
-        [Phone]
+        //[Phone]
         [Display(Name = "电话号码")]
         public string Number { get; set; }
     }
@@ -73,7 +73,7 @@ namespace bookweb.Models
         public string Code { get; set; }
 
         [Required]
-        [Phone]
+        //[Phone]
         [Display(Name = "电话号码")]
         public string PhoneNumber { get; set; }
     }

@@ -225,8 +225,9 @@ public class ShelfAdaptFragment
     }
 
     @Override
-    public void showProgress() {
-        super.showProgress();
+    public void showProgress(String msg ) {
+        super.showProgress(msg);
+        progressWidget.setProgressMessage(msg);
         progressWidget.setVisibility(View.VISIBLE);
     }
 

@@ -15,5 +15,9 @@ public interface ShelfArrageComponent {
 
     void inject(ShelfArrageFragment shelfArrageFragment);
 
+    void inject(ShelfArrageUIActivity shelfArrageUIActivity);
+
     IShelfArragePresenter getShelfArragePresenter();
+
+    IShelfArrageUIPresenter getShelfArrageUIPresenter();
 }

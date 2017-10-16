@@ -12,7 +12,6 @@ public class ShelfArragePresenter implements IShelfArragePresenter {
         this.iShelfArrageModel = iShelfArrageModel;
     }
 
-
     @Override
     public void onDestory() {
 

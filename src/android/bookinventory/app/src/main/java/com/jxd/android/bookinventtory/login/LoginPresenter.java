@@ -36,7 +36,7 @@ public class LoginPresenter implements ILoginPresenter , Observer<DataBase<UserB
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-        iLoginView.showProgress();
+        iLoginView.showProgress(Constants.TIP_LOGINNG);
     }
 
     @Override

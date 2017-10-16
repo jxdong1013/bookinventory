@@ -3,6 +3,7 @@ package com.jxd.android.bookinventtory.shelfadapt;
 import com.jxd.android.bookinventtory.bean.BookShelfAdptBean;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.OperateTypeEnum;
+import com.jxd.android.bookinventtory.config.Constants;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
@@ -32,21 +33,21 @@ public class ShelfAdaptPresenter implements IShelfAdaptPresenter
 
     @Override
     public void saveBookShelfAdaptResult(BookShelfAdptBean bookShelfAdptBean) {
-        iShelfAdaptView.showProgress();
+        iShelfAdaptView.showProgress(Constants.TIP_PROCESSING);
         operateTypeEnum = OperateTypeEnum.Insert;
         iShelfAdaptModel.saveBookShelfAdaptResult( bookShelfAdptBean , this , this );
     }
 
     @Override
     public void getBookShelfScanList() {
-        iShelfAdaptView.showProgress();
+        iShelfAdaptView.showProgress(Constants.TIP_WAITING);
         operateTypeEnum = OperateTypeEnum.Query;
         iShelfAdaptModel.getBookShelfScanList(this);
     }
 
     @Override
     public void deleteAll() {
-        iShelfAdaptView.showProgress();
+        iShelfAdaptView.showProgress(Constants.TIP_PROCESSING);
         operateTypeEnum= OperateTypeEnum.Delete;
         iShelfAdaptModel.deleteAll(this, this);
     }

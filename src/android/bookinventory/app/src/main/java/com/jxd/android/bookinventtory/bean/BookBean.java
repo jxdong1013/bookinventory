@@ -14,6 +14,7 @@ public class BookBean {
     private String bookId;
     private String bookcode;
     private String position;
+    private String status;
 
     public String getBookName() {
         return bookName;
@@ -69,5 +70,13 @@ public class BookBean {
 
     public void setPosition(String position) {
         this.position = position;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -37,7 +37,7 @@ public class BookSearchPresenter implements IBookSearchPresenter ,Observer<DataB
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-        iBookSearchView.showProgress();
+        iBookSearchView.showProgress(Constants.TIP_WAITING);
     }
 
     @Override

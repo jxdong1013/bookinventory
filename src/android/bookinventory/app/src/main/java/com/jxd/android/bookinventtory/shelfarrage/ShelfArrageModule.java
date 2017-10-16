@@ -12,8 +12,14 @@ import dagger.Provides;
 @Module
 public class ShelfArrageModule {
     ShelfArrageFragment shelfArrageFragment;
+    ShelfArrageUIActivity shelfArrageUIActivity;
+
     public ShelfArrageModule(ShelfArrageFragment shelfArrageFragment){
         this.shelfArrageFragment=shelfArrageFragment;
+    }
+
+    public ShelfArrageModule(ShelfArrageUIActivity shelfArrageUIActivity){
+        this.shelfArrageUIActivity=shelfArrageUIActivity;
     }
 
     @Provides
@@ -30,5 +36,20 @@ public class ShelfArrageModule {
     @Provides
     public IShelfArragePresenter provideShelfArragePresenter(IShelfArrageView iShelfArrageView,IShelfArrageModel iShelfArrageModel){
         return new ShelfArragePresenter(iShelfArrageView,iShelfArrageModel);
+    }
+
+    @Provides
+    public IShelfArrageUIView provideShelfArrageUIView(){
+        return shelfArrageUIActivity;
+    }
+
+    @Provides
+    public IShelfArrageUIModel provideShelfArrageUIModel(ApiService apiService){
+        return new ShelfArrageUIModel(apiService , shelfArrageUIActivity);
+    }
+
+    @Provides
+    public IShelfArrageUIPresenter provideShelfArrageUIPresenter(IShelfArrageUIView iShelfArrageUIView , IShelfArrageUIModel iShelfArrageUIModel){
+        return new ShelfArrageUIPresenter(iShelfArrageUIView , iShelfArrageUIModel);
     }
 }

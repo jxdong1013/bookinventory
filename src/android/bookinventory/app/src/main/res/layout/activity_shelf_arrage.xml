@@ -5,18 +5,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:fitsSystemWindows="true"
     android:clipToPadding="true"
+    android:background="@color/colorPrimary"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.jxd.android.bookinventtory.shelfarrage.ShelfArrageActivity">
+    tools:context="com.jxd.android.bookinventtory.shelfarrage.ShelfArrageUIActivity">
+
+    <LinearLayout
+        android:id="@+id/layHeader"
+        android:orientation="horizontal"
+        android:padding="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tvBack"
+            android:padding="0dp"
+            android:layout_gravity="center"
+            android:background="@drawable/vector_drawable_back_24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <include layout="@layout/layout_header" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/layTip"
+        android:layout_below="@id/layHeader"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-
+            android:id="@+id/tvTip"
             android:padding="5dp"
             android:drawableLeft="@mipmap/tip"
             android:text="请扫描架位标签"
@@ -24,16 +45,25 @@
             android:layout_height="wrap_content" />
     </LinearLayout>
 
-    <android.support.v7.widget.CardView
-        android:id="@+id/layShelfInfo"
+    <LinearLayout
+        android:id="@+id/layTest"
+        android:background="@color/white"
         android:layout_below="@id/layTip"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="4dp"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
-        app:contentPadding="4dp">
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/scanshelf"
+            android:text="模拟扫描架位标签"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
         <LinearLayout
+            android:id="@+id/layShelfInfo"
+            android:layout_below="@id/layTest"
+            android:background="@color/white"
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -42,10 +72,15 @@
                 android:text="架位编号:XXXXXXXXX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/shelfName"
+                android:text="架位:XXXXXXXXX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
-    </android.support.v7.widget.CardView>
 
     <android.support.v7.widget.RecyclerView
+        android:background="@color/white"
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -66,5 +101,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </LinearLayout>
+
+
+    <com.jxd.android.bookinventtory.widgets.ProgressWidget
+        android:id="@+id/progress"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.jxd.android.bookinventtory.widgets.ErrorWidget
+        android:id="@+id/error"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

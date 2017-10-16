@@ -50,7 +50,7 @@ namespace bookweb.Models
     {
         //[Required]
         [Display(Name = "电子邮件")]
-        [EmailAddress]
+        //[EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -70,7 +70,7 @@ namespace bookweb.Models
     public class RegisterViewModel
     {
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
 
@@ -82,7 +82,7 @@ namespace bookweb.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        //[Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
         [Display(Name ="手机号码")]
         [DataType(DataType.PhoneNumber)]
@@ -98,7 +98,7 @@ namespace bookweb.Models
     public class ResetPasswordViewModel
     {
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
 
@@ -110,7 +110,7 @@ namespace bookweb.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "确认密码")]
-        [Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
+        //[Compare("Password", ErrorMessage = "密码和确认密码不匹配。")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
@@ -119,7 +119,7 @@ namespace bookweb.Models
     public class ForgotPasswordViewModel
     {
         [Required]
-        [EmailAddress]
+        //[EmailAddress]
         [Display(Name = "电子邮件")]
         public string Email { get; set; }
     }

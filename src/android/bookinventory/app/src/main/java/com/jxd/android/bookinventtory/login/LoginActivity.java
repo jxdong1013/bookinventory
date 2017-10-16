@@ -83,9 +83,10 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
 
 
     @Override
-    public void showProgress() {
+    public void showProgress(String msg ) {
         //errorWidget.setVisibility(View.GONE);
         progressWidget.setVisibility(View.VISIBLE);
+        progressWidget.setProgressMessage(msg);
     }
 
     @Override

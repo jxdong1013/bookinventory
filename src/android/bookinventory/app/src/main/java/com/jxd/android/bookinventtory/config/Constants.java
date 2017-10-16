@@ -13,7 +13,7 @@ public class Constants {
     /**
      * 接口地址
      */
-    public static String BASE_URL ="http://192.168.1.105/bookweb/";
+    public static String BASE_URL ="http://192.168.1.36/bookweb/";
     /**
      * 界面显示的最多关键字数量
      */
@@ -29,5 +29,9 @@ public class Constants {
 
     public static String   MESSAGE_TIMEOUT="链接服务器超时，请重试";
     public static String   MESSAGE_ERROR="发送错误,请重试";
+
+    public static String TIP_WAITING="加载中...";
+    public static String TIP_PROCESSING="处理中...";
+    public static String TIP_LOGINNG="登录中...";
 
 }

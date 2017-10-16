@@ -41,6 +41,11 @@ import butterknife.OnClick;
 
 import static android.R.attr.fragment;
 
+/**
+ *
+ *@author  jinxiangdong
+ * @date 2017-10-16
+ */
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
     public static int REQUEST_CODE_SEARCH=1000;
 
@@ -77,14 +82,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                     return true;
                 case R.id.navigation_shelfarrage:
                     //mTextMessage.setText(R.string.title_shelfarrage);
+                    viewPager.setCurrentItem(3,true);
                     return true;
                 case R.id.navigation_differencemanage:
                     //mTextMessage.setText(R.string.title_differencemanage);
                     return true;
+                default:
+                    return false;
             }
-            return false;
         }
-
     };
 
     @Override

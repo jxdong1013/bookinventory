@@ -163,8 +163,8 @@ public class SearchActivity extends BaseActivity<ISearchPresenter>
     }
 
     @Override
-    public void showProgress() {
-        super.showProgress();
+    public void showProgress(String msg) {
+        super.showProgress(msg);
     }
 
     @Override

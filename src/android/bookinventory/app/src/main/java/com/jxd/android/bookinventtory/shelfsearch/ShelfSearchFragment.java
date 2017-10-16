@@ -150,7 +150,7 @@ public class ShelfSearchFragment
     }
 
     @Override
-    public void showProgress() {
+    public void showProgress(String msg) {
         errorWidget.setVisibility(View.GONE);
        // if(isShowProgress){
        //    progressWidget.setVisibility(View.VISIBLE);

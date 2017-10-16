@@ -190,9 +190,10 @@ public class BookSearchFragment
     }
 
     @Override
-    public void showProgress() {
+    public void showProgress(String msg) {
         errorWidget.setVisibility(View.GONE);
         if(isShowProgress){
+            progressWidget.setProgressMessage(msg);
             progressWidget.setVisibility(View.VISIBLE);
         }
     }

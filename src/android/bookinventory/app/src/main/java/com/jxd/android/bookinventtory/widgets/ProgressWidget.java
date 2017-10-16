@@ -42,7 +42,6 @@ public class ProgressWidget extends LinearLayout {
         LayoutInflater layoutInflater = LayoutInflater.from(this.getContext() );
         layoutInflater.inflate(R.layout.layout_progress , this , true);
         tvMessage = findViewById(R.id.progressText);
-
     }
 
     public void setProgressMessage(String message){

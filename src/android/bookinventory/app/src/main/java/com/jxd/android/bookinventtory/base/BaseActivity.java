@@ -106,7 +106,7 @@ public class BaseActivity<P extends IPresenter>
 
 
     @Override
-    public void showProgress() {
+    public void showProgress(String msg ) {
     }
 
     @Override

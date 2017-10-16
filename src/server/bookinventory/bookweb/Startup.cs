@@ -1,7 +1,7 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿//using Microsoft.Owin;
+//using Owin;
 
-[assembly: OwinStartupAttribute(typeof(bookweb.Startup))]
+//[assembly: OwinStartupAttribute(typeof(bookweb.Startup))]
 namespace bookweb
 {
     public partial class Startup

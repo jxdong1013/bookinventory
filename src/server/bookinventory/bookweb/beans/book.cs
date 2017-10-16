@@ -15,5 +15,7 @@ namespace bookweb.beans
         public string bookcode { get; set; }
 
         public string position { get; set; }
+
+        public string status { get; set; }
     }
 }

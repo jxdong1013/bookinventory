@@ -37,6 +37,7 @@ namespace bookweb.Controllers
                 b.position = "2层2架3排";
                 b.publish = "浙江省杭州市人民出版社";
                 b.publishDate = "2017-01-11";
+                b.status = Config.book_status_in;
                 books.Add(b);
             }
             shelf.books = books;
@@ -55,7 +56,9 @@ namespace bookweb.Controllers
         [HttpPost]
         public JsonResult UploadShelfList(List<BookShelfAdapt> data) 
         {
-
+            JsonResult json = new JsonResult();
+            json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+            return json;
         }
     }
 }

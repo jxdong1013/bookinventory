@@ -38,13 +38,13 @@ public class SearchPresenter<V extends ISearchView>
 
     @Override
     public void getSearchKeysListAsync( String key ) {
-        searchView.showProgress();
+        searchView.showProgress(Constants.TIP_WAITING);
         searchModel.getSearchKeysAsync( key , this);
     }
 
     @Override
     public void addSearchKey(SearchKeyBean key) {
-        searchView.showProgress();
+        searchView.showProgress(Constants.TIP_PROCESSING);
         operateTypeEnum = OperateTypeEnum.Insert;
         searchKey = key;
         searchModel.addSearchKey(key , this,this);
@@ -52,7 +52,7 @@ public class SearchPresenter<V extends ISearchView>
 
     @Override
     public void deleteSearchKey() {
-        searchView.showProgress();
+        searchView.showProgress(Constants.TIP_PROCESSING);
         operateTypeEnum = OperateTypeEnum.Delete;
         searchModel.deleteSearchKey(this , this );
     }

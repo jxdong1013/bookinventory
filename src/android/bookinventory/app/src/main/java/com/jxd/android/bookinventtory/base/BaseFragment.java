@@ -176,7 +176,7 @@ public abstract class BaseFragment<P extends IPresenter>
     public abstract int getNavigateMenuId();
 
     @Override
-    public void showProgress() {
+    public void showProgress(String msg) {
 
     }
 
