@@ -7,29 +7,60 @@
                                     app:cardElevation="4dp"
                                         app:cardBackgroundColor="@color/white"
                                         app:cardUseCompatPadding="true">
-    <LinearLayout   android:orientation="vertical"
+    <RelativeLayout  android:orientation="vertical"
                     android:layout_margin="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/bookitem_pic"
+            android:src="@mipmap/book"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
     <TextView
+        android:layout_toRightOf="@id/bookitem_pic"
+        android:layout_toLeftOf="@+id/bookitem_status"
+        android:layout_marginLeft="4dp"
         android:id="@+id/bookitem_bookid"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:layout_alignLeft="@id/bookitem_bookid"
+        android:layout_below="@id/bookitem_bookid"
+        android:layout_toLeftOf="@+id/bookitem_status"
         android:id="@+id/bookitem_bookname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/bookitem_author"
+        android:layout_alignLeft="@id/bookitem_bookname"
+        android:layout_below="@id/bookitem_bookname"
+        android:layout_toLeftOf="@+id/bookitem_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/bookitem_bookcode"
+        android:layout_alignLeft="@id/bookitem_author"
+        android:layout_toLeftOf="@+id/bookitem_status"
+        android:layout_below="@id/bookitem_author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
         android:id="@+id/bookitem_position"
+        android:layout_alignLeft="@id/bookitem_bookcode"
+        android:layout_below="@id/bookitem_bookcode"
+        android:layout_toLeftOf="@+id/bookitem_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    </LinearLayout>
+
+        <TextView
+            android:id="@+id/bookitem_status"
+            android:layout_alignParentRight="true"
+            android:text=""
+            android:layout_marginLeft="4dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
 </android.support.v7.widget.CardView>

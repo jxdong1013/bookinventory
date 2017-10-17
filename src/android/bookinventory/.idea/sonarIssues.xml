@@ -83,7 +83,17 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/io/realm/BookShelfAdptBeanRealmProxy.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_search.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/intermediates/res/merged/debug/layout/activity_shelf_arrage.xml">
           <value>
             <set />
           </value>
@@ -183,6 +193,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookArrageBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookBean.java">
           <value>
             <set />
@@ -199,6 +214,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookShelfAdptBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/BookStatusEnum.java">
           <value>
             <set />
           </value>
@@ -228,12 +248,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfBookScanBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfCondition.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfScanBeam.java">
           <value>
             <set />
           </value>
@@ -633,6 +663,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/widgets/TipAlertDialog.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/btn_login.xml">
           <value>
             <set />
@@ -644,6 +679,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/drawable/btn_login_select.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/drawable/style_corner.xml">
           <value>
             <set />
           </value>
@@ -689,6 +729,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_shelf_adapt.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/fragment_shelf_arrage.xml">
           <value>
             <set />
           </value>
@@ -779,6 +824,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_shlefsearch_shelfitem.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_tipalert_dialog.xml">
           <value>
             <set />
           </value>

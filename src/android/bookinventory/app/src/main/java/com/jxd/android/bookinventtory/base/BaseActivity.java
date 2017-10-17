@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -96,6 +97,13 @@ public class BaseActivity<P extends IPresenter>
         }
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if( keyCode == KeyEvent.KEYCODE_BACK) {
+            this.finish();
+        }
+        return super.onKeyDown(keyCode,event);
+    }
 
     public void setImmerseLayout(){
         if ( Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {

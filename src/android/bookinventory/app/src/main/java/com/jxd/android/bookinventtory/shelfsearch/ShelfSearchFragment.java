@@ -141,20 +141,26 @@ public class ShelfSearchFragment
 
     @Override
     protected void fetchData() {
+//        shelfSearchAdapter.isUseEmpty(false);
+//        ShelfCondition condition =new ShelfCondition();
+//        String key = tvSearchBar.getText().toString();
+//        condition.setShelfName(key);
+//        iPresenter.getShelfList(  condition );
+    }
+
+    protected void getData() {
         shelfSearchAdapter.isUseEmpty(false);
-        ShelfCondition condition =new ShelfCondition();
+        ShelfCondition condition = new ShelfCondition();
         String key = tvSearchBar.getText().toString();
         condition.setShelfName(key);
-        //condition.setPageIdx( currentPageIndex +1 );
-        iPresenter.getShelfList(  condition );
+        iPresenter.getShelfList(condition);
     }
 
     @Override
     public void showProgress(String msg) {
         errorWidget.setVisibility(View.GONE);
-       // if(isShowProgress){
-       //    progressWidget.setVisibility(View.VISIBLE);
-       // }
+        progressWidget.setVisibility(View.VISIBLE);
+        progressWidget.setProgressMessage(Constants.TIP_WAITING);
     }
 
     @Override
@@ -172,11 +178,9 @@ public class ShelfSearchFragment
 
     @Override
     public void error(String msg) {
-        progressWidget.setVisibility(View.GONE);
+        hideProgress();
         errorWidget.setVisibility(View.VISIBLE);
-
         tvErrorText.setText(msg);
-        //isShowProgress=true;
     }
 
     @Override
@@ -200,17 +204,15 @@ public class ShelfSearchFragment
 
     @Override
     public void login() {
-//        PreferenceHelper.remove( application , Constants.PREF_FILENAME, Constants.PREF_USER);
-//        Intent intent =new Intent();
-//        intent.setClass(this.getActivity() , LoginActivity.class);
-//        getActivity().startActivity(intent);
         EventBus.getDefault().post(new LogoutEvent());
     }
 
-    @OnClick({R.id.tvLogout})
+    @OnClick({R.id.tvLogout  , R.id.btnTest})
     public void onClick(View v){
         if( v.getId()==R.id.tvLogout){
             EventBus.getDefault().post(new LogoutEvent());
+        }else if(v.getId()==R.id.btnTest){
+            getData();
         }
     }
 }

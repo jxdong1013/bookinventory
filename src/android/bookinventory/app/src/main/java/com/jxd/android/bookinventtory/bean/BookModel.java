@@ -21,5 +21,6 @@ public class BookModel extends BookBean implements MultiItemEntity {
         this.setAuthor(bookBean.getAuthor());
         this.setBookcode(bookBean.getBookcode());
         this.setPosition(bookBean.getPosition());
+        this.setStatus(bookBean.getStatus());
     }
 }

@@ -1,5 +1,7 @@
 package com.jxd.android.bookinventtory.shelfarrage;
 
+import com.jxd.android.bookinventtory.bean.ShelfBean;
+import com.jxd.android.bookinventtory.bean.ShelfScanBeam;
 import com.jxd.android.bookinventtory.mvp.IPresenter;
 
 /**
@@ -7,5 +9,14 @@ import com.jxd.android.bookinventtory.mvp.IPresenter;
  */
 
 public interface IShelfArrageUIPresenter  extends IPresenter{
+    /**
+     *
+     * @param shelfCode
+     */
     void getShelfInfoByShelfCode(String shelfCode);
+
+    /**
+     *  保存架位整理数据
+     */
+    void saveShelfData(ShelfScanBeam shelfScanBeam);
 }

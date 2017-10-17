@@ -53,6 +53,13 @@ public class ShelfAdaptPresenter implements IShelfAdaptPresenter
     }
 
     @Override
+    public void deleteOne(BookShelfAdptBean bookShelfAdptBean) {
+        iShelfAdaptView.showProgress(Constants.TIP_PROCESSING);
+        operateTypeEnum= OperateTypeEnum.Delete;
+        iShelfAdaptModel.deleteOne( bookShelfAdptBean , this, this);
+    }
+
+    @Override
     public void onSubscribe(@NonNull Disposable d) {
        // iShelfAdaptView.showProgress();
     }

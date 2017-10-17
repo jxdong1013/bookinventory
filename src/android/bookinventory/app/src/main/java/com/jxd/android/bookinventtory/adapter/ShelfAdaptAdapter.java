@@ -26,5 +26,7 @@ public class ShelfAdaptAdapter extends BaseQuickAdapter<BookShelfAdptBean,BaseVi
         helper.setText( R.id.shelfadapte_bookcode , item.getBookCode() );
         helper.setText(R.id.shelfadapte_shelfcode , item.getShelfCode());
         helper.setText( R.id.shelfadapte_adapttime , DateUtils.formatDate( item.getAdaptTime().getTime() , DateUtils.TIME_FORMAT ));
+
+        helper.addOnClickListener(R.id.shelfadapte_delete);
     }
 }

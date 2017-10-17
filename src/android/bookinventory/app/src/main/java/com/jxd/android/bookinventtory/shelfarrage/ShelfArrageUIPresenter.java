@@ -1,21 +1,27 @@
 package com.jxd.android.bookinventtory.shelfarrage;
 
 import com.jxd.android.bookinventtory.bean.DataBase;
+import com.jxd.android.bookinventtory.bean.OperateTypeEnum;
 import com.jxd.android.bookinventtory.bean.ResultCodeEnum;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
+import com.jxd.android.bookinventtory.bean.ShelfScanBeam;
 import com.jxd.android.bookinventtory.config.Constants;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import io.realm.Realm;
 
 /**
  * Created by Administrator on 2017/10/16.
  */
 
-public class ShelfArrageUIPresenter implements IShelfArrageUIPresenter , Observer<DataBase<ShelfBean>> {
+public class ShelfArrageUIPresenter
+        implements IShelfArrageUIPresenter , Observer<DataBase<ShelfBean>> , Realm.Transaction.OnSuccess,Realm.Transaction.OnError {
     IShelfArrageUIModel iShelfArrageUIModel;
     IShelfArrageUIView iShelfArrageUIView;
+    OperateTypeEnum operateTypeEnum = OperateTypeEnum.None;
+
     public ShelfArrageUIPresenter(IShelfArrageUIView iShelfArrageUIView , IShelfArrageUIModel iShelfArrageUIModel    ){
         this.iShelfArrageUIView = iShelfArrageUIView;
         this.iShelfArrageUIModel=iShelfArrageUIModel;
@@ -23,7 +29,14 @@ public class ShelfArrageUIPresenter implements IShelfArrageUIPresenter , Observe
 
     @Override
     public void getShelfInfoByShelfCode(String shelfCode) {
+        operateTypeEnum =OperateTypeEnum.Query;
         iShelfArrageUIModel.getShelfInfoByShelfCode( shelfCode , this);
+    }
+
+    @Override
+    public void saveShelfData(ShelfScanBeam shelfScanBeam) {
+        operateTypeEnum = OperateTypeEnum.Update;
+        iShelfArrageUIModel.saveShelfScanData( shelfScanBeam , this , this );
     }
 
     @Override
@@ -45,11 +58,22 @@ public class ShelfArrageUIPresenter implements IShelfArrageUIPresenter , Observe
     @Override
     public void onError(@NonNull Throwable e) {
         iShelfArrageUIView.hideProgress();
+        if(operateTypeEnum==OperateTypeEnum.Query){
+            iShelfArrageUIView.error(e.getMessage());
+        }else if(operateTypeEnum==OperateTypeEnum.Update){
+            iShelfArrageUIView.error(e.getMessage());
+        }
     }
 
     @Override
     public void onComplete() {
         iShelfArrageUIView.hideProgress();
+    }
+
+    @Override
+    public void onSuccess() {
+        iShelfArrageUIView.hideProgress();
+        iShelfArrageUIView.saveCallback();
     }
 
     @Override

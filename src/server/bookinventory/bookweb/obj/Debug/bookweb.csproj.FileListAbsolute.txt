@@ -87,7 +87,6 @@ F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\obj\Debug
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.csproj.GenerateResource.Cache
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.dll
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.pdb
-F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.csprojResolveAssemblyReference.cache
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\bookweb.dll.config
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\bookweb.dll
 F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\bookweb.pdb

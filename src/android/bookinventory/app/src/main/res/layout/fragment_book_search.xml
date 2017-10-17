@@ -4,15 +4,21 @@
              android:layout_height="match_parent"
              tools:context="com.jxd.android.bookinventtory.booksearch.BookSearchFragment">
 
-    <LinearLayout
+    <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/layout_searchbar"/>
+        <LinearLayout
+            android:id="@+id/layHeader"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <include layout="@layout/layout_searchbar"/>
+        </LinearLayout>
 
         <android.support.v4.widget.SwipeRefreshLayout
             android:id="@+id/swipeRefreshLayout"
+            android:layout_below="@id/layHeader"
             android:layout_margin="3dp"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
@@ -21,18 +27,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
         </android.support.v4.widget.SwipeRefreshLayout>
-    </LinearLayout>
 
-    <com.jxd.android.bookinventtory.widgets.ProgressWidget
-        android:id="@+id/progress"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <com.jxd.android.bookinventtory.widgets.ProgressWidget
+            android:id="@+id/progress"
+            android:layout_below="@id/layHeader"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
 
-    <com.jxd.android.bookinventtory.widgets.ErrorWidget
-        android:id="@+id/error"
-        android:visibility="gone"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        <com.jxd.android.bookinventtory.widgets.ErrorWidget
+            android:id="@+id/error"
+            android:layout_below="@id/layHeader"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </RelativeLayout>
 
 </FrameLayout>

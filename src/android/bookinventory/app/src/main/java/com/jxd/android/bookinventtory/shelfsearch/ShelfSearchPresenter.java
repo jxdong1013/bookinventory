@@ -10,6 +10,7 @@ import com.jxd.android.bookinventtory.config.Constants;
 
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
+import io.reactivex.annotations.Nullable;
 import io.reactivex.disposables.Disposable;
 
 import static android.R.attr.data;
@@ -51,18 +52,23 @@ public class ShelfSearchPresenter implements IShelfSearchPresenter ,Observer<Dat
 
     @Override
     public void onError(@NonNull Throwable e) {
-
+        iShelfSearchView.hideProgress();
+        iShelfSearchView.error(Constants.MESSAGE_ERROR);
     }
 
     @Override
     public void onComplete() {
-
+        iShelfSearchView.hideProgress();
     }
 
     @Override
     public void onDestory() {
-
+        if(iShelfSearchView!=null){
+            iShelfSearchView= null;
+        }
+        if(iShelfSearchModel!=null){
+            iShelfSearchModel.onDestory();
+            iShelfSearchModel=null;
+        }
     }
-
-
 }

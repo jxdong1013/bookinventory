@@ -1,14 +1,10 @@
 package com.jxd.android.bookinventtory.http;
 
 import com.jxd.android.bookinventtory.bean.BookBean;
-import com.jxd.android.bookinventtory.bean.BookBeanResult;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.UserBean;
-
-import java.util.List;
-
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -35,4 +31,13 @@ public interface ApiService {
 
     @GET("shelf/getshelflist")
     Observable<DataBase<ShelfBean>> getShelfList(@Query("code") String code);
+
+    /***
+     * 上传架位调整数据
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("shelf/uploadshelfadptlist")
+    Observable<DataBase<Object>> uploadShelfAdaptList();
+
 }

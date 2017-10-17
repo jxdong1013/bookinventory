@@ -18,4 +18,6 @@ public interface IShelfAdaptModel extends IModel {
     void getBookShelfScanList(RealmChangeListener<RealmResults<BookShelfAdptBean>> resultsRealmChangeListener );
 
     void deleteAll( Realm.Transaction.OnSuccess onSuccess , Realm.Transaction.OnError onError);
+
+    void deleteOne(BookShelfAdptBean bookShelfAdptBean , Realm.Transaction.OnSuccess onSuccess , Realm.Transaction.OnError onError);
 }

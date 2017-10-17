@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.jxd.android.bookinventtory.R;
@@ -26,6 +27,7 @@ import com.jxd.android.bookinventtory.utils.DateUtils;
 import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 import com.jxd.android.bookinventtory.widgets.ShelfAdaptWidget;
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -41,6 +43,7 @@ import butterknife.OnClick;
 
 import static com.jxd.android.bookinventtory.R.id.bookshelfscan_bookname;
 import static com.jxd.android.bookinventtory.R.id.recyclerView;
+import static com.jxd.android.bookinventtory.R.id.tip;
 
 /**
  * 架位更新 界面
@@ -52,6 +55,7 @@ public class ShelfAdaptFragment
         implements IShelfAdaptView
         ,SwipeRefreshLayout.OnRefreshListener
         , BaseQuickAdapter.RequestLoadMoreListener
+        ,BaseQuickAdapter.OnItemChildClickListener
         ,ShelfAdaptWidget.onSaveScanResultListener{
 
     @BindView(R.id.recyclerView)
@@ -62,10 +66,15 @@ public class ShelfAdaptFragment
     ShelfAdaptWidget shelfAdaptScanWidget;
     @BindView(R.id.progress)
     ProgressWidget progressWidget;
+    @BindView(R.id.tvUserName)
+    TextView tvUserName;
+    @BindView(R.id.tvSummary)
+    TextView tvSummary;
 
     List<BookShelfAdptBean> data;
     ShelfAdaptAdapter shelfAdaptAdapter;
     Handler handler;
+    View emptyView;
 
     public ShelfAdaptFragment() {
         // Required empty public constructor
@@ -116,19 +125,43 @@ public class ShelfAdaptFragment
     protected void initView(View rootView ){
         unbinder = ButterKnife.bind(this , rootView);
 
+        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUserName() );
+
         data = new ArrayList<>();
         shelfAdaptAdapter = new ShelfAdaptAdapter(data);
+        shelfAdaptAdapter.setOnItemChildClickListener(this);
         recyclerView.setLayoutManager( new LinearLayoutManager(this.getContext()));
         recyclerView.setAdapter(shelfAdaptAdapter);
         swipeRefreshLayout.setOnRefreshListener(this);
 
         shelfAdaptScanWidget.setOnSaveScanResultListener(this);
+        tvSummary.setText("");
 
-        //emptyView = LayoutInflater.from(getContext()).inflate(R.layout.layout_shelf_empty,(ViewGroup)recyclerView.getParent(),false);
-        //shelfSearchAdapter.setEmptyView(emptyView);
+        emptyView = LayoutInflater.from(getContext()).inflate(R.layout.layout_shelf_empty,(ViewGroup)recyclerView.getParent(),false);
+        TextView empty = emptyView.findViewById(R.id.emptyText);
+        empty.setText(getString(R.string.tipmessage1));
+        shelfAdaptAdapter.setEmptyView(emptyView);
         //shelfSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         //shelfSearchAdapter.setEnableLoadMore(false);
         //bookSearchAdapter.isUseEmpty(false);
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        if( view.getId()== R.id.shelfadapte_delete){
+            deleteOne( (BookShelfAdptBean) adapter.getItem(position) );
+        }
+    }
+
+    void deleteOne(final BookShelfAdptBean bookShelfAdptBean  ){
+        final TipAlertDialog tipAlertDialog=new TipAlertDialog(this.getContext() , false);
+        tipAlertDialog.show("询问", "您确定要选择的数据吗？", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipAlertDialog.dismiss();
+                iPresenter.deleteOne( bookShelfAdptBean );
+            }
+        });
     }
 
     @OnClick({R.id.scanbook,R.id.scanshelf,R.id.tvDeleteAll,R.id.tvLogout,R.id.tvUpload})
@@ -146,10 +179,20 @@ public class ShelfAdaptFragment
         }else if( v.getId()==R.id.tvLogout){
             EventBus.getDefault().post(new LogoutEvent());
         }else if(v.getId() == R.id.tvDeleteAll){
-            iPresenter.deleteAll();
+            deleteAll();
         }else if(v.getId()==R.id.tvUpload){
             upload();    
         }
+    }
+
+    protected void deleteAll(){
+        TipAlertDialog tipAlertDialog=new TipAlertDialog(this.getContext() , false);
+        tipAlertDialog.show("询问", "您确定要删除所有数据吗？", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iPresenter.deleteAll();
+            }
+        });
     }
     
     protected void upload(){
@@ -215,6 +258,14 @@ public class ShelfAdaptFragment
         swipeRefreshLayout.setRefreshing(false);
         data = bookShelfAdptBeanList;
         shelfAdaptAdapter.setNewData(data);
+
+        String summary = "共"+ String.valueOf( bookShelfAdptBeanList.size())+"条记录";
+        tvSummary.setText(summary);
+        if( bookShelfAdptBeanList.size()<1){
+            tvSummary.setVisibility(View.GONE);
+        }else{
+            tvSummary.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -222,6 +273,7 @@ public class ShelfAdaptFragment
         hideProgress();
         swipeRefreshLayout.setRefreshing(false);
         toast("删除成功");
+        fetchData();
     }
 
     @Override

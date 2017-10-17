@@ -23,4 +23,6 @@ public interface IShelfAdaptPresenter extends IPresenter {
 
     void deleteAll();
 
+    void deleteOne(BookShelfAdptBean bookShelfAdptBean);
+
 }

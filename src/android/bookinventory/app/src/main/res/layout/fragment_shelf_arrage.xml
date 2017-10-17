@@ -8,6 +8,7 @@
 
     <LinearLayout
         android:id="@+id/layHeader"
+        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <include layout="@layout/layout_header" />

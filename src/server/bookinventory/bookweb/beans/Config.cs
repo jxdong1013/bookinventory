@@ -16,6 +16,7 @@ namespace bookweb.beans
 
         public static string book_status_in = "in";
         public static string book_status_out = "out";
+        //public static string book_status_
 
     }
 }

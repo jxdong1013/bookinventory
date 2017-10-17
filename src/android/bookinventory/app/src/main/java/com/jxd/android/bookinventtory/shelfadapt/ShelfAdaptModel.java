@@ -10,6 +10,7 @@ import io.realm.RealmChangeListener;
 import io.realm.RealmResults;
 
 import static android.R.attr.key;
+import static com.jxd.android.bookinventtory.R.mipmap.book;
 
 /**
  * Created by Administrator on 2017/10/12.
@@ -48,6 +49,22 @@ public class ShelfAdaptModel implements IShelfAdaptModel{
             @Override
             public void execute(Realm realm) {
                 realm.delete(BookShelfAdptBean.class);
+            }
+        } , onSuccess, onError);
+    }
+
+    @Override
+    public void deleteOne(final BookShelfAdptBean bookShelfAdptBean , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError) {
+
+        final String id = bookShelfAdptBean.getId();
+
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                RealmResults<BookShelfAdptBean> results = realm.where(BookShelfAdptBean.class).equalTo("id" , id ).findAll();
+                if( results.size()>0) {
+                    results.deleteAllFromRealm();
+                }
             }
         } , onSuccess, onError);
     }

@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * Created by jinxiangdong on 2017/9/30.
  */
-
 public class BookSearchAdapter extends BaseQuickAdapter<BookBean, BaseViewHolder> {
     public BookSearchAdapter(@Nullable List<BookBean> data) {
         super(R.layout.layout_book_item , data );
@@ -25,5 +24,6 @@ public class BookSearchAdapter extends BaseQuickAdapter<BookBean, BaseViewHolder
         helper.setText(R.id.bookitem_author,item.getAuthor());
         helper.setText(R.id.bookitem_bookcode , item.getBookcode());
         helper.setText(R.id.bookitem_position,item.getPosition());
+        helper.setText(R.id.bookitem_status , item.getStatus());
     }
 }

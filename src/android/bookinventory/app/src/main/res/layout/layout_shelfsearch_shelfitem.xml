@@ -5,17 +5,21 @@
               android:padding="6dp"
               android:layout_height="wrap_content">
     <TextView
+        android:drawableLeft="@mipmap/shelfs"
         android:text="@string/tipshelf"
+        android:gravity="center"
         android:textColor="@color/royalblue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/shelf_item_shelfcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
+        android:layout_marginLeft="5dp"
         android:id="@+id/shelf_item_shelfname"
-        android:textSize="18sp"
+        android:textSize="16sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

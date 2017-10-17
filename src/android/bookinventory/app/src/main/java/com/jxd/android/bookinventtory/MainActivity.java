@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -26,6 +27,8 @@ import com.jxd.android.bookinventtory.shelfadapt.ShelfAdaptFragment;
 import com.jxd.android.bookinventtory.shelfarrage.ShelfArrageFragment;
 import com.jxd.android.bookinventtory.shelfsearch.ShelfSearchFragment;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
+import com.jxd.android.bookinventtory.utils.ToastUtils;
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -53,14 +56,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private FragmentAdapter fragmentAdapter;
     private Hashtable<Integer,Integer> menuList=new Hashtable<>();
 
-    //@BindView(R.id.message)
-    //TextView mTextMessage;
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigationView;
-//    @BindView(R.id.laySearchbar)
-//    LinearLayout laySearchbar;
+    long exitTime = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -69,19 +69,15 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_booksearch:
-                    //mTextMessage.setText(R.string.title_booksearch);
                     viewPager.setCurrentItem(0,true);
                     return true;
                 case R.id.navigation_shelfsearch:
-                    //mTextMessage.setText(R.string.title_shelfsearch);
                     viewPager.setCurrentItem(1,true);
                     return true;
                 case R.id.navigation_shelfadapt:
-                    //mTextMessage.setText(R.string.title_shelfadapt);
                     viewPager.setCurrentItem(2,true);
                     return true;
                 case R.id.navigation_shelfarrage:
-                    //mTextMessage.setText(R.string.title_shelfarrage);
                     viewPager.setCurrentItem(3,true);
                     return true;
                 case R.id.navigation_differencemanage:
@@ -143,43 +139,32 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     @Subscribe( threadMode= ThreadMode.MAIN)
     public void  onLogoutEvent(LogoutEvent logoutEvent){
-        PreferenceHelper.remove(this , Constants.PREF_FILENAME , Constants.PREF_COOKIE);
-        PreferenceHelper.remove(this , Constants.PREF_FILENAME , Constants.PREF_USER);
-        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
-        this.startActivity(intent);
-        this.finish();
+        TipAlertDialog tipAlertDialog = new TipAlertDialog(this , false);
+        tipAlertDialog.show("询问", "您确定要退出吗?", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PreferenceHelper.remove(MainActivity.this , Constants.PREF_FILENAME , Constants.PREF_COOKIE);
+                PreferenceHelper.remove(MainActivity.this , Constants.PREF_FILENAME , Constants.PREF_USER);
+                Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+                MainActivity.this.startActivity(intent);
+                MainActivity.this.finish();
+            }
+        });
+
     }
 
-//    @OnClick({R.id.laySearchbar})
-//    public void onClick(View view){
-//        if(view.getId() == R.id.laySearchbar){
-//            Intent intent = new Intent(MainActivity.this,SearchActivity.class);
-//            this.startActivityForResult(intent , REQUEST_CODE_SEARCH);
-//        }
-//    }
-
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        if( resultCode== RESULT_OK && requestCode == REQUEST_CODE_SEARCH ){
-//            SearchKeyBean key= (SearchKeyBean) data.getExtras().getSerializable(Constants.Key_SearchKey);
-//            sendEvent( key );
-//        }else {
-//            super.onActivityResult(requestCode, resultCode, data);
-//        }
-//    }
-
-//    protected void sendEvent(SearchKeyBean key){
-//        int currentItem = viewPager.getCurrentItem();
-//        BaseFragment baseFragment = (BaseFragment) fragmentAdapter.getItem( currentItem);
-//        if( baseFragment.getNavigateMenuId() == R.id.navigation_booksearch ){
-//            BookCondition condition = new BookCondition();
-//            condition.setBookName(key.getKey());
-//            EventBus.getDefault().post( condition );
-//        }else if( baseFragment.getNavigateMenuId() == R.id.navigation_shelfsearch ){
-//            ShelfBean condition = new ShelfBean();
-//            condition.setShelfName(key.getKey());
-//            EventBus.getDefault().post(condition);
-//        }
-//    }
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        // 2秒以内按两次推出程序
+        if (keyCode == KeyEvent.KEYCODE_BACK  && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if ((System.currentTimeMillis() - exitTime) > 2000) {
+                ToastUtils.showLongToast("再按一次退出程序");
+                exitTime = System.currentTimeMillis();
+            } else {
+                this.finish();
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 }

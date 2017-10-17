@@ -11,6 +11,7 @@ import android.support.v4.graphics.drawable.DrawableCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.R;
@@ -33,6 +34,8 @@ public class ShelfArrageFragment
 
     @BindView(R.id.right)
     TextView tvRight;
+    @BindView(R.id.rightImage)
+    ImageView ivRightImage;
     @BindView(R.id.header)
     TextView tvTitle;
     @BindView(R.id.tvUserName)
@@ -82,9 +85,8 @@ public class ShelfArrageFragment
         unbinder = ButterKnife.bind(this,view);
 
         tvTitle.setText("");
-        Drawable leftDrawable = ContextCompat.getDrawable( getContext() , R.mipmap.ic_launcher );
-        tvRight.setCompoundDrawables( leftDrawable ,null,null,null);
-        tvRight.setText("架位整理");
+        ivRightImage.setImageResource( R.drawable.vector_drawable_scan_24);
+        //tvRight.setText("架位整理");
         tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUserName() );
 
     }
@@ -99,9 +101,9 @@ public class ShelfArrageFragment
 
     }
 
-    @OnClick({R.id.right})
+    @OnClick({R.id.right,R.id.rightImage})
     public void onClick(View v){
-        if(v.getId()==R.id.right){
+        if(v.getId()==R.id.right || v.getId() == R.id.rightImage ){
             Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
             getContext().startActivity(intent);
         }
