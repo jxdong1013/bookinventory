@@ -52,14 +52,14 @@ import static android.R.attr.fragment;
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
     public static int REQUEST_CODE_SEARCH=1000;
 
-    private List<BaseFragment> fragmentList = new ArrayList<>();
-    private FragmentAdapter fragmentAdapter;
-    private Hashtable<Integer,Integer> menuList=new Hashtable<>();
-
     @BindView(R.id.viewPager)
     ViewPager viewPager;
     @BindView(R.id.bottomNavigation)
     BottomNavigationView bottomNavigationView;
+
+    List<BaseFragment> fragmentList = new ArrayList<>();
+    FragmentAdapter fragmentAdapter;
+    Hashtable<Integer,Integer> menuList=new Hashtable<>();
     long exitTime = 0;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener

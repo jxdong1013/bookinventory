@@ -80,3 +80,9 @@ F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\bin\Syste
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\EntityFramework.resources.dll
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
 F:\MyJob\Person\Project\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.csprojResolveAssemblyReference.cache
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\EntityFramework.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\EntityFramework.xml
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\EntityFramework.resources.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Web.Mvc.resources.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
+F:\jxd\bookinventory\src\server\bookinventory\bookweb\obj\Debug\bookweb.csprojResolveAssemblyReference.cache
