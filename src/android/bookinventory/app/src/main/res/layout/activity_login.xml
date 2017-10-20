@@ -100,7 +100,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <TextView
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        android:id="@+id/btnConfigUrl"
+        android:textColor="@color/colorPrimary"
+        android:text="配置地址"
+        android:padding="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/layConfig"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:text="请设置服务器访问地址:"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <com.huotu.android.library.libedittext.EditText
+            android:layout_marginTop="10dp"
+            app:style="transparent"
+            android:id="@+id/edUrl"
+            android:imeOptions="actionDone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <View
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginTop="5dp"
+            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="1px"/>
+        <TextView
+            android:layout_gravity="center"
+            android:text="保存"
+            android:textColor="@android:color/white"
+            android:background="@drawable/btn_login"
+            android:paddingTop="10dp"
+            android:paddingBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/btnSaveUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
 </LinearLayout>
+
+
+
 
 
     <com.jxd.android.bookinventtory.widgets.ProgressWidget
