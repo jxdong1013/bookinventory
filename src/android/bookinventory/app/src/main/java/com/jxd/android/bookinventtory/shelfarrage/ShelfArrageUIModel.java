@@ -3,7 +3,7 @@ package com.jxd.android.bookinventtory.shelfarrage;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
-import com.jxd.android.bookinventtory.bean.ShelfScanBeam;
+import com.jxd.android.bookinventtory.bean.ShelfScanBean;
 import com.jxd.android.bookinventtory.http.ApiService;
 import com.trello.rxlifecycle2.LifecycleProvider;
 
@@ -40,11 +40,11 @@ public class ShelfArrageUIModel implements IShelfArrageUIModel {
     }
 
     @Override
-    public void saveShelfScanData(final ShelfScanBeam shelfScanBeam , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError) {
+    public void saveShelfScanData(final ShelfScanBean shelfScanBean , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError) {
         realm.executeTransactionAsync(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                realm.copyToRealmOrUpdate( shelfScanBeam );
+                realm.copyToRealmOrUpdate( shelfScanBean );
             }
         } , onSuccess , onError);
     }

@@ -4,7 +4,7 @@ import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.OperateTypeEnum;
 import com.jxd.android.bookinventtory.bean.ResultCodeEnum;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
-import com.jxd.android.bookinventtory.bean.ShelfScanBeam;
+import com.jxd.android.bookinventtory.bean.ShelfScanBean;
 import com.jxd.android.bookinventtory.config.Constants;
 
 import io.reactivex.Observer;
@@ -34,9 +34,9 @@ public class ShelfArrageUIPresenter
     }
 
     @Override
-    public void saveShelfData(ShelfScanBeam shelfScanBeam) {
+    public void saveShelfData(ShelfScanBean shelfScanBean) {
         operateTypeEnum = OperateTypeEnum.Update;
-        iShelfArrageUIModel.saveShelfScanData( shelfScanBeam , this , this );
+        iShelfArrageUIModel.saveShelfScanData( shelfScanBean , this , this );
     }
 
     @Override

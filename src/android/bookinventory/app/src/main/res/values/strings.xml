@@ -15,5 +15,6 @@
     <string name="tipmessage1">请扫描图书标签和架位标签,进行调整</string>
     <string name="tipmessage2">请扫描图书标签,进行调整</string>
     <string name="tipmessage3">请扫描架位标签,进行调整</string>
+    <string name="tipmessage4">请扫描标签，进行盘点</string>
 
 </resources>

@@ -16,6 +16,7 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@id/layHeader"
+        android:layout_above="@id/layFooter"
         android:id="@+id/swipeRefreshLayout"
         android:background="@color/white"
         android:layout_margin="0dp"
@@ -27,6 +28,27 @@
             android:layout_height="match_parent"/>
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <LinearLayout
+        android:id="@+id/layFooter"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include layout="@layout/layout_shelfarrage_footer"/>
+    </LinearLayout>
+
+    <com.jxd.android.bookinventtory.widgets.ProgressWidget
+        android:id="@+id/progress"
+        android:layout_below="@id/layHeader"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <com.jxd.android.bookinventtory.widgets.ErrorWidget
+        android:id="@+id/error"
+        android:visibility="gone"
+        android:layout_below="@id/layHeader"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 
 </RelativeLayout>

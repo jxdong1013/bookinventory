@@ -30,8 +30,8 @@ public class ShelfArrageModule {
     }
 
     @Provides
-    public IShelfArrageModel provideShelfArrageModel(ApiService apiService){
-        return new ShelfArrageModel(apiService);
+    public IShelfArrageModel provideShelfArrageModel(ApiService apiService , Realm realm ){
+        return new ShelfArrageModel(apiService , realm );
     }
 
 

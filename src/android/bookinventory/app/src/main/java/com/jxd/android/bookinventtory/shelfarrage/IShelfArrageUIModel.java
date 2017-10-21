@@ -1,6 +1,7 @@
 package com.jxd.android.bookinventtory.shelfarrage;
 
-import com.jxd.android.bookinventtory.bean.ShelfScanBeam;
+import com.jxd.android.bookinventtory.bean.ShelfScanBean;
+import com.jxd.android.bookinventtory.bean.ShelfScanBean;
 import com.jxd.android.bookinventtory.mvp.IModel;
 
 import io.reactivex.Observer;
@@ -13,5 +14,5 @@ public interface IShelfArrageUIModel extends IModel {
 
     void getShelfInfoByShelfCode(String shelfCode , Observer observer);
 
-    void saveShelfScanData(ShelfScanBeam shelfScanBeam , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError);
+    void saveShelfScanData(ShelfScanBean shelfScanBean , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError);
 }

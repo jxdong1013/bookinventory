@@ -7,4 +7,5 @@ import com.jxd.android.bookinventtory.mvp.IPresenter;
  */
 
 public interface IShelfArragePresenter extends IPresenter {
+    void getDataFromLocal();
 }

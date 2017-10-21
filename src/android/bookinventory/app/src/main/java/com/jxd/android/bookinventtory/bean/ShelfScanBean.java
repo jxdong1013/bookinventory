@@ -12,7 +12,7 @@ import io.realm.annotations.RealmClass;
  * Created by Administrator on 2017/10/17.
  */
 @RealmClass
-public class ShelfScanBeam implements RealmModel{
+public class ShelfScanBean implements RealmModel{
     @PrimaryKey
     private String id;
     private String shelfCode;
