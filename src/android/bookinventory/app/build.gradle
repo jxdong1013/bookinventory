@@ -15,23 +15,23 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    signingConfigs {
-        config {
-            keyAlias 'jinxiangdong'
-            keyPassword 'jinxiangdong'
-            storeFile file('../keystore/key.jks')
-            storePassword 'jinxiangdong'
-        }
-    }
+//    signingConfigs {
+//        config {
+//            keyAlias 'jinxiangdong'
+//            keyPassword 'jinxiangdong'
+//            storeFile file('../keystore/key.jks')
+//            storePassword 'jinxiangdong'
+//        }
+//    }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+            //signingConfig signingConfigs.config
         }
         debug{
-            signingConfig signingConfigs.config
+            //signingConfig signingConfigs.config
         }
     }
 }

@@ -8,8 +8,7 @@ import io.realm.annotations.RealmClass;
  * 图书盘点
  * Created by Administrator on 2017/10/17.
  */
-@RealmClass
-public class ShelfBookScanBean extends BookBean implements RealmModel {
+public class ShelfBookScanBean extends BookBean {
     /**
      * 盘点状态
      */
