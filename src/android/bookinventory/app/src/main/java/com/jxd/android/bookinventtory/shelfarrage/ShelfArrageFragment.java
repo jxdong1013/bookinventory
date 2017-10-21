@@ -16,6 +16,9 @@ import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.base.BaseFragment;
+import com.jxd.android.bookinventtory.bean.LogoutEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,11 +35,7 @@ public class ShelfArrageFragment
         extends BaseFragment<IShelfArragePresenter>
         implements IShelfArrageView{
 
-    @BindView(R.id.right)
-    TextView tvRight;
-    @BindView(R.id.rightImage)
-    ImageView ivRightImage;
-    @BindView(R.id.header)
+    @BindView(R.id.tvTitle)
     TextView tvTitle;
     @BindView(R.id.tvUserName)
     TextView tvUserName;
@@ -84,9 +83,7 @@ public class ShelfArrageFragment
     protected void initView(View view){
         unbinder = ButterKnife.bind(this,view);
 
-        tvTitle.setText("");
-        ivRightImage.setImageResource( R.drawable.vector_drawable_scan_24);
-        //tvRight.setText("架位整理");
+        //tvTitle.setText("盘点");
         tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUserName() );
 
     }
@@ -101,16 +98,22 @@ public class ShelfArrageFragment
 
     }
 
-    @OnClick({R.id.right,R.id.rightImage})
+    @OnClick({R.id.scan,R.id.uplaod,R.id.exist})
     public void onClick(View v){
-        if(v.getId()==R.id.right || v.getId() == R.id.rightImage ){
+        if(v.getId()==R.id.scan ){
             Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
             getContext().startActivity(intent);
+        }else if(v.getId()==R.id.uplaod){
+            upload();
+        }else if(v.getId()==R.id.exist){
+            EventBus.getDefault().post(new LogoutEvent());
         }
     }
 
 
+    void upload(){
 
+    }
 
 
 }

@@ -39,9 +39,7 @@ public class BaseApplication extends Application {
         ThirdPartyInit.init(this);
 
 
-        Stetho.initialize( Stetho.newInitializerBuilder(this)
-                .enableDumpapp(Stetho.defaultDumperPluginsProvider(this))
-                .enableWebKitInspector(RealmInspectorModulesProvider.builder(this).build()).build());
+
 
     }
 

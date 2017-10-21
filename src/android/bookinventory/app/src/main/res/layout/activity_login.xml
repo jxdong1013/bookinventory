@@ -44,6 +44,7 @@
             app:style="transparent"
             android:id="@+id/username"
             android:hint="请输入用户名"
+            android:maxLines="1"
             android:layout_gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -74,6 +75,7 @@
             android:id="@+id/password"
             android:layout_gravity="center_vertical"
             android:hint="请输入密码"
+            android:maxLines="1"
             android:inputType="textPassword"
             app:style="transparent"
             android:layout_width="match_parent"
@@ -139,6 +141,7 @@
         <TextView
             android:layout_gravity="center"
             android:text="保存"
+            android:gravity="center"
             android:textColor="@android:color/white"
             android:background="@drawable/btn_login"
             android:paddingTop="10dp"

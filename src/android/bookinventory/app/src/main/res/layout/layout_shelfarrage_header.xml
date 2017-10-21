@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:background="@color/colorPrimary"
+                android:layout_width="match_parent"
+                android:gravity="center_vertical"
+                android:padding="4dp"
+                android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvUserName"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="5dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:text="盘点"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:textSize="18sp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/uplaod"
+        android:layout_toLeftOf="@+id/scan"
+        android:src="@mipmap/upload"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:padding="2dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/scan"
+        android:padding="2dp"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:src="@mipmap/scanning"
+        android:layout_toLeftOf="@+id/exist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/exist"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:padding="2dp"
+        android:src="@mipmap/logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>

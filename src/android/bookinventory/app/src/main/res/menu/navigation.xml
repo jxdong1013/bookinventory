@@ -21,9 +21,9 @@
     android:icon="@drawable/vector_shelfarrage_24dp"
     android:title="@string/title_shelfarrage"/>
 
-    <item
-        android:id="@+id/navigation_differencemanage"
-        android:icon="@drawable/vector_difference_24dp"
-        android:title="@string/title_differencemanage"/>
+    <!--<item-->
+        <!--android:id="@+id/navigation_differencemanage"-->
+        <!--android:icon="@drawable/vector_difference_24dp"-->
+        <!--android:title="@string/title_differencemanage"/>-->
 
 </menu>

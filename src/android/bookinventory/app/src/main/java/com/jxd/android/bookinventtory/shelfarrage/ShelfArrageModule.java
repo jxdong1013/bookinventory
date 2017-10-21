@@ -2,9 +2,11 @@ package com.jxd.android.bookinventtory.shelfarrage;
 
 import com.jxd.android.bookinventtory.http.ApiService;
 import com.jxd.android.bookinventtory.shelfsearch.IShelfSearchView;
+import com.jxd.android.bookinventtory.utils.RealmUtil;
 
 import dagger.Module;
 import dagger.Provides;
+import io.realm.Realm;
 
 /**
  * Created by jinxiangdong on 2017/10/14.
@@ -44,12 +46,18 @@ public class ShelfArrageModule {
     }
 
     @Provides
-    public IShelfArrageUIModel provideShelfArrageUIModel(ApiService apiService){
-        return new ShelfArrageUIModel(apiService , shelfArrageUIActivity);
+    public IShelfArrageUIModel provideShelfArrageUIModel(ApiService apiService , Realm realm){
+        return new ShelfArrageUIModel(apiService , realm , shelfArrageUIActivity);
     }
 
     @Provides
     public IShelfArrageUIPresenter provideShelfArrageUIPresenter(IShelfArrageUIView iShelfArrageUIView , IShelfArrageUIModel iShelfArrageUIModel){
         return new ShelfArrageUIPresenter(iShelfArrageUIView , iShelfArrageUIModel);
     }
+
+    @Provides
+    public Realm provideRealm(){
+        return new RealmUtil().getRealm();
+    }
+
 }

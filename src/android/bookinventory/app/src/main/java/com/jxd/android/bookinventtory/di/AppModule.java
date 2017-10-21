@@ -9,6 +9,7 @@ import com.jxd.android.bookinventtory.http.ApiService;
 import com.jxd.android.bookinventtory.http.HeaderIntercepter;
 import com.jxd.android.bookinventtory.http.ReceiveCookieInterceptor;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
+import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 import com.jxd.android.bookinventtory.utils.RealmUtil;
 
 import java.util.concurrent.TimeUnit;
@@ -33,6 +34,7 @@ public class AppModule {
     BaseApplication application;
     public AppModule(BaseApplication application) {
         this.application = application;
+        Constants.BASE_URL = PreferenceHelper.readString(application , Constants.PREF_FILENAME , Constants.PREF_BASE_URL , Constants.BASE_URL);
     }
 
     @Singleton

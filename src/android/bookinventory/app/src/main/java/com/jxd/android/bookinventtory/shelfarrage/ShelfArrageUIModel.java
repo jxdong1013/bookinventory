@@ -21,9 +21,11 @@ import io.realm.Realm;
 public class ShelfArrageUIModel implements IShelfArrageUIModel {
     ApiService apiService;
     LifecycleProvider lifecycleProvider;
+    Realm realm;
 
-    public ShelfArrageUIModel(ApiService apiService , LifecycleProvider lifecycleProvider ){
+    public ShelfArrageUIModel(ApiService apiService , Realm realm , LifecycleProvider lifecycleProvider ){
         this.apiService=apiService;
+        this.realm=realm;
         this.lifecycleProvider=lifecycleProvider;
     }
 
@@ -38,8 +40,13 @@ public class ShelfArrageUIModel implements IShelfArrageUIModel {
     }
 
     @Override
-    public void saveShelfScanData(ShelfScanBeam shelfScanBeam , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError) {
-
+    public void saveShelfScanData(final ShelfScanBeam shelfScanBeam , Realm.Transaction.OnSuccess onSuccess, Realm.Transaction.OnError onError) {
+        realm.executeTransactionAsync(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealmOrUpdate( shelfScanBeam );
+            }
+        } , onSuccess , onError);
     }
 
     @Override

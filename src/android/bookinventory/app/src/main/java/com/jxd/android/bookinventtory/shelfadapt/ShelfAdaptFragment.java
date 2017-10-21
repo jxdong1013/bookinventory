@@ -70,6 +70,8 @@ public class ShelfAdaptFragment
     TextView tvUserName;
     @BindView(R.id.tvSummary)
     TextView tvSummary;
+    @BindView(R.id.tvTitle)
+    TextView tvTitle;
 
     List<BookShelfAdptBean> data;
     ShelfAdaptAdapter shelfAdaptAdapter;

@@ -3,6 +3,7 @@ package com.jxd.android.bookinventtory.login;
 import android.content.Intent;
 import android.icu.text.IDNA;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -21,17 +22,11 @@ import com.jxd.android.bookinventtory.utils.KeyWordUtil;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
-
-import org.w3c.dom.Text;
-
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.jxd.android.bookinventtory.R.id.btnConfigUrl;
-import static com.jxd.android.bookinventtory.R.id.errorText;
-import static com.jxd.android.bookinventtory.R.id.layConfig;
-import static com.jxd.android.bookinventtory.utils.PreferenceHelper.readString;
 
 public class LoginActivity extends BaseActivity<ILoginPresenter>
                 implements ILoginView{
@@ -105,6 +100,14 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
     void saveConfig(View v){
 
         String url =etUrl.getText().toString();
+        url = url.toLowerCase();
+
+        if( url.endsWith("/")==false){
+            url +="/";
+        }
+        if( !url.startsWith("http://") ){
+            url ="http://"+url;
+        }
 
         Constants.BASE_URL = url;
         PreferenceHelper.writeString( this , Constants.PREF_FILENAME , Constants.PREF_BASE_URL ,url );
@@ -112,16 +115,20 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
         tvConfig.setVisibility(View.VISIBLE);
         layConfig.setVisibility(View.GONE);
 
-//        Intent intent=new Intent(this , LoginActivity.class);
-//        this.startActivity(intent);
-//        this.finish();
+        final TipAlertDialog tipAlertDialog = new TipAlertDialog(this , false);
 
-        //
-        Intent i = getBaseContext().getPackageManager()
-                .getLaunchIntentForPackage(getBaseContext().getPackageName());
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(i);
-        //this.finish();
+        tipAlertDialog.show("提示", "请重新打开App，才能是配置生效!", "", R.color.black, false, true, null,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        LoginActivity.this.finish();
+                        System.exit(0);
+//                        tipAlertDialog.dismiss();
+//                        Intent intent = LoginActivity.this.getPackageManager().getLaunchIntentForPackage(LoginActivity.this.getPackageName());
+//                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                        LoginActivity.this.startActivity(intent);
+                    }
+                });
     }
 
 

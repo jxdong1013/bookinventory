@@ -2,6 +2,7 @@ package com.jxd.android.bookinventtory;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import com.jxd.android.bookinventtory.adapter.FragmentAdapter;
 import com.jxd.android.bookinventtory.base.BaseActivity;
+import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.base.BaseFragment;
 import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookCondition;
@@ -80,9 +82,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 case R.id.navigation_shelfarrage:
                     viewPager.setCurrentItem(3,true);
                     return true;
-                case R.id.navigation_differencemanage:
+                //case R.id.navigation_differencemanage:
                     //mTextMessage.setText(R.string.title_differencemanage);
-                    return true;
+                    //return true;
                 default:
                     return false;
             }
@@ -148,6 +150,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 Intent intent = new Intent(MainActivity.this,LoginActivity.class);
                 MainActivity.this.startActivity(intent);
                 MainActivity.this.finish();
+                System.exit(0);
             }
         });
 
@@ -162,6 +165,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 exitTime = System.currentTimeMillis();
             } else {
                 this.finish();
+                System.exit(0);
             }
             return true;
         }

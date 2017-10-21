@@ -25,4 +25,5 @@ public interface AppComponent {
     Retrofit getRetrofit();
 
     ApiService getApiService();
+
 }

@@ -11,7 +11,7 @@
         android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <include layout="@layout/layout_header" />
+        <include layout="@layout/layout_shelfarrage_header" />
     </LinearLayout>
 
     <android.support.v4.widget.SwipeRefreshLayout

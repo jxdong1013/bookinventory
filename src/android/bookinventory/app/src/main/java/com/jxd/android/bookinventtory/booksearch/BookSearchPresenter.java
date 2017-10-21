@@ -13,6 +13,8 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import retrofit2.HttpException;
+import retrofit2.Retrofit;
 
 /**
  * Created by jinxiangdong on 2017/9/30.
@@ -55,7 +57,9 @@ public class BookSearchPresenter implements IBookSearchPresenter ,Observer<DataB
     public void onError(@NonNull Throwable e) {
         if( e instanceof SocketTimeoutException){
             iBookSearchView.error(Constants.MESSAGE_TIMEOUT);
-        }else {
+        }else if( e instanceof HttpException){
+            iBookSearchView.error( e.getMessage() );
+        } else {
             iBookSearchView.error(Constants.MESSAGE_ERROR);
         }
     }
