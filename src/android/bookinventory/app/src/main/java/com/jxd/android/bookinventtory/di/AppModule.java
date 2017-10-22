@@ -9,8 +9,10 @@ import com.jxd.android.bookinventtory.http.ApiService;
 import com.jxd.android.bookinventtory.http.HeaderIntercepter;
 import com.jxd.android.bookinventtory.http.ReceiveCookieInterceptor;
 import com.jxd.android.bookinventtory.http.RequestInterceptor;
+import com.jxd.android.bookinventtory.utils.AnDeDeviceReader;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 import com.jxd.android.bookinventtory.utils.RealmUtil;
+import com.rfid.api.ADReaderInterface;
 
 import java.util.concurrent.TimeUnit;
 
@@ -110,5 +112,15 @@ public class AppModule {
     public ApiService provideApiService(Retrofit retrofit){
         ApiService apiService = retrofit.create(ApiService.class);
         return apiService;
+    }
+
+    @Provides
+    public AnDeDeviceReader provideAnDeDeviceReader(ADReaderInterface adReaderInterface){
+        return new AnDeDeviceReader(adReaderInterface);
+    }
+
+    @Provides
+    public ADReaderInterface provideADReaderInterface(){
+        return new ADReaderInterface();
     }
 }

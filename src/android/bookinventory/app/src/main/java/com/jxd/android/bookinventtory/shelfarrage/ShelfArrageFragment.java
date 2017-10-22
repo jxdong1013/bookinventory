@@ -124,6 +124,7 @@ public class ShelfArrageFragment
 
         data = new ArrayList<>();
         shelfArrageAdapter = new ShelfArrageAdapter(data);
+        shelfArrageAdapter.isUseEmpty(false);
         shelfArrageAdapter.setEmptyView(emptyView);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 //        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext() ,1 );

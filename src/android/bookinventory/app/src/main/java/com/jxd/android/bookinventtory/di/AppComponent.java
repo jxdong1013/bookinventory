@@ -2,6 +2,7 @@ package com.jxd.android.bookinventtory.di;
 
 import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.http.ApiService;
+import com.jxd.android.bookinventtory.utils.AnDeDeviceReader;
 
 import javax.annotation.Signed;
 import javax.inject.Singleton;
@@ -25,5 +26,7 @@ public interface AppComponent {
     Retrofit getRetrofit();
 
     ApiService getApiService();
+
+    AnDeDeviceReader getAnDeDeviceReader();
 
 }

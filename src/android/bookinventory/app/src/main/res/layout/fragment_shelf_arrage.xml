@@ -16,7 +16,7 @@
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:layout_below="@id/layHeader"
-        android:layout_above="@id/layFooter"
+        android:layout_above="@+id/layFooter"
         android:id="@+id/swipeRefreshLayout"
         android:background="@color/white"
         android:layout_margin="0dp"
@@ -30,6 +30,7 @@
 
     <LinearLayout
         android:id="@+id/layFooter"
+        android:background="@color/white"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">

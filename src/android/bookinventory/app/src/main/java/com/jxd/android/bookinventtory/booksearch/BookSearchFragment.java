@@ -17,7 +17,7 @@ import android.widget.TextView;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.jxd.android.bookinventtory.MainActivity;
+import com.jxd.android.bookinventtory.main.MainActivity;
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.adapter.BookSearchAdapter;
 import com.jxd.android.bookinventtory.base.BaseApplication;
@@ -49,7 +49,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.app.Activity.RESULT_OK;
-import static com.jxd.android.bookinventtory.MainActivity.REQUEST_CODE_SEARCH;
+import static com.jxd.android.bookinventtory.main.MainActivity.REQUEST_CODE_SEARCH;
 
 /**
  * 图书检索界面

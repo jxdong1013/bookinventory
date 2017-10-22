@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.huotu.android.library.libedittext.EditText;
-import com.jxd.android.bookinventtory.MainActivity;
+import com.jxd.android.bookinventtory.main.MainActivity;
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.base.BaseActivity;
 import com.jxd.android.bookinventtory.base.BaseApplication;
