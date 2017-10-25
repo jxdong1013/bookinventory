@@ -25,6 +25,7 @@
             android:launchMode="singleTask"/>
         <activity
             android:name=".login.LoginActivity"
+            android:theme="@style/LoginTheme"
             android:launchMode="singleTask"
             android:screenOrientation="portrait">
             <intent-filter>
