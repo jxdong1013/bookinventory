@@ -15,23 +15,23 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content">
     <TextView
-        android:id="@+id/bookitem_bookid"
+        android:id="@+id/bookitem_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_bookname"
+        android:id="@+id/bookitem_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_author"
+        android:id="@+id/bookitem_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_bookcode"
+        android:id="@+id/bookitem_shelfno"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_position"
+        android:id="@+id/bookitem_updatetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 </LinearLayout>

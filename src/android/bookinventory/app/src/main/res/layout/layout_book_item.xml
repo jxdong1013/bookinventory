@@ -17,46 +17,42 @@
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-    <TextView
+        <TextView
         android:layout_toRightOf="@id/bookitem_pic"
         android:layout_toLeftOf="@+id/bookitem_status"
         android:layout_marginLeft="4dp"
-        android:id="@+id/bookitem_bookid"
+        android:text="barcode"
+        android:id="@+id/bookitem_barcode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:layout_alignLeft="@id/bookitem_bookid"
-        android:layout_below="@id/bookitem_bookid"
+        android:layout_alignLeft="@id/bookitem_barcode"
+        android:layout_below="@id/bookitem_barcode"
         android:layout_toLeftOf="@+id/bookitem_status"
-        android:id="@+id/bookitem_bookname"
+        android:id="@+id/bookitem_title"
+        android:text="title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_author"
-        android:layout_alignLeft="@id/bookitem_bookname"
-        android:layout_below="@id/bookitem_bookname"
+        android:id="@+id/bookitem_updatetime"
+        android:layout_alignLeft="@id/bookitem_title"
+        android:layout_below="@id/bookitem_title"
         android:layout_toLeftOf="@+id/bookitem_status"
+        android:text="updatetime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-        android:id="@+id/bookitem_bookcode"
-        android:layout_alignLeft="@id/bookitem_author"
-        android:layout_toLeftOf="@+id/bookitem_status"
-        android:layout_below="@id/bookitem_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/bookitem_position"
-        android:layout_alignLeft="@id/bookitem_bookcode"
-        android:layout_below="@id/bookitem_bookcode"
+        android:id="@+id/bookitem_shelfno"
+        android:text="shelfno"
+        android:layout_alignLeft="@id/bookitem_updatetime"
+        android:layout_below="@id/bookitem_updatetime"
         android:layout_toLeftOf="@+id/bookitem_status"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-
         <TextView
             android:id="@+id/bookitem_status"
             android:layout_alignParentRight="true"
-            android:text=""
+            android:text="status"
             android:layout_marginLeft="4dp"
             android:layout_centerVertical="true"
             android:layout_width="wrap_content"

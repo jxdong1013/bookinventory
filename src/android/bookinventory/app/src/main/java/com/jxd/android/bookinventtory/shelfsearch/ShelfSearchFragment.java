@@ -25,11 +25,13 @@ import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.BookCondition;
 import com.jxd.android.bookinventtory.bean.BookModel;
 import com.jxd.android.bookinventtory.bean.LogoutEvent;
+import com.jxd.android.bookinventtory.bean.SearchKeyBean;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.ShelfCondition;
 import com.jxd.android.bookinventtory.bean.ShelfModel;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.login.LoginActivity;
+import com.jxd.android.bookinventtory.search.SearchActivity;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
@@ -44,9 +46,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 import static android.R.attr.key;
+import static android.app.Activity.RESULT_OK;
 import static com.jxd.android.bookinventtory.R.id.swipeRefreshLayout;
 import static com.jxd.android.bookinventtory.R.id.tvSearchBar;
+import static com.jxd.android.bookinventtory.R.id.tvSummary;
 import static com.jxd.android.bookinventtory.R.id.tvUserName;
+import static com.jxd.android.bookinventtory.main.MainActivity.REQUEST_CODE_SEARCH;
 
 /**
  * 架位搜索界面
@@ -56,6 +61,8 @@ import static com.jxd.android.bookinventtory.R.id.tvUserName;
 public class ShelfSearchFragment
         extends BaseFragment<IShelfSearchPresenter>
         implements IShelfSearchView {
+
+     static int SHELF_REQUEST_CODE_SEARCH = 1001;
 
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
@@ -74,6 +81,7 @@ public class ShelfSearchFragment
     ShelfSearchAdapter shelfSearchAdapter;
 
     View emptyView;
+    boolean isShowProgress=true;
 
     public ShelfSearchFragment() {
         // Required empty public constructor
@@ -127,6 +135,7 @@ public class ShelfSearchFragment
         shelfSearchAdapter.setEnableLoadMore(false);
         //bookSearchAdapter.isUseEmpty(false);
         tvUserName.setText( application.getUserBean() ==null?"":application.getUserBean().getUserName() );
+        tvSearchBar.setHint("请输入架位标签搜索");
     }
 
     @Override
@@ -152,15 +161,18 @@ public class ShelfSearchFragment
         shelfSearchAdapter.isUseEmpty(false);
         ShelfCondition condition = new ShelfCondition();
         String key = tvSearchBar.getText().toString();
-        condition.setShelfName(key);
+        condition.setShelfno(key);
         iPresenter.getShelfList(condition);
     }
 
     @Override
     public void showProgress(String msg) {
         errorWidget.setVisibility(View.GONE);
-        progressWidget.setVisibility(View.VISIBLE);
-        progressWidget.setProgressMessage(Constants.TIP_WAITING);
+
+        if(isShowProgress) {
+            progressWidget.setVisibility(View.VISIBLE);
+            progressWidget.setProgressMessage(Constants.TIP_WAITING);
+        }
     }
 
     @Override
@@ -186,10 +198,11 @@ public class ShelfSearchFragment
     @Override
     public void callback(ShelfBean shelfBean) {
         shelfSearchAdapter.isUseEmpty(true);
-
+        isShowProgress=false;
         if(shelfBean==null) return;
         data.clear();
         ShelfModel shelfModel = new ShelfModel();
+        shelfModel.setShelfno(shelfBean.getShelfno());
         shelfModel.transfor(shelfBean);
         data.add( shelfModel );
         if(shelfBean.getBooks()!=null) {
@@ -207,12 +220,37 @@ public class ShelfSearchFragment
         EventBus.getDefault().post(new LogoutEvent());
     }
 
-    @OnClick({R.id.tvLogout  , R.id.btnTest})
+    @OnClick({R.id.tvLogout  , R.id.laySearchbar , R.id.layError })
     public void onClick(View v){
         if( v.getId()==R.id.tvLogout){
             EventBus.getDefault().post(new LogoutEvent());
-        }else if(v.getId()==R.id.btnTest){
+        }else if(v.getId() == R.id.laySearchbar){
+            Intent intent = new Intent(this.getActivity(),SearchActivity.class);
+            this.startActivityForResult(intent , SHELF_REQUEST_CODE_SEARCH);
+        }else if( v.getId()==R.id.layError){
             getData();
         }
     }
+
+    public void searchBook( SearchKeyBean key ) {
+        isShowProgress=true;
+        data.clear();
+        shelfSearchAdapter.setNewData(data);
+        tvSearchBar.setText(key.getKey());
+
+        getData();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if( resultCode== RESULT_OK && requestCode == SHELF_REQUEST_CODE_SEARCH ){
+            SearchKeyBean key= (SearchKeyBean) data.getExtras().getSerializable(Constants.Key_SearchKey);
+            searchBook( key );
+        }else {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+
 }

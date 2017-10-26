@@ -41,9 +41,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-import static com.jxd.android.bookinventtory.R.id.bookshelfscan_bookname;
-import static com.jxd.android.bookinventtory.R.id.recyclerView;
-import static com.jxd.android.bookinventtory.R.id.tip;
 
 /**
  * 架位更新 界面
@@ -170,13 +167,12 @@ public class ShelfAdaptFragment
     public void onClick(View v){
         if(v.getId()==R.id.scanbook){
             BookBean bookBean=new BookBean();
-            bookBean.setBookcode(UUID.randomUUID().toString());
-            bookBean.setBookName(bookBean.getBookcode());
+            bookBean.setBarcode(UUID.randomUUID().toString());
+            bookBean.setTitle(bookBean.getBarcode());
             shelfAdaptScanWidget.setBookInfo(bookBean);
         }else if(v.getId()==R.id.scanshelf){
             ShelfBean shelfBean=new ShelfBean();
-            shelfBean.setShelfCode(UUID.randomUUID().toString());
-            shelfBean.setShelfName(shelfBean.getShelfCode());
+            shelfBean.setShelfno(UUID.randomUUID().toString());
             shelfAdaptScanWidget.setShelfInfo(shelfBean);
         }else if( v.getId()==R.id.tvLogout){
             EventBus.getDefault().post(new LogoutEvent());
@@ -226,11 +222,10 @@ public class ShelfAdaptFragment
     public void saveScanResult(final BookBean bookBean, final ShelfBean ShelfBean) {
 
         BookShelfAdptBean bookShelfAdptBean = new BookShelfAdptBean();
-        bookShelfAdptBean.setShelfName(ShelfBean.getShelfName());
-        bookShelfAdptBean.setBookName(bookBean.getBookName());
+        bookShelfAdptBean.setShelfno(ShelfBean.getShelfno());
+        bookShelfAdptBean.setBarcode(bookBean.getBarcode());
         bookShelfAdptBean.setAdaptTime(Calendar.getInstance().getTime());
-        bookShelfAdptBean.setBookCode(bookBean.getBookcode());
-        bookShelfAdptBean.setShelfCode(ShelfBean.getShelfCode());
+        bookShelfAdptBean.setTitle(bookBean.getTitle());
         bookShelfAdptBean.setUserId(application.getUserBean().getUserId());
         bookShelfAdptBean.setUserName(application.getUserBean().getUserName());
         bookShelfAdptBean.setId(UUID.randomUUID().toString());

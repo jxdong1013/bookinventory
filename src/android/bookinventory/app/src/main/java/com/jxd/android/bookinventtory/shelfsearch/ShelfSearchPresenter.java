@@ -8,6 +8,9 @@ import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.ShelfCondition;
 import com.jxd.android.bookinventtory.config.Constants;
 
+import java.net.SocketTimeoutException;
+import java.util.List;
+
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.annotations.Nullable;
@@ -52,8 +55,13 @@ public class ShelfSearchPresenter implements IShelfSearchPresenter ,Observer<Dat
 
     @Override
     public void onError(@NonNull Throwable e) {
-        iShelfSearchView.hideProgress();
-        iShelfSearchView.error(Constants.MESSAGE_ERROR);
+        if( e instanceof SocketTimeoutException){
+            iShelfSearchView.hideProgress();
+            iShelfSearchView.error(Constants.MESSAGE_TIMEOUT);
+        }else {
+            iShelfSearchView.hideProgress();
+            iShelfSearchView.error(Constants.MESSAGE_ERROR);
+        }
     }
 
     @Override

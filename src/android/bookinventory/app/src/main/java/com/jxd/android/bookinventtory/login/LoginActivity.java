@@ -17,6 +17,7 @@ import com.jxd.android.bookinventtory.base.BaseApplication;
 import com.jxd.android.bookinventtory.bean.UserBean;
 import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.di.DaggerAppComponent;
+import com.jxd.android.bookinventtory.utils.DigestUtils;
 import com.jxd.android.bookinventtory.utils.GsonUtil;
 import com.jxd.android.bookinventtory.utils.KeyWordUtil;
 import com.jxd.android.bookinventtory.utils.PreferenceHelper;
@@ -83,11 +84,25 @@ public class LoginActivity extends BaseActivity<ILoginPresenter>
 
         String uName = username.getText().toString();
         String pword = password.getText().toString();
+        if(uName.isEmpty()){
+            username.setError("请输入用户名");
+            username.requestFocus();
+            KeyWordUtil.openKeybord(username , this);
+            return;
+        }
+        if(pword.isEmpty()){
+            password.setError("请输入密码");
+            password.requestFocus();
+            KeyWordUtil.openKeybord(password, this);
+            return;
+        }
 
         KeyWordUtil.closeKeybord( username ,  this);
         KeyWordUtil.closeKeybord(password , this);
 
-        iPresenter.login(uName , pword );
+        String pwordEnc = DigestUtils.md5( pword );
+
+        iPresenter.login(uName , pwordEnc );
     }
 
     @OnClick(R.id.btnConfigUrl)

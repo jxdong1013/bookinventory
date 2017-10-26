@@ -11,25 +11,16 @@ import io.realm.RealmObject;
  */
 public class ShelfBean implements Cloneable{
 
-    private String shelfCode;
-    private String shelfName;
+    private String shelfno;
+    //private String shelfName;
     private List<BookBean> books;
 
-
-    public String getShelfCode() {
-        return shelfCode;
+    public String getShelfno() {
+        return shelfno;
     }
 
-    public void setShelfCode(String shelfCode) {
-        this.shelfCode = shelfCode;
-    }
-
-    public String getShelfName() {
-        return shelfName;
-    }
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
 
     public List<BookBean> getBooks() {

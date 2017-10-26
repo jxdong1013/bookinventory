@@ -17,13 +17,13 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/shelfarragescan_item_bookcode"
-            android:text="bookcode"
+            android:id="@+id/shelfarragescan_item_barcode"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@+id/shelfarragescan_item_bookname"
-            android:text="bookname"
+            android:id="@+id/shelfarragescan_item_title"
+            android:text=""
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

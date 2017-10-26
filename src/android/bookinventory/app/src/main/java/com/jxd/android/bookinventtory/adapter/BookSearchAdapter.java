@@ -19,11 +19,11 @@ public class BookSearchAdapter extends BaseQuickAdapter<BookBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, BookBean item) {
-        helper.setText(R.id.bookitem_bookid , item.getBookId());
-        helper.setText(R.id.bookitem_bookname , item.getBookName());
-        helper.setText(R.id.bookitem_author,item.getAuthor());
-        helper.setText(R.id.bookitem_bookcode , item.getBookcode());
-        helper.setText(R.id.bookitem_position,item.getPosition());
-        helper.setText(R.id.bookitem_status , item.getStatus());
+        helper.setText(R.id.bookitem_barcode , "条码:"+ item.getBarcode());
+        helper.setText(R.id.bookitem_title, "名称:"+item.getTitle());
+        helper.setText(R.id.bookitem_status, "状态:" + item.getStatus());
+        helper.setText(R.id.bookitem_shelfno , "架位:"+ item.getShelfno());
+        helper.setText(R.id.bookitem_updatetime , "更新时间:"+ item.getUpdatetime());
+        //helper.setText(R.id.bookitem_status , item.getStatus());
     }
 }

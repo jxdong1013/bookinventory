@@ -38,7 +38,7 @@ public class BookSearchModel implements IBookSearchModel {
 
     @Override
     public void getBookList(BookCondition key , Observer subscriber ) {
-        Observable<DataBase<Page<BookBean>>> observable = apiService.getBookList( key.getBookName(),key.getBookcode() , key.getPageIdx() );
+        Observable<DataBase<Page<BookBean>>> observable = apiService.getBookList( key.getTitle(),key.getBarcode() , "" , key.getPageIdx() );
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose( lifecycleProvider.<DataBase<List<BookBean>>>bindToLifecycle() )

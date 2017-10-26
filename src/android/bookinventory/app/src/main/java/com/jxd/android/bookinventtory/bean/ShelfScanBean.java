@@ -15,8 +15,8 @@ import io.realm.annotations.RealmClass;
 public class ShelfScanBean implements RealmModel{
     @PrimaryKey
     private String id;
-    private String shelfCode;
-    private String shelfName;
+    private String shelfno;
+    //private String shelfName;
     private String userId;
     private String userName;
     private String description;
@@ -31,24 +31,22 @@ public class ShelfScanBean implements RealmModel{
         this.id = id;
     }
 
-    public String getShelfCode() {
-        return shelfCode;
+    public String getShelfno() {
+        return shelfno;
     }
 
-
-    public void setShelfCode(String shelfCode) {
-        this.shelfCode = shelfCode;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
 
-
-    public String getShelfName() {
-        return shelfName;
-    }
-
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
-    }
+//    public String getShelfName() {
+//        return shelfName;
+//    }
+//
+//
+//    public void setShelfName(String shelfName) {
+//        this.shelfName = shelfName;
+//    }
 
 
     public RealmList<ShelfBookScanBean> getBooks() {

@@ -47,13 +47,13 @@ public class AppModule {
 
     @Singleton
     @Provides
-    public OkHttpClient provideOkHttpClient(Interceptor interceptor , HeaderIntercepter headerIntercepter , AddCookieIntercepter addCookieIntercepter , ReceiveCookieInterceptor receiveCookieInterceptor){
+    public OkHttpClient provideOkHttpClient(  AddCookieIntercepter addCookieIntercepter , ReceiveCookieInterceptor receiveCookieInterceptor){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(Constants.READ_TIMEOUT , TimeUnit.SECONDS)
                 .connectTimeout( Constants.CONNECT_TIMEOUT , TimeUnit.SECONDS )
                 .writeTimeout(Constants.WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor( interceptor)
-                .addInterceptor( headerIntercepter)
+                //.addInterceptor( interceptor)
+                //.addInterceptor( headerIntercepter)
                 .addInterceptor(addCookieIntercepter)
                 .addInterceptor(receiveCookieInterceptor)
                 .build();

@@ -15,19 +15,19 @@ public class BookShelfAdptBean extends RealmObject{
     /***
      * 图书编号
      */
-    private String bookCode;
+    private String barcode;
     /**
      * 图书名称
      */
-    private String bookName;
+    private String title;
     /**
      * 架编号
      */
-    private String shelfCode;
+    private String shelfno;
     /**
      * 架名称
      */
-    private String shelfName;
+//    private String shelfName;
     /**
      * 调整时间
      */
@@ -49,36 +49,28 @@ public class BookShelfAdptBean extends RealmObject{
         this.id = id;
     }
 
-    public String getBookCode() {
-        return bookCode;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBookCode(String bookCode) {
-        this.bookCode = bookCode;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getShelfCode() {
-        return shelfCode;
+    public String getShelfno() {
+        return shelfno;
     }
 
-    public void setShelfCode(String shelfCode) {
-        this.shelfCode = shelfCode;
-    }
-
-    public String getShelfName() {
-        return shelfName;
-    }
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
 
     public Date getAdaptTime() {

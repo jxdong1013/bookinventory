@@ -57,10 +57,10 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     TextView tvTitle;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
-    @BindView(R.id.shelfCode)
-    TextView tvShelfCode;
-    @BindView(R.id.shelfName)
-    TextView tvShelfName;
+    @BindView(R.id.shelfno)
+    TextView tvShelfno;
+//    @BindView(R.id.shelfName)
+//    TextView tvShelfName;
     @BindView(R.id.tvSummary)
     TextView tvSummary;
     @BindView(R.id.tvTip)
@@ -73,7 +73,6 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     ErrorWidget errorWidget;
 
     View emptyView;
-
     ShelfBookScanAdapter shelfBookScanAdapter;
     ShelfScanBean shelfScanBean;
     //List<ShelfBookScanBean> data;
@@ -115,7 +114,7 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     public void onClick(View v){
         if(v.getId()==R.id.scanshelf){
             //TODO
-            String shelfCode = UUID.randomUUID().toString();
+            String shelfCode = "W1A024B126";//UUID.randomUUID().toString();
             getShelfInfo(shelfCode);
         }else if(v.getId()==R.id.tvBack){
             this.finish();
@@ -145,13 +144,14 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
             ShelfBookScanBean newShelfBookScanBean = new ShelfBookScanBean();
             newShelfBookScanBean.setScanStatus( BookStatusEnum.NEW.getCode() );
             newShelfBookScanBean.setStatus(BookStatusEnum.IN.getCode());
-            newShelfBookScanBean.setBookName("new book");
-            newShelfBookScanBean.setBookcode(UUID.randomUUID().toString());
-            newShelfBookScanBean.setAuthor("author");
-            newShelfBookScanBean.setPosition("position");
-            newShelfBookScanBean.setBookId(UUID.randomUUID().toString());
-            newShelfBookScanBean.setPublish("publish");
-            newShelfBookScanBean.setPublishDate("2017-10-21");
+            newShelfBookScanBean.setTitle("new book");
+            newShelfBookScanBean.setBarcode(UUID.randomUUID().toString());
+            newShelfBookScanBean.setUpdatetime("2017-10-27");
+            newShelfBookScanBean.setShelfno("sss");
+            newShelfBookScanBean.setUid(UUID.randomUUID().toString());
+            newShelfBookScanBean.setInshelf(1);
+            newShelfBookScanBean.setMachine_mac("ssss");
+            newShelfBookScanBean.setCallno("");
 
             shelfBookScanAdapter.addData( 0, newShelfBookScanBean );
             recyclerView.smoothScrollToPosition(0);
@@ -183,7 +183,7 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     }
 
     void save(){
-        if( shelfScanBean.getShelfCode() ==null || shelfScanBean.getShelfCode().isEmpty() ){
+        if( shelfScanBean.getShelfno() ==null || shelfScanBean.getShelfno().isEmpty() ){
             ToastUtils.showLongToast("请扫描架位标签");
             return;
         }
@@ -191,17 +191,16 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     }
 
     void getShelfInfo(String shelfCode){
+        shelfBookScanAdapter.isUseEmpty(false);
         iPresenter.getShelfInfoByShelfCode( shelfCode );
     }
 
     @Override
     public void getShelfInfoCallback(ShelfBean shelfBean) {
+        shelfBookScanAdapter.isUseEmpty(true);
         transfor(shelfBean);
-        tvShelfCode.setText( shelfScanBean.getShelfCode() );
-        tvShelfName.setText(shelfScanBean.getShelfName());
-
+        tvShelfno.setText( shelfScanBean.getShelfno() );
         shelfBookScanAdapter.setNewData( shelfScanBean.getBooks() );
-
         setSummary();
     }
 
@@ -210,10 +209,10 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
         shelfScanBean.setId( UUID.randomUUID().toString() );
         shelfScanBean.setUserId( BaseApplication.single.getUserBean().getUserId() );
         shelfScanBean.setUserName( BaseApplication.single.getUserBean().getUserName() );
-        shelfScanBean.setShelfCode(shelfBean.getShelfCode());
+        shelfScanBean.setShelfno(shelfBean.getShelfno());
         shelfScanBean.setDescription("");
         shelfScanBean.setScanDatetime(new Date());
-        shelfScanBean.setShelfName( shelfBean.getShelfName());
+        //shelfScanBean.setShelfName( shelfBean.getShelfName());
 
         if(shelfBean.getBooks()!=null){
             for( BookBean item : shelfBean.getBooks()){

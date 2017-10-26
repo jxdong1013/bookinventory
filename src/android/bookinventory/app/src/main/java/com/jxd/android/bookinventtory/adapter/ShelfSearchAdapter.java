@@ -30,15 +30,15 @@ public class ShelfSearchAdapter extends BaseMultiItemQuickAdapter<MultiItemEntit
     protected void convert(BaseViewHolder helper, MultiItemEntity item) {
         if(helper.getItemViewType() == ITEM_TYPE_SHELF){
             ShelfModel shelfModel= (ShelfModel)item;
-            helper.setText(R.id.shelf_item_shelfcode , shelfModel.getShelfCode());
-            helper.setText( R.id.shelf_item_shelfname , shelfModel.getShelfName());
+            helper.setText(R.id.shelf_item_shelfno , shelfModel.getShelfno());
+            //helper.setText( R.id.shelf_item_shelfname , shelfModel.getShelfName());
         }else if(helper.getItemViewType() == ITEM_TYPE_BOOK){
             BookModel bookModel=(BookModel)item;
-            helper.setText(R.id.bookitem_bookid , bookModel.getBookId());
-            helper.setText(R.id.bookitem_bookname , bookModel.getBookName());
-            helper.setText(R.id.bookitem_author,bookModel.getAuthor());
-            helper.setText(R.id.bookitem_bookcode , bookModel.getBookcode());
-            helper.setText(R.id.bookitem_position,bookModel.getPosition());
+            helper.setText(R.id.bookitem_barcode , bookModel.getBarcode());
+            helper.setText(R.id.bookitem_title , bookModel.getTitle());
+            helper.setText(R.id.bookitem_shelfno ,bookModel.getShelfno());
+            helper.setText(R.id.bookitem_status , bookModel.getStatus());
+            helper.setText(R.id.bookitem_updatetime ,bookModel.getUpdatetime());
         }
     }
 }

@@ -6,9 +6,9 @@ package com.jxd.android.bookinventtory.bean;
 
 public class BookCondition {
     private int pageIdx;
-    private String bookName;
-    private String author;
-    private String bookcode;
+    private String title;
+    //private String shelfno;
+    private String barcode;
 
     public int getPageIdx() {
         return pageIdx;
@@ -18,27 +18,27 @@ public class BookCondition {
         this.pageIdx = pageIdx;
     }
 
-    public String getBookName() {
-        return bookName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+//    public String getShelfno() {
+//        return shelfno;
+//    }
+//
+//    public void setShelfno(String shelfno) {
+//        this.shelfno = shelfno;
+//    }
+
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
-    }
-
-    public String getBookcode() {
-        return bookcode;
-    }
-
-    public void setBookcode(String bookcode) {
-        this.bookcode = bookcode;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 }

@@ -94,17 +94,9 @@
 
             <TextView
                 android:layout_toRightOf="@id/ivShelf"
-                android:id="@+id/shelfCode"
+                android:id="@+id/shelfno"
                 android:layout_marginLeft="5dp"
                 android:text="架位编号:XXXXXXXXX"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-            <TextView
-                android:layout_marginTop="4dp"
-                android:layout_alignLeft="@id/shelfCode"
-                android:layout_below="@id/shelfCode"
-                android:id="@+id/shelfName"
-                android:text="架位:XXXXXXXXX"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </RelativeLayout>

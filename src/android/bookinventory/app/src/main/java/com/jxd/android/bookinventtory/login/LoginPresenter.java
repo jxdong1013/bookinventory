@@ -12,6 +12,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
+import retrofit2.HttpException;
 
 import static android.R.attr.data;
 
@@ -53,7 +54,9 @@ public class LoginPresenter implements ILoginPresenter , Observer<DataBase<UserB
         iLoginView.hideProgress();
         if(e instanceof SocketTimeoutException){
             iLoginView.error(Constants.MESSAGE_TIMEOUT);
-        }else {
+        }else if( e instanceof HttpException ){
+            iLoginView.error( e.getMessage() );
+        } else {
             iLoginView.error(Constants.MESSAGE_ERROR);
         }
     }
@@ -65,6 +68,12 @@ public class LoginPresenter implements ILoginPresenter , Observer<DataBase<UserB
 
     @Override
     public void onDestory() {
-
+        if(iLoginView!=null){
+            iLoginView=null;
+        }
+        if(iLoginModel!=null){
+            iLoginModel.onDestory();
+            iLoginModel=null;
+        }
     }
 }

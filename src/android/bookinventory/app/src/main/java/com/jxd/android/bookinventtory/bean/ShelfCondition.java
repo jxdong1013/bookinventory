@@ -6,8 +6,8 @@ package com.jxd.android.bookinventtory.bean;
 
 public class ShelfCondition {
     private int pageIdx;
-    private String shelfcode;
-    private String shelfName;
+    private String shelfno;
+//    private String shelfName;
 
     public int getPageIdx() {
         return pageIdx;
@@ -17,19 +17,19 @@ public class ShelfCondition {
         this.pageIdx = pageIdx;
     }
 
-    public String getShelfcode() {
-        return shelfcode;
+    public String getShelfno() {
+        return shelfno;
     }
 
-    public void setShelfcode(String shelfcode) {
-        this.shelfcode = shelfcode;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
 
-    public String getShelfName() {
-        return shelfName;
-    }
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
-    }
+    //    public String getShelfName() {
+//        return shelfName;
+//    }
+//
+//    public void setShelfName(String shelfName) {
+//        this.shelfName = shelfName;
+//    }
 }

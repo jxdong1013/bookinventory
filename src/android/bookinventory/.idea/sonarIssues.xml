@@ -128,6 +128,16 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/bean/ApiResult.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/bean/ApiResultCodeEnum.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/bean/LoanBean.java">
           <value>
             <set />
@@ -253,12 +263,22 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/splash/ISplashView.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/splash/SplashActivity.java">
           <value>
             <set />
           </value>
         </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/splash/SplashModel.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/splash/SplashModule.java">
           <value>
             <set />
           </value>
@@ -283,7 +303,22 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/utils/DigestUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/utils/GsonUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/utils/KeyWordUtil.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/java/com/huotu/android/loanmarket/utils/PreferenceHelper.java">
           <value>
             <set />
           </value>
@@ -358,6 +393,11 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/res/layout/activity_loan_detail.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/res/layout/activity_login.xml">
           <value>
             <set />
@@ -373,7 +413,17 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/res/layout/activity_splash.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/res/layout/activity_web.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/loanmarket/app/src/main/res/layout/apply_meterial_item.xml">
           <value>
             <set />
           </value>
@@ -463,12 +513,22 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/../../../../OLQuanArtifact/OLArtifact/app/src/main/java/com/jxd/olartifact/HttpClient.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/build.gradle">
           <value>
             <set />
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/jxd/android/bookinventtory/booksearch/BookSearchModule_ProvideBookSearchModelFactory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/build/generated/source/apt/debug/com/jxd/android/bookinventtory/main/MainActivity_ViewBinding.java">
           <value>
             <set />
           </value>
@@ -663,6 +723,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/ShelfScanBean.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/UserBean.java">
           <value>
             <set />
@@ -784,6 +849,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/login/LoginPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/main/MainActivity.java">
           <value>
             <set />
           </value>
@@ -989,6 +1059,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/DateUtils.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/utils/DigestUtils.java">
           <value>
             <set />
           </value>

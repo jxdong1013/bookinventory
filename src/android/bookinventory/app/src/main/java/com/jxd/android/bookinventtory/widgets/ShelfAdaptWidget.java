@@ -40,14 +40,14 @@ public class ShelfAdaptWidget extends LinearLayout {
     LinearLayout layBook;
     @BindView(R.id.layshelf)
     LinearLayout layShelf;
-    @BindView(R.id.bookshelfscan_bookcode)
-    TextView tvbookcode;
-    @BindView(R.id.bookshelfscan_bookname)
-    TextView tvbookName;
-    @BindView(R.id.bookshelfscan_shelfcode)
-    TextView tvshelfcode;
-    @BindView(R.id.bookshelfscan_shelfname)
-    TextView tvshelfName;
+    @BindView(R.id.bookshelfscan_barcode)
+    TextView tvbarcode;
+    @BindView(R.id.bookshelfscan_title)
+    TextView tvtitle;
+    @BindView(R.id.bookshelfscan_shelfno)
+    TextView tvshelfno;
+//    @BindView(R.id.bookshelfscan_shelfname)
+//    TextView tvshelfName;
     @BindView(R.id.layTip)
     LinearLayout layTip;
     @BindView(R.id.tip)
@@ -107,16 +107,16 @@ public class ShelfAdaptWidget extends LinearLayout {
 
     public void setBookInfo(BookBean bookBean){
         layBook.setVisibility(VISIBLE);
-        tvbookcode.setText(bookBean.getBookcode());
-        tvbookName.setText(bookBean.getBookName());
+        tvbarcode.setText(bookBean.getBarcode());
+        tvtitle.setText(bookBean.getTitle());
         this.bookBean=bookBean;
 
         saveScanResult();
     }
     public void setShelfInfo(ShelfBean shelfBean){
         layShelf.setVisibility(VISIBLE);
-        tvshelfcode.setText(shelfBean.getShelfCode());
-        tvshelfName.setText(shelfBean.getShelfName());
+        tvshelfno.setText(shelfBean.getShelfno());
+        //tvshelfName.setText(shelfBean.getShelfName());
         this.shelfBean = shelfBean;
 
         saveScanResult();
@@ -144,11 +144,11 @@ public class ShelfAdaptWidget extends LinearLayout {
 
     public void reset(){
         layBook.setVisibility(GONE);
-        tvbookName.setText("");
-        tvbookcode.setText("");
+        tvbarcode.setText("");
+        tvtitle.setText("");
         layShelf.setVisibility(GONE);
-        tvshelfcode.setText("");
-        tvshelfName.setText("");
+        tvshelfno.setText("");
+
         layTip.setVisibility(VISIBLE);
         tvTip.setText(getContext().getString(R.string.tipmessage1));
         bookBean=null;

@@ -37,7 +37,7 @@ public class ShelfArrageAdapter
             final ShelfLevelItem shelfLevelItem = (ShelfLevelItem)item;
             helper.setImageResource( R.id.shelfarrage_shelf_item_level ,
                     shelfLevelItem.isExpanded() ? R.mipmap.jian : R.mipmap.jia );
-            helper.setText(R.id.shelfarrage_shelf_item_name , shelfLevelItem.getShelf().getShelfName() );
+            helper.setText(R.id.shelfarrage_shelf_item_shelfno , shelfLevelItem.getShelf().getShelfno() );
 
             helper.setText(R.id.shelfarrage_shelf_item_scandatetime , DateUtils.formatDate( shelfLevelItem.getShelf().getScanDatetime().getTime()));
 
@@ -63,7 +63,7 @@ public class ShelfArrageAdapter
                     bookLevelItem.getBook().getScanStatus().equals( BookStatusEnum.IN.getCode())
                             ? R.mipmap.right:R.mipmap.newone);
 
-            helper.setText( R.id.shelfarrage_book_item_name , bookLevelItem.getBook().getBookName());
+            helper.setText( R.id.shelfarrage_book_item_title , bookLevelItem.getBook().getTitle());
         }
     }
 }
