@@ -28,8 +28,19 @@
 
     <ImageView
         android:id="@+id/uplaod"
-        android:layout_toLeftOf="@+id/scan"
+        android:layout_toLeftOf="@+id/delete"
         android:src="@mipmap/upload"
+        android:layout_marginLeft="10dp"
+        android:layout_centerVertical="true"
+        android:padding="2dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:id="@+id/delete"
+        android:layout_toLeftOf="@+id/scan"
+        android:src="@mipmap/delete"
         android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         android:padding="2dp"
@@ -41,6 +52,7 @@
         android:id="@+id/scan"
         android:padding="2dp"
         android:layout_centerVertical="true"
+        android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:src="@mipmap/scanning"
         android:layout_toLeftOf="@+id/exist"
@@ -49,6 +61,7 @@
 
     <ImageView
         android:id="@+id/exist"
+        android:layout_marginLeft="10dp"
         android:layout_centerVertical="true"
         android:layout_alignParentRight="true"
         android:padding="2dp"

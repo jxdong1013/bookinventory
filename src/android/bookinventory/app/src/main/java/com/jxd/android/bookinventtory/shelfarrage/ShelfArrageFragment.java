@@ -16,9 +16,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.adapter.ShelfArrageAdapter;
@@ -28,6 +32,8 @@ import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.ShelfBookScanBean;
 import com.jxd.android.bookinventtory.bean.ShelfLevelItem;
 import com.jxd.android.bookinventtory.bean.ShelfScanBean;
+import com.jxd.android.bookinventtory.bean.UpdateInventory;
+import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 
@@ -40,17 +46,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 /**
- * 架位盘点
- *
- * A simple {@link Fragment} subclass.
- * Use the {@link ShelfArrageFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * 架位盘点界面
  */
 public class ShelfArrageFragment
         extends BaseFragment<IShelfArragePresenter>
-        implements SwipeRefreshLayout.OnRefreshListener , IShelfArrageView{
+        implements SwipeRefreshLayout.OnRefreshListener ,
+        IShelfArrageView , BaseQuickAdapter.OnItemChildClickListener{
 
     @BindView(R.id.tvTitle)
     TextView tvTitle;
@@ -66,12 +71,17 @@ public class ShelfArrageFragment
     ErrorWidget errorWidget;
     @BindView(R.id.shelfarrage_footer_summary)
     TextView tvSummary;
-
+    @BindView(R.id.shelfarrage_footer_operate)
+    LinearLayout lay_footer_operate;
+    @BindView(R.id.shelfarrage_footer_delete)
+     TextView tvDelete;
+    @BindView(R.id.shelfarrage_footer_uplaod)
+     TextView tvUpload;
 
     ShelfArrageAdapter shelfArrageAdapter;
     List<MultiItemEntity> data;
     View emptyView;
-
+    int uploadPerCount= 20;
 
     public ShelfArrageFragment() {
         // Required empty public constructor
@@ -104,8 +114,7 @@ public class ShelfArrageFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_shelf_arrage, container, false);
         initView(rootView);
         return rootView;
@@ -114,8 +123,7 @@ public class ShelfArrageFragment
     protected void initView(View view){
         unbinder = ButterKnife.bind(this,view);
 
-        tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUserName() );
-
+        tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUsername() );
 
         LayoutInflater layoutInflater =LayoutInflater.from(getContext());
         emptyView = layoutInflater.inflate(R.layout.layout_shelf_empty,(ViewGroup)recyclerView.getParent(),false);
@@ -126,6 +134,8 @@ public class ShelfArrageFragment
         shelfArrageAdapter = new ShelfArrageAdapter(data);
         shelfArrageAdapter.isUseEmpty(false);
         shelfArrageAdapter.setEmptyView(emptyView);
+        shelfArrageAdapter.isUseEmpty(false);
+        shelfArrageAdapter.setOnItemChildClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 //        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext() ,1 );
 //        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -136,10 +146,8 @@ public class ShelfArrageFragment
 //        });
         recyclerView.setLayoutManager( linearLayoutManager );
         recyclerView.setAdapter( shelfArrageAdapter);
-        //shelfArrageAdapter.
 
         swipeRefreshLayout.setOnRefreshListener(this);
-
     }
 
     @Override
@@ -153,23 +161,88 @@ public class ShelfArrageFragment
         iPresenter.getDataFromLocal();
     }
 
-    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error})
+    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error, R.id.shelfarrage_footer_selectall, R.id.shelfarrage_footer_delete , R.id.delete })
     public void onClick(View v){
         if(v.getId()==R.id.scan ){
             Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
             getContext().startActivity(intent);
         }else if(v.getId()==R.id.uplaod){
-            upload();
+            operate();
         }else if(v.getId()==R.id.exist){
             EventBus.getDefault().post(new LogoutEvent());
         }else if(v.getId()==R.id.error){
             fetchData();
+        }else if(v.getId() == R.id.shelfarrage_footer_selectall){
+            selectAllOrNot( ((CheckBox)v).isChecked());
+        }else if(v.getId() == R.id.shelfarrage_footer_delete){
+            deleteData();
+        }else if( v.getId() == R.id.delete){
+            operateDelete();
         }
     }
 
+    private void operateDelete( ){
+        if(data==null || data.size()<1 )return;
+        lay_footer_operate.setVisibility( lay_footer_operate.getVisibility() == View.GONE? View.VISIBLE:View.GONE );
+        shelfArrageAdapter.setShowOperate( !shelfArrageAdapter.isShowOperate() );
+        shelfArrageAdapter.notifyDataSetChanged();
+        tvDelete.setVisibility(View.VISIBLE);
+        tvUpload.setVisibility(View.GONE);
+    }
+
+    /**
+     * 删除盘点数据
+     */
+    protected void deleteData(){
+        if( data==null||data.size()<1 ) return;
+        int count=0;
+        List<String> list =new ArrayList<String>();
+        for(MultiItemEntity item : data){
+            ShelfLevelItem shelfLevelItem = (ShelfLevelItem) item;
+            if(shelfLevelItem.isChecked()){
+                count++;
+                list.add(shelfLevelItem.getShelf().getId());
+            }
+        }
+        if( count<1 ){
+            ToastUtils.showLongToast( "请勾选需要删除的记录");
+            return;
+        }
+
+        iPresenter.deleteLocalData(list);
+    }
+
+    protected void selectAllOrNot( boolean ischeck ){
+        if(data==null) return;
+        for(MultiItemEntity item : data){
+            ShelfLevelItem shelfLevelItem=(ShelfLevelItem) item;
+            shelfLevelItem.setChecked( ischeck );
+            shelfArrageAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void operate( ){
+        lay_footer_operate.setVisibility( lay_footer_operate.getVisibility() == View.GONE? View.VISIBLE:View.GONE );
+        shelfArrageAdapter.setShowOperate( !shelfArrageAdapter.isShowOperate() );
+        shelfArrageAdapter.notifyDataSetChanged();
+        tvDelete.setVisibility(View.GONE);
+        tvUpload.setVisibility(View.VISIBLE);
+    }
 
     void upload(){
+        if( data ==null || data.size()<1){
+            toast("请盘点数据以后，再上传数据");
+            return;
+        }
 
+        List<UpdateInventory> updateInventories = new ArrayList<>();
+        int index=0;
+        for( MultiItemEntity entity : data){
+            ShelfLevelItem shelfLevelItem= (ShelfLevelItem)entity;
+            if( index % uploadPerCount ==0 ){
+
+            }
+        }
     }
 
     @Override
@@ -209,6 +282,7 @@ public class ShelfArrageFragment
     public void showProgress(String msg) {
         super.showProgress(msg);
 
+        lay_footer_operate.setVisibility(View.GONE);
         errorWidget.setVisibility(View.GONE);
 
         if(swipeRefreshLayout.isRefreshing()){
@@ -235,5 +309,20 @@ public class ShelfArrageFragment
         super.error(msg);
         errorWidget.setVisibility(View.VISIBLE);
         errorWidget.setError(msg);
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        if( view.getId() == R.id.shelfarrage_shelf_item_check){
+            ShelfLevelItem shelfLevelItem=(ShelfLevelItem) adapter.getItem(position);
+            shelfLevelItem.setChecked( !shelfLevelItem.isChecked() );
+            view.setBackgroundResource( shelfLevelItem.isChecked() ? R.mipmap.check : R.mipmap.check_no );
+        }
+    }
+
+    @Override
+    public void deleteCallback() {
+        lay_footer_operate.setVisibility(View.GONE);
+        iPresenter.getDataFromLocal();
     }
 }

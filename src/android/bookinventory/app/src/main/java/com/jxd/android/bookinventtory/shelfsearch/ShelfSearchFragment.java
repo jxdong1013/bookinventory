@@ -134,7 +134,7 @@ public class ShelfSearchFragment
         //shelfSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         shelfSearchAdapter.setEnableLoadMore(false);
         //bookSearchAdapter.isUseEmpty(false);
-        tvUserName.setText( application.getUserBean() ==null?"":application.getUserBean().getUserName() );
+        tvUserName.setText( application.getUserBean() ==null?"":application.getUserBean().getUsername() );
         tvSearchBar.setHint("请输入架位标签搜索");
     }
 

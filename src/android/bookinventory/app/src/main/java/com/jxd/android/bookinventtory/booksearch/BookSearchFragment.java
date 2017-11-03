@@ -143,7 +143,7 @@ public class BookSearchFragment
         bookSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         //bookSearchAdapter.isUseEmpty(false);
 
-        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUserName() );
+        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUsername() );
     }
 
     @Override

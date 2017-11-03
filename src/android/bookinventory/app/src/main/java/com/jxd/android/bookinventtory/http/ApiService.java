@@ -4,6 +4,7 @@ import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
+import com.jxd.android.bookinventtory.bean.UpdateInventory;
 import com.jxd.android.bookinventtory.bean.UserBean;
 
 import java.util.List;
@@ -41,6 +42,6 @@ public interface ApiService {
      */
     @FormUrlEncoded
     @POST("shelf/uploadshelfadptlist")
-    Observable<DataBase<Object>> uploadShelfAdaptList();
+    Observable<DataBase<Object>> uploadShelfAdaptList(List<UpdateInventory> data );
 
 }

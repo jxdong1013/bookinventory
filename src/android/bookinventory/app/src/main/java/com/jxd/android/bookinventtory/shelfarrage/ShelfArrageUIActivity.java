@@ -208,7 +208,7 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
         shelfScanBean.getBooks().clear();
         shelfScanBean.setId( UUID.randomUUID().toString() );
         shelfScanBean.setUserId( BaseApplication.single.getUserBean().getUserId() );
-        shelfScanBean.setUserName( BaseApplication.single.getUserBean().getUserName() );
+        shelfScanBean.setUserName( BaseApplication.single.getUserBean().getUsername() );
         shelfScanBean.setShelfno(shelfBean.getShelfno());
         shelfScanBean.setDescription("");
         shelfScanBean.setScanDatetime(new Date());

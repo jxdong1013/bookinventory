@@ -11,4 +11,5 @@ import java.util.List;
 
 public interface IShelfArrageView extends IView {
     void getCallback(List<ShelfScanBean> data);
+    void deleteCallback();
 }

@@ -11,6 +11,11 @@ import com.jxd.android.bookinventtory.adapter.ShelfArrageAdapter;
 public class ShelfLevelItem extends AbstractExpandableItem<BookLevelItem> implements MultiItemEntity{
 
     private ShelfScanBean shelf;
+    /**
+     * 标记是否勾选
+     */
+    private boolean isChecked;
+
 
     public ShelfScanBean getShelf() {
         return shelf;
@@ -29,4 +34,13 @@ public class ShelfLevelItem extends AbstractExpandableItem<BookLevelItem> implem
     public int getItemType() {
         return ShelfArrageAdapter.ITEM_TYPE_SHELF;
     }
+
+    public boolean isChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(boolean checked) {
+        isChecked = checked;
+    }
+
 }

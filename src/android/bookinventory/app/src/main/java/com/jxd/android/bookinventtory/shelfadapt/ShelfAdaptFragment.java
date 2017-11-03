@@ -124,7 +124,7 @@ public class ShelfAdaptFragment
     protected void initView(View rootView ){
         unbinder = ButterKnife.bind(this , rootView);
 
-        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUserName() );
+        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUsername() );
 
         data = new ArrayList<>();
         shelfAdaptAdapter = new ShelfAdaptAdapter(data);
@@ -227,7 +227,7 @@ public class ShelfAdaptFragment
         bookShelfAdptBean.setAdaptTime(Calendar.getInstance().getTime());
         bookShelfAdptBean.setTitle(bookBean.getTitle());
         bookShelfAdptBean.setUserId(application.getUserBean().getUserId());
-        bookShelfAdptBean.setUserName(application.getUserBean().getUserName());
+        bookShelfAdptBean.setUserName(application.getUserBean().getUsername());
         bookShelfAdptBean.setId(UUID.randomUUID().toString());
         iPresenter.saveBookShelfAdaptResult(bookShelfAdptBean);
 
