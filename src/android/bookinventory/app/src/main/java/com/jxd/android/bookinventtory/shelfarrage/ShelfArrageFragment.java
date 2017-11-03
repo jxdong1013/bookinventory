@@ -36,6 +36,7 @@ import com.jxd.android.bookinventtory.bean.UpdateInventory;
 import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -158,6 +159,7 @@ public class ShelfArrageFragment
     @Override
     protected void fetchData() {
         shelfArrageAdapter.isUseEmpty(false);
+        shelfArrageAdapter.setShowOperate(false);
         iPresenter.getDataFromLocal();
     }
 
@@ -196,7 +198,7 @@ public class ShelfArrageFragment
     protected void deleteData(){
         if( data==null||data.size()<1 ) return;
         int count=0;
-        List<String> list =new ArrayList<String>();
+        final List<String> list =new ArrayList<String>();
         for(MultiItemEntity item : data){
             ShelfLevelItem shelfLevelItem = (ShelfLevelItem) item;
             if(shelfLevelItem.isChecked()){
@@ -209,7 +211,14 @@ public class ShelfArrageFragment
             return;
         }
 
-        iPresenter.deleteLocalData(list);
+        final TipAlertDialog tipAlertDialog = new TipAlertDialog(this.getContext() , false);
+        tipAlertDialog.show("询问", "确定要删除记录吗?", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipAlertDialog.dismiss();
+                iPresenter.deleteLocalData(list);
+            }
+        });
     }
 
     protected void selectAllOrNot( boolean ischeck ){
@@ -222,6 +231,7 @@ public class ShelfArrageFragment
     }
 
     private void operate( ){
+        if(data==null || data.size()<1 )return;
         lay_footer_operate.setVisibility( lay_footer_operate.getVisibility() == View.GONE? View.VISIBLE:View.GONE );
         shelfArrageAdapter.setShowOperate( !shelfArrageAdapter.isShowOperate() );
         shelfArrageAdapter.notifyDataSetChanged();

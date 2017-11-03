@@ -1223,6 +1223,11 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/widgets/ProgressTextWidget.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/widgets/ProgressWidget.java">
           <value>
             <set />
@@ -1339,6 +1344,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_progress.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/res/layout/layout_progresstext.xml">
           <value>
             <set />
           </value>

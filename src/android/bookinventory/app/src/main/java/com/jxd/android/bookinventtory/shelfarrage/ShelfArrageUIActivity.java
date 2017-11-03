@@ -24,6 +24,7 @@ import com.jxd.android.bookinventtory.config.Constants;
 import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -42,6 +43,7 @@ import static android.R.attr.data;
 import static android.icu.lang.UCharacter.GraphemeClusterBreak.T;
 import static com.jxd.android.bookinventtory.R.mipmap.shelf;
 import static com.jxd.android.bookinventtory.R.mipmap.shelfs;
+import static com.jxd.android.bookinventtory.R.mipmap.tip;
 
 /**
  *
@@ -187,7 +189,16 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
             ToastUtils.showLongToast("请扫描架位标签");
             return;
         }
-        iPresenter.saveShelfData( shelfScanBean );
+
+        final TipAlertDialog tipAlertDialog =new TipAlertDialog( this , false);
+        tipAlertDialog.show("询问", "确定要保存吗?", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipAlertDialog.dismiss();
+                iPresenter.saveShelfData( shelfScanBean );
+            }
+        });
+
     }
 
     void getShelfInfo(String shelfCode){
