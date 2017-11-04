@@ -218,7 +218,7 @@ public class ShelfArrageUIActivity extends BaseActivity<IShelfArrageUIPresenter>
     protected  void transfor(ShelfBean shelfBean){
         shelfScanBean.getBooks().clear();
         shelfScanBean.setId( UUID.randomUUID().toString() );
-        shelfScanBean.setUserId( BaseApplication.single.getUserBean().getUserId() );
+        shelfScanBean.setUserId( BaseApplication.single.getUserBean().getUserid() );
         shelfScanBean.setUserName( BaseApplication.single.getUserBean().getUsername() );
         shelfScanBean.setShelfno(shelfBean.getShelfno());
         shelfScanBean.setDescription("");

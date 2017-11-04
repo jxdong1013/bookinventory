@@ -51,5 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
+    <com.jxd.android.bookinventtory.widgets.ProgressTextWidget
+        android:id="@+id/progressTextWidget"
+        android:layout_below="@id/layHeader"
+        android:padding="10dp"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </RelativeLayout>

@@ -226,7 +226,7 @@ public class ShelfAdaptFragment
         bookShelfAdptBean.setBarcode(bookBean.getBarcode());
         bookShelfAdptBean.setAdaptTime(Calendar.getInstance().getTime());
         bookShelfAdptBean.setTitle(bookBean.getTitle());
-        bookShelfAdptBean.setUserId(application.getUserBean().getUserId());
+        bookShelfAdptBean.setUserId(application.getUserBean().getUserid());
         bookShelfAdptBean.setUserName(application.getUserBean().getUsername());
         bookShelfAdptBean.setId(UUID.randomUUID().toString());
         iPresenter.saveBookShelfAdaptResult(bookShelfAdptBean);

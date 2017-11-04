@@ -52,12 +52,30 @@ namespace bookweb.Controllers
             return result;
 
         }
-
+        /// <summary>
+        /// 上传盘点数据
+        /// </summary>
+        /// <param name="index"></param>
+        /// <param name="data"></param>
+        /// <param name="userId"></param>
+        /// <param name="userName"></param>
+        /// <returns></returns>
         [HttpPost]
-        public JsonResult UploadShelfList(List<BookShelfAdapt> data) 
+        public JsonResult UploadInventoryData( int index , List<Inventory> data  , int userId , string userName ) 
         {
             JsonResult json = new JsonResult();
             json.JsonRequestBehavior = JsonRequestBehavior.AllowGet;
+
+            DataBase<InventoryResult> result = new DataBase<InventoryResult>();
+            result.code = Config.success_code;
+            result.message = "上传成功";
+            InventoryResult inventory = new InventoryResult();
+            inventory.index = index;
+            inventory.data = data;
+            result.data = inventory;
+
+            json.Data = result;               
+
             return json;
         }
     }

@@ -39,7 +39,7 @@ public class BookShelfAdptBean extends RealmObject{
     /**
      *操作人
      */
-    private String userId;
+    private int userId;
 
     public String getId() {
         return id;
@@ -89,11 +89,11 @@ public class BookShelfAdptBean extends RealmObject{
         this.userName = userName;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 }

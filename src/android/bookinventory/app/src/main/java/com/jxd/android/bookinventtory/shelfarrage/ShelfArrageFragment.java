@@ -35,10 +35,13 @@ import com.jxd.android.bookinventtory.bean.ShelfScanBean;
 import com.jxd.android.bookinventtory.bean.UpdateInventory;
 import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
+import com.jxd.android.bookinventtory.widgets.ProgressTextWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
 import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,11 +81,13 @@ public class ShelfArrageFragment
      TextView tvDelete;
     @BindView(R.id.shelfarrage_footer_uplaod)
      TextView tvUpload;
+    @BindView(R.id.progressTextWidget)
+    ProgressTextWidget progressTextWidget;
 
     ShelfArrageAdapter shelfArrageAdapter;
     List<MultiItemEntity> data;
     View emptyView;
-    int uploadPerCount= 20;
+    InventoryUpload inventoryUpload;
 
     public ShelfArrageFragment() {
         // Required empty public constructor
@@ -123,6 +128,7 @@ public class ShelfArrageFragment
 
     protected void initView(View view){
         unbinder = ButterKnife.bind(this,view);
+        EventBus.getDefault().register(this);
 
         tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUsername() );
 
@@ -152,6 +158,12 @@ public class ShelfArrageFragment
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public int getNavigateMenuId() {
         return R.id.navigation_shelfarrage;
     }
@@ -163,7 +175,7 @@ public class ShelfArrageFragment
         iPresenter.getDataFromLocal();
     }
 
-    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error, R.id.shelfarrage_footer_selectall, R.id.shelfarrage_footer_delete , R.id.delete })
+    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error, R.id.shelfarrage_footer_selectall, R.id.shelfarrage_footer_delete , R.id.delete , R.id.shelfarrage_footer_uplaod })
     public void onClick(View v){
         if(v.getId()==R.id.scan ){
             Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
@@ -180,6 +192,8 @@ public class ShelfArrageFragment
             deleteData();
         }else if( v.getId() == R.id.delete){
             operateDelete();
+        }else if(v.getId()==R.id.shelfarrage_footer_uplaod){
+            upload();
         }
     }
 
@@ -239,20 +253,29 @@ public class ShelfArrageFragment
         tvUpload.setVisibility(View.VISIBLE);
     }
 
+    /**
+     * 分批上传数据
+     */
     void upload(){
         if( data ==null || data.size()<1){
             toast("请盘点数据以后，再上传数据");
             return;
         }
 
-        List<UpdateInventory> updateInventories = new ArrayList<>();
-        int index=0;
+        List<ShelfScanBean> temp = new ArrayList<>();
         for( MultiItemEntity entity : data){
             ShelfLevelItem shelfLevelItem= (ShelfLevelItem)entity;
-            if( index % uploadPerCount ==0 ){
-
-            }
+            if(!shelfLevelItem.isChecked() ) continue;
+            temp.add(shelfLevelItem.getShelf());
         }
+        if( temp.size() <1 ){
+            toast("请勾选需要上传的数据");
+            return;
+        }
+
+        inventoryUpload = new InventoryUpload( temp , iPresenter ,this );
+        int startIndex =0;
+        inventoryUpload.upload(startIndex);
     }
 
     @Override
@@ -334,5 +357,44 @@ public class ShelfArrageFragment
     public void deleteCallback() {
         lay_footer_operate.setVisibility(View.GONE);
         iPresenter.getDataFromLocal();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUploadEvent(UploadEvent event){
+        progressTextWidget.setVisibility( event.isFinished()?View.GONE : View.VISIBLE );
+        progressTextWidget.setProgress( event.getPercent() ,"");
+    }
+
+    @Override
+    public void setUploadProgress(int percent, String message) {
+        progressTextWidget.setVisibility(View.VISIBLE);
+        progressTextWidget.setProgress(percent,message);
+    }
+
+    @Override
+    public void hideUploadProgress() {
+        progressTextWidget.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void uploadSuccessCallback(InvertoryResult invertoryResult) {
+        if(inventoryUpload==null) return;
+        inventoryUpload.upload( invertoryResult.getIndex()+1 );
+    }
+
+    @Override
+    public void uploadFailCallback(InvertoryResult invertoryResult) {
+
+    }
+
+    @Override
+    public void uploadErrorCallback(String message) {
+        progressTextWidget.setVisibility(View.GONE);
+        ToastUtils.showLongToast( message);
+    }
+
+    @Override
+    public void uploadFinishCallback() {
+        progressTextWidget.setVisibility(View.GONE);
     }
 }

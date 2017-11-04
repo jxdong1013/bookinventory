@@ -513,6 +513,11 @@
             <set />
           </value>
         </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/build.gradle">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/src/main/java/com/huotu/android/loanmarket/SettingActivity.java">
           <value>
             <set />
@@ -534,6 +539,11 @@
           </value>
         </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/src/main/java/com/huotu/android/loanmarket/fragments/my/MyFragment.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/src/main/java/com/huotu/android/loanmarket/loandetail/LoanDetailActivity.java">
           <value>
             <set />
           </value>
@@ -574,6 +584,11 @@
           </value>
         </entry>
         <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/src/main/res/layout/layout_newproduct_item.xml">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="E:/myjob/loansofsurpermarket/src/android/src/loanmarket/app/src/main/res/layout/layout_subheader.xml">
           <value>
             <set />
           </value>
@@ -799,6 +814,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/UpdateInventory.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/bean/UpdateInventoryBook.java">
           <value>
             <set />
           </value>
@@ -1068,6 +1088,16 @@
             <set />
           </value>
         </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfarrage/InventoryUpload.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfarrage/InvertoryResult.java">
+          <value>
+            <set />
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfarrage/ShelfArrageActivity.java">
           <value>
             <set />
@@ -1109,6 +1139,11 @@
           </value>
         </entry>
         <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfarrage/ShelfArrageUIPresenter.java">
+          <value>
+            <set />
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/app/src/main/java/com/jxd/android/bookinventtory/shelfarrage/UploadEvent.java">
           <value>
             <set />
           </value>

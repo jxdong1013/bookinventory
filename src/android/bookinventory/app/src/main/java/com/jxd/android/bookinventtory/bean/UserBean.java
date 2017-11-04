@@ -9,7 +9,6 @@ import java.util.Date;
 public class UserBean {
     private String username;
     //private String token;
-    private String userId;
     private String phone;
     private int userid;
     private String type;
@@ -32,14 +31,6 @@ public class UserBean {
 //    public void setToken(String token) {
 //        this.token = token;
 //    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public String getPhone() {
         return phone;

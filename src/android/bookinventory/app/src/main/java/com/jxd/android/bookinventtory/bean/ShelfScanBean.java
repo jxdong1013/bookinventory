@@ -16,7 +16,7 @@ public class ShelfScanBean implements RealmModel{
     @PrimaryKey
     private String id;
     private String shelfno;
-    private String userId;
+    private int userId;
     private String userName;
     private String description;
     private Date scanDatetime;
@@ -51,11 +51,11 @@ public class ShelfScanBean implements RealmModel{
         this.books = books;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
