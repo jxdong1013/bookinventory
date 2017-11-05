@@ -26,8 +26,8 @@ public class ShelfBookScanAdapter extends BaseQuickAdapter<ShelfBookScanBean , B
 
     @Override
     protected void convert(BaseViewHolder helper, ShelfBookScanBean item) {
-        helper.setText(R.id.shelfarragescan_item_bookcode , item.getBookcode());
-        helper.setText(R.id.shelfarragescan_item_bookname , item.getBookName());
+        helper.setText(R.id.shelfarragescan_item_barcode , item.getBarcode());
+        helper.setText(R.id.shelfarragescan_item_title , item.getTitle());
         helper.setText(R.id.shelfarragescan_item_status , item.getStatus());
         if( item.getStatus() !=null && item.getStatus().equals(BookStatusEnum.IN.getCode())){
             helper.setTextColor(R.id.shelfarragescan_item_status , ContextCompat.getColor(this.mContext , R.color.green ));

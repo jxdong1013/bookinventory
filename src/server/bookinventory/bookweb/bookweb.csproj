@@ -47,10 +47,6 @@
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net40\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure">
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -129,10 +125,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="beans\Book.cs" />
     <Compile Include="beans\BookShelfAdapt.cs" />
     <Compile Include="beans\Config.cs" />
     <Compile Include="beans\DataBase.cs" />
+    <Compile Include="beans\Inventory.cs" />
+    <Compile Include="beans\InventoryBook.cs" />
+    <Compile Include="beans\InventoryResult.cs" />
+    <Compile Include="beans\KV.cs" />
     <Compile Include="beans\Page.cs" />
     <Compile Include="beans\Shelf.cs" />
     <Compile Include="beans\User.cs" />
@@ -147,13 +148,17 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\BookModels.cs" />
+    <Compile Include="Models\BaseModel.cs" />
+    <Compile Include="Models\BookModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\DESEncrypt.cs" />
     <Compile Include="Utils\HandlerLoginAttribute.cs" />
     <Compile Include="Utils\Json.cs" />
+    <Compile Include="Utils\MyJsonResult.cs" />
+    <Compile Include="Utils\SqlServerHelper.cs" />
     <Compile Include="Utils\WebHelper.cs" />
   </ItemGroup>
   <ItemGroup>

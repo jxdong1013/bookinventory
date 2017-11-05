@@ -16,9 +16,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 import com.jxd.android.bookinventtory.R;
 import com.jxd.android.bookinventtory.adapter.ShelfArrageAdapter;
@@ -28,10 +32,16 @@ import com.jxd.android.bookinventtory.bean.LogoutEvent;
 import com.jxd.android.bookinventtory.bean.ShelfBookScanBean;
 import com.jxd.android.bookinventtory.bean.ShelfLevelItem;
 import com.jxd.android.bookinventtory.bean.ShelfScanBean;
+import com.jxd.android.bookinventtory.bean.UpdateInventory;
+import com.jxd.android.bookinventtory.utils.ToastUtils;
 import com.jxd.android.bookinventtory.widgets.ErrorWidget;
+import com.jxd.android.bookinventtory.widgets.ProgressTextWidget;
 import com.jxd.android.bookinventtory.widgets.ProgressWidget;
+import com.jxd.android.bookinventtory.widgets.TipAlertDialog;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -40,17 +50,16 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import io.realm.RealmList;
+import io.realm.RealmResults;
 
 /**
- * 架位盘点
- *
- * A simple {@link Fragment} subclass.
- * Use the {@link ShelfArrageFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * 架位盘点界面
  */
 public class ShelfArrageFragment
         extends BaseFragment<IShelfArragePresenter>
-        implements SwipeRefreshLayout.OnRefreshListener , IShelfArrageView{
+        implements SwipeRefreshLayout.OnRefreshListener ,
+        IShelfArrageView , BaseQuickAdapter.OnItemChildClickListener{
 
     @BindView(R.id.tvTitle)
     TextView tvTitle;
@@ -66,12 +75,19 @@ public class ShelfArrageFragment
     ErrorWidget errorWidget;
     @BindView(R.id.shelfarrage_footer_summary)
     TextView tvSummary;
-
+    @BindView(R.id.shelfarrage_footer_operate)
+    LinearLayout lay_footer_operate;
+    @BindView(R.id.shelfarrage_footer_delete)
+     TextView tvDelete;
+    @BindView(R.id.shelfarrage_footer_uplaod)
+     TextView tvUpload;
+    @BindView(R.id.progressTextWidget)
+    ProgressTextWidget progressTextWidget;
 
     ShelfArrageAdapter shelfArrageAdapter;
     List<MultiItemEntity> data;
     View emptyView;
-
+    InventoryUpload inventoryUpload;
 
     public ShelfArrageFragment() {
         // Required empty public constructor
@@ -104,8 +120,7 @@ public class ShelfArrageFragment
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_shelf_arrage, container, false);
         initView(rootView);
         return rootView;
@@ -113,9 +128,9 @@ public class ShelfArrageFragment
 
     protected void initView(View view){
         unbinder = ButterKnife.bind(this,view);
+        EventBus.getDefault().register(this);
 
-        tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUserName() );
-
+        tvUserName.setText( application.getUserBean()==null?"":application.getUserBean().getUsername() );
 
         LayoutInflater layoutInflater =LayoutInflater.from(getContext());
         emptyView = layoutInflater.inflate(R.layout.layout_shelf_empty,(ViewGroup)recyclerView.getParent(),false);
@@ -126,6 +141,8 @@ public class ShelfArrageFragment
         shelfArrageAdapter = new ShelfArrageAdapter(data);
         shelfArrageAdapter.isUseEmpty(false);
         shelfArrageAdapter.setEmptyView(emptyView);
+        shelfArrageAdapter.isUseEmpty(false);
+        shelfArrageAdapter.setOnItemChildClickListener(this);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
 //        final GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext() ,1 );
 //        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
@@ -136,10 +153,14 @@ public class ShelfArrageFragment
 //        });
         recyclerView.setLayoutManager( linearLayoutManager );
         recyclerView.setAdapter( shelfArrageAdapter);
-        //shelfArrageAdapter.
 
         swipeRefreshLayout.setOnRefreshListener(this);
+    }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -150,26 +171,111 @@ public class ShelfArrageFragment
     @Override
     protected void fetchData() {
         shelfArrageAdapter.isUseEmpty(false);
+        shelfArrageAdapter.setShowOperate(false);
         iPresenter.getDataFromLocal();
     }
 
-    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error})
+    @OnClick({R.id.scan,R.id.uplaod,R.id.exist , R.id.error, R.id.shelfarrage_footer_selectall, R.id.shelfarrage_footer_delete , R.id.delete , R.id.shelfarrage_footer_uplaod })
     public void onClick(View v){
         if(v.getId()==R.id.scan ){
             Intent intent =new Intent(getContext(),ShelfArrageUIActivity.class);
             getContext().startActivity(intent);
         }else if(v.getId()==R.id.uplaod){
-            upload();
+            operate();
         }else if(v.getId()==R.id.exist){
             EventBus.getDefault().post(new LogoutEvent());
         }else if(v.getId()==R.id.error){
             fetchData();
+        }else if(v.getId() == R.id.shelfarrage_footer_selectall){
+            selectAllOrNot( ((CheckBox)v).isChecked());
+        }else if(v.getId() == R.id.shelfarrage_footer_delete){
+            deleteData();
+        }else if( v.getId() == R.id.delete){
+            operateDelete();
+        }else if(v.getId()==R.id.shelfarrage_footer_uplaod){
+            upload();
         }
     }
 
+    private void operateDelete( ){
+        if(data==null || data.size()<1 )return;
+        lay_footer_operate.setVisibility( lay_footer_operate.getVisibility() == View.GONE? View.VISIBLE:View.GONE );
+        shelfArrageAdapter.setShowOperate( !shelfArrageAdapter.isShowOperate() );
+        shelfArrageAdapter.notifyDataSetChanged();
+        tvDelete.setVisibility(View.VISIBLE);
+        tvUpload.setVisibility(View.GONE);
+    }
 
+    /**
+     * 删除盘点数据
+     */
+    protected void deleteData(){
+        if( data==null||data.size()<1 ) return;
+        int count=0;
+        final List<String> list =new ArrayList<String>();
+        for(MultiItemEntity item : data){
+            ShelfLevelItem shelfLevelItem = (ShelfLevelItem) item;
+            if(shelfLevelItem.isChecked()){
+                count++;
+                list.add(shelfLevelItem.getShelf().getId());
+            }
+        }
+        if( count<1 ){
+            ToastUtils.showLongToast( "请勾选需要删除的记录");
+            return;
+        }
+
+        final TipAlertDialog tipAlertDialog = new TipAlertDialog(this.getContext() , false);
+        tipAlertDialog.show("询问", "确定要删除记录吗?", null, new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tipAlertDialog.dismiss();
+                iPresenter.deleteLocalData(list);
+            }
+        });
+    }
+
+    protected void selectAllOrNot( boolean ischeck ){
+        if(data==null) return;
+        for(MultiItemEntity item : data){
+            ShelfLevelItem shelfLevelItem=(ShelfLevelItem) item;
+            shelfLevelItem.setChecked( ischeck );
+            shelfArrageAdapter.notifyDataSetChanged();
+        }
+    }
+
+    private void operate( ){
+        if(data==null || data.size()<1 )return;
+        lay_footer_operate.setVisibility( lay_footer_operate.getVisibility() == View.GONE? View.VISIBLE:View.GONE );
+        shelfArrageAdapter.setShowOperate( !shelfArrageAdapter.isShowOperate() );
+        shelfArrageAdapter.notifyDataSetChanged();
+        tvDelete.setVisibility(View.GONE);
+        tvUpload.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 分批上传数据
+     */
     void upload(){
+        if( data ==null || data.size()<1){
+            toast("请盘点数据以后，再上传数据");
+            return;
+        }
 
+        List<ShelfScanBean> temp = new ArrayList<>();
+        for( MultiItemEntity entity : data){
+            ShelfLevelItem shelfLevelItem= (ShelfLevelItem)entity;
+            if(!shelfLevelItem.isChecked() ) continue;
+            temp.add(shelfLevelItem.getShelf());
+        }
+        if( temp.size() <1 ){
+            toast("请勾选需要上传的数据");
+            return;
+        }
+
+        inventoryUpload = new InventoryUpload( temp , iPresenter ,this );
+        int startIndex =0;
+        inventoryUpload.upload(startIndex);
     }
 
     @Override
@@ -209,6 +315,7 @@ public class ShelfArrageFragment
     public void showProgress(String msg) {
         super.showProgress(msg);
 
+        lay_footer_operate.setVisibility(View.GONE);
         errorWidget.setVisibility(View.GONE);
 
         if(swipeRefreshLayout.isRefreshing()){
@@ -235,5 +342,59 @@ public class ShelfArrageFragment
         super.error(msg);
         errorWidget.setVisibility(View.VISIBLE);
         errorWidget.setError(msg);
+    }
+
+    @Override
+    public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+        if( view.getId() == R.id.shelfarrage_shelf_item_check){
+            ShelfLevelItem shelfLevelItem=(ShelfLevelItem) adapter.getItem(position);
+            shelfLevelItem.setChecked( !shelfLevelItem.isChecked() );
+            view.setBackgroundResource( shelfLevelItem.isChecked() ? R.mipmap.check : R.mipmap.check_no );
+        }
+    }
+
+    @Override
+    public void deleteCallback() {
+        lay_footer_operate.setVisibility(View.GONE);
+        iPresenter.getDataFromLocal();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onUploadEvent(UploadEvent event){
+        progressTextWidget.setVisibility( event.isFinished()?View.GONE : View.VISIBLE );
+        progressTextWidget.setProgress( event.getPercent() ,"");
+    }
+
+    @Override
+    public void setUploadProgress(int percent, String message) {
+        progressTextWidget.setVisibility(View.VISIBLE);
+        progressTextWidget.setProgress(percent,message);
+    }
+
+    @Override
+    public void hideUploadProgress() {
+        progressTextWidget.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void uploadSuccessCallback(InvertoryResult invertoryResult) {
+        if(inventoryUpload==null) return;
+        inventoryUpload.upload( invertoryResult.getIndex()+1 );
+    }
+
+    @Override
+    public void uploadFailCallback(InvertoryResult invertoryResult) {
+
+    }
+
+    @Override
+    public void uploadErrorCallback(String message) {
+        progressTextWidget.setVisibility(View.GONE);
+        ToastUtils.showLongToast( message);
+    }
+
+    @Override
+    public void uploadFinishCallback() {
+        progressTextWidget.setVisibility(View.GONE);
     }
 }

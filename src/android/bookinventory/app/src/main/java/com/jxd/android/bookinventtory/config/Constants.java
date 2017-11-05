@@ -29,7 +29,8 @@ public class Constants {
     public static String PREF_BASE_URL="base_url";
 
     public static String   MESSAGE_TIMEOUT="链接服务器超时，请重试";
-    public static String   MESSAGE_ERROR="发送错误,请重试";
+    public static String   MESSAGE_ERROR="发生错误,请重试";
+    //public static String MESSAGE_T
 
     public static String TIP_WAITING="加载中...";
     public static String TIP_PROCESSING="处理中...";

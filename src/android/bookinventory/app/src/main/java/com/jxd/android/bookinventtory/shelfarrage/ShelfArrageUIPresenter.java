@@ -7,10 +7,13 @@ import com.jxd.android.bookinventtory.bean.ShelfBean;
 import com.jxd.android.bookinventtory.bean.ShelfScanBean;
 import com.jxd.android.bookinventtory.config.Constants;
 
+import java.net.SocketTimeoutException;
+
 import io.reactivex.Observer;
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.Disposable;
 import io.realm.Realm;
+import retrofit2.HttpException;
 
 /**
  * Created by Administrator on 2017/10/16.
@@ -58,10 +61,17 @@ public class ShelfArrageUIPresenter
     @Override
     public void onError(@NonNull Throwable e) {
         iShelfArrageUIView.hideProgress();
-        if(operateTypeEnum==OperateTypeEnum.Query){
-            iShelfArrageUIView.error(e.getMessage());
-        }else if(operateTypeEnum==OperateTypeEnum.Update){
-            iShelfArrageUIView.error(e.getMessage());
+//        if(operateTypeEnum==OperateTypeEnum.Query){
+//            iShelfArrageUIView.error(e.getMessage());
+//        }else if(operateTypeEnum==OperateTypeEnum.Update){
+//            iShelfArrageUIView.error(e.getMessage());
+//        }
+        if( e instanceof SocketTimeoutException){
+            iShelfArrageUIView.error(Constants.MESSAGE_TIMEOUT);
+        }else if(e instanceof HttpException){
+            iShelfArrageUIView.error( e.getMessage());
+        }else {
+            iShelfArrageUIView.error(Constants.MESSAGE_ERROR);
         }
     }
 
@@ -86,4 +96,7 @@ public class ShelfArrageUIPresenter
             iShelfArrageUIModel=null;
         }
     }
+
+
+
 }

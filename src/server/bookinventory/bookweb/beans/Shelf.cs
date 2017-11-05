@@ -7,8 +7,8 @@ namespace bookweb.beans
 {
     public class Shelf
     {
-        public string shelfCode { get; set; }
-        public string shelfName { get; set; }
+        public string shelfno { get; set; }
+        //public string shelfName { get; set; }
         public List<Book> books { get; set; }
     }
 }

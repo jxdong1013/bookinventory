@@ -15,13 +15,17 @@ import io.realm.annotations.RealmClass;
 public class ShelfScanBean implements RealmModel{
     @PrimaryKey
     private String id;
-    private String shelfCode;
-    private String shelfName;
-    private String userId;
+    private String shelfno;
+    private int userId;
     private String userName;
     private String description;
     private Date scanDatetime;
     private RealmList<ShelfBookScanBean> books;
+    private int updateStatus;
+    /**
+     * 上传失败原因
+     */
+    private String uploadFailReason;
 
     public String getId() {
         return id;
@@ -31,25 +35,13 @@ public class ShelfScanBean implements RealmModel{
         this.id = id;
     }
 
-    public String getShelfCode() {
-        return shelfCode;
+    public String getShelfno() {
+        return shelfno;
     }
 
-
-    public void setShelfCode(String shelfCode) {
-        this.shelfCode = shelfCode;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
-
-
-    public String getShelfName() {
-        return shelfName;
-    }
-
-
-    public void setShelfName(String shelfName) {
-        this.shelfName = shelfName;
-    }
-
 
     public RealmList<ShelfBookScanBean> getBooks() {
         return books;
@@ -59,11 +51,11 @@ public class ShelfScanBean implements RealmModel{
         this.books = books;
     }
 
-    public String getUserId() {
+    public int getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -89,5 +81,21 @@ public class ShelfScanBean implements RealmModel{
 
     public void setScanDatetime(Date scanDatetime) {
         this.scanDatetime = scanDatetime;
+    }
+
+    public int getUpdateStatus() {
+        return updateStatus;
+    }
+
+    public void setUpdateStatus(int updateStatus) {
+        this.updateStatus = updateStatus;
+    }
+
+    public String getUploadFailReason() {
+        return uploadFailReason;
+    }
+
+    public void setUploadFailReason(String uploadFailReason) {
+        this.uploadFailReason = uploadFailReason;
     }
 }

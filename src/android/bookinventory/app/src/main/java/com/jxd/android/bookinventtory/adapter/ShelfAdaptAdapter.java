@@ -23,8 +23,8 @@ public class ShelfAdaptAdapter extends BaseQuickAdapter<BookShelfAdptBean,BaseVi
     @Override
     protected void convert(BaseViewHolder helper, BookShelfAdptBean item) {
         if( !item.isValid() ) return;
-        helper.setText( R.id.shelfadapte_bookcode , item.getBookCode() );
-        helper.setText(R.id.shelfadapte_shelfcode , item.getShelfCode());
+        helper.setText( R.id.shelfadapte_barcode , item.getBarcode() );
+        helper.setText(R.id.shelfadapte_shelfno , item.getShelfno());
         helper.setText( R.id.shelfadapte_adapttime , DateUtils.formatDate( item.getAdaptTime().getTime() , DateUtils.TIME_FORMAT ));
 
         helper.addOnClickListener(R.id.shelfadapte_delete);

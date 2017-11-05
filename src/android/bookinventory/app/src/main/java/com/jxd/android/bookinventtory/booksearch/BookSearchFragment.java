@@ -82,7 +82,7 @@ public class BookSearchFragment
 
     BookSearchAdapter bookSearchAdapter;
     List<BookBean> bookBeanList;
-    int currentPageIndex=-1;
+    int currentPageIndex=0;
     boolean isShowProgress = true;
 
 
@@ -143,7 +143,7 @@ public class BookSearchFragment
         bookSearchAdapter.setOnLoadMoreListener(this , recyclerView);
         //bookSearchAdapter.isUseEmpty(false);
 
-        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUserName() );
+        tvUserName.setText( application.getUserBean() ==null? "": application.getUserBean().getUsername() );
     }
 
     @Override
@@ -152,7 +152,7 @@ public class BookSearchFragment
         if( noDataView!=null && noDataView.getParent()!=null){
             ((ViewGroup)noDataView.getParent()).removeView(noDataView);
         }
-        currentPageIndex = -1;
+        currentPageIndex = 0;
         bookSearchAdapter.isUseEmpty(false);
         fetchData();
     }
@@ -225,7 +225,9 @@ public class BookSearchFragment
         bookSearchAdapter.isUseEmpty(false);
         BookCondition condition =new BookCondition();
         String key = tvSearchBar.getText().toString();
-        condition.setBookName(key);
+        condition.setTitle(key);
+        //condition.setShelfno("");
+        condition.setBarcode("");
         condition.setPageIdx( currentPageIndex +1 );
         iPresenter.getBookList(  condition );
     }
@@ -255,7 +257,11 @@ public class BookSearchFragment
 
     //@Subscribe(threadMode = ThreadMode.MAIN)
     public void searchBook( SearchKeyBean key ) {
+        isShowProgress=true;
+        bookBeanList.clear();
+        bookSearchAdapter.setNewData(bookBeanList);
         tvSearchBar.setText(key.getKey());
+        currentPageIndex=0;
         fetchData();
     }
 
@@ -265,7 +271,7 @@ public class BookSearchFragment
         bookSearchAdapter.isUseEmpty(true);
         swipeRefreshLayout.setRefreshing(false);
 
-        if(data.getPageIdx() == 0 ){
+        if(data.getPageIdx() == 1 ){
             currentPageIndex=data.getPageIdx();
             bookSearchAdapter.setNewData( data.getData());
         }else {

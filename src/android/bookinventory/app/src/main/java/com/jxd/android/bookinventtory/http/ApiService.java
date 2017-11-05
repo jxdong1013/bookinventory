@@ -4,7 +4,12 @@ import com.jxd.android.bookinventtory.bean.BookBean;
 import com.jxd.android.bookinventtory.bean.DataBase;
 import com.jxd.android.bookinventtory.bean.Page;
 import com.jxd.android.bookinventtory.bean.ShelfBean;
+import com.jxd.android.bookinventtory.bean.UpdateInventory;
 import com.jxd.android.bookinventtory.bean.UserBean;
+import com.jxd.android.bookinventtory.shelfarrage.InvertoryResult;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -27,17 +32,17 @@ public interface ApiService {
 
     //@FormUrlEncoded
     @GET("book/getbooklist")
-    Observable<DataBase<Page<BookBean>>> getBookList(@Query("key") String key , @Query("code") String code , @Query("pageidx") int pageidx );
+    Observable<DataBase<Page<BookBean>>> getBookList(@Query("title") String title , @Query("barcode") String barcode , @Query("shelfno") String shelfno , @Query("pageidx") int pageidx );
 
-    @GET("shelf/getshelflist")
-    Observable<DataBase<ShelfBean>> getShelfList(@Query("code") String code);
+    @GET("book/getshelflist")
+    Observable<DataBase<ShelfBean>> getShelfList(@Query("shelfno") String shelfno);
 
     /***
      * 上传架位调整数据
      * @return
      */
     @FormUrlEncoded
-    @POST("shelf/uploadshelfadptlist")
-    Observable<DataBase<Object>> uploadShelfAdaptList();
+    @POST("shelf/uploadinventorydata")
+    Observable<DataBase<InvertoryResult>> uploadInventoryData( @Field("index") int currentIndex , @Field("data") List<UpdateInventory> data , @Field("userId") int userId , @Field("userName") String userName );
 
 }

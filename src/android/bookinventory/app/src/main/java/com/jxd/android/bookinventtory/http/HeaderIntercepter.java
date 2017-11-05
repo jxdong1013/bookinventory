@@ -39,9 +39,11 @@ public class HeaderIntercepter implements Interceptor {
         if(userString==null|| userString.isEmpty()){
             return "";
         }
-        UserBean user = GsonUtil.getGson().fromJson( userString ,UserBean.class );
-        if(user==null) return "";
-        return user.getToken();
+        return userString;
+
+//        UserBean user = GsonUtil.getGson().fromJson( userString ,UserBean.class );
+//        if(user==null) return "";
+//        return user.getToken();
     }
 
 }

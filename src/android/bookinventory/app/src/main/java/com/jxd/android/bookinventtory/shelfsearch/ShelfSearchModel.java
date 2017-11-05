@@ -32,7 +32,7 @@ public class ShelfSearchModel implements IShelfSearchModel {
 
     @Override
     public void getShelfList(ShelfCondition condition, Observer subscriber) {
-        Observable<DataBase<ShelfBean>> observable = apiService.getShelfList( condition.getShelfcode() );
+        Observable<DataBase<ShelfBean>> observable = apiService.getShelfList( condition.getShelfno() );
         observable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .compose( lifecycleProvider.<DataBase<List<BookBean>>>bindToLifecycle() )
@@ -41,6 +41,11 @@ public class ShelfSearchModel implements IShelfSearchModel {
 
     @Override
     public void onDestory() {
-
+        if(apiService!=null){
+            apiService=null;
+        }
+        if(lifecycleProvider!=null){
+            lifecycleProvider=null;
+        }
     }
 }

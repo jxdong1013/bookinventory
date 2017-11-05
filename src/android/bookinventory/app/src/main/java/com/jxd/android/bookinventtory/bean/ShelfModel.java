@@ -20,8 +20,8 @@ public class ShelfModel extends ShelfBean implements MultiItemEntity  {
 
 
     public void transfor(ShelfBean shelfBean){
-        this.setShelfName( shelfBean.getShelfName() );
-        this.setShelfCode(shelfBean.getShelfCode());
+        //this.setShelfName( shelfBean.getShelfName() );
+        this.setShelfno(shelfBean.getShelfno());
         this.setBooks( shelfBean.getBooks() );
     }
 

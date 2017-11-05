@@ -1,35 +1,74 @@
 package com.jxd.android.bookinventtory.bean;
 
+import java.util.Date;
+
 /**
  * Created by Administrator on 2017/10/9.
  */
 
 public class UserBean {
-    private String userName;
-    private String token;
-    private String userId;
+    private String username;
+    //private String token;
+    private String phone;
+    private int userid;
+    private String type;
+    private String realname;
+    //private String createtime;
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public String getToken() {
-        return token;
+
+//    public String getToken() {
+//        return token;
+//    }
+//
+//    public void setToken(String token) {
+//        this.token = token;
+//    }
+
+    public String getPhone() {
+        return phone;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getUserId() {
-        return userId;
+    public int getUserid() {
+        return userid;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setUserid(int userid) {
+        this.userid = userid;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getRealname() {
+        return realname;
+    }
+
+    public void setRealname(String realname) {
+        this.realname = realname;
+    }
+
+//    public String getCreatetime() {
+//        return createtime;
+//    }
+//
+//    public void setCreatetime(String createtime) {
+//        this.createtime = createtime;
+//    }
 }

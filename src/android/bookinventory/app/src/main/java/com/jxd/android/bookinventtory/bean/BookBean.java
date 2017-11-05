@@ -5,71 +5,79 @@ package com.jxd.android.bookinventtory.bean;
  * 图书信息
  * Created by jinxiangdong on 2017/9/30.
  */
-//// TODO: 2017/9/30
 public class BookBean {
-    private String bookName;
-    private String author;
-    private String publish;
-    private String publishDate;
-    private String bookId;
-    private String bookcode;
-    private String position;
+    private String title;
+    private String callno;
+    private String shelfno;
+    private String updatetime;
+    private String uid;
+    private String barcode;
+    private int inshelf;
     private String status;
+    private String machine_mac;
 
-    public String getBookName() {
-        return bookName;
+    public String getTitle() {
+        return title;
     }
 
-    public void setBookName(String bookName) {
-        this.bookName = bookName;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public String getAuthor() {
-        return author;
+    public String getCallno() {
+        return callno;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public void setCallno(String callno) {
+        this.callno = callno;
     }
 
-    public String getPublish() {
-        return publish;
+    public String getShelfno() {
+        return shelfno;
     }
 
-    public void setPublish(String publish) {
-        this.publish = publish;
+    public void setShelfno(String shelfno) {
+        this.shelfno = shelfno;
     }
 
-    public String getPublishDate() {
-        return publishDate;
+    public String getUpdatetime() {
+        return updatetime;
     }
 
-    public void setPublishDate(String publishDate) {
-        this.publishDate = publishDate;
+    public void setUpdatetime(String updatetime) {
+        this.updatetime = updatetime;
     }
 
-    public String getBookId() {
-        return bookId;
+    public String getUid() {
+        return uid;
     }
 
-    public void setBookId(String bookId) {
-        this.bookId = bookId;
+    public void setUid(String uid) {
+        this.uid = uid;
     }
 
-    public String getBookcode() {
-        return bookcode;
+    public String getBarcode() {
+        return barcode;
     }
 
-    public void setBookcode(String bookcode) {
-        this.bookcode = bookcode;
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
     }
 
-    public String getPosition() {
-        return position;
+    public int getInshelf() {
+        return inshelf;
     }
 
-    public void setPosition(String position) {
-        this.position = position;
+    public void setInshelf(int inshelf) {
+        this.inshelf = inshelf;
+    }
+
+    public String getMachine_mac() {
+        return machine_mac;
+    }
+
+    public void setMachine_mac(String machine_mac) {
+        this.machine_mac = machine_mac;
     }
 
     public String getStatus() {

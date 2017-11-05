@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BookInventory</string>
+    <string name="app_name">图书盘点</string>
     <string name="title_booksearch">图书检索</string>
     <string name="title_shelfsearch">架位检索</string>
     <string name="title_shelfadapt">架位更新</string>
