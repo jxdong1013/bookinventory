@@ -8,7 +8,7 @@ using bookweb.Utils;
 
 namespace bookweb.Controllers
 {
-    [HandlerLoginAttribute]
+    //[HandlerLoginAttribute]
     public class ShelfController : Controller
     {
         // GET: Shelf
@@ -61,6 +61,7 @@ namespace bookweb.Controllers
         /// <param name="userName"></param>
         /// <returns></returns>
         [HttpPost]
+        //[HttpGet]
         public JsonResult UploadInventoryData( int index , List<Inventory> data  , int userId , string userName ) 
         {
             JsonResult json = new JsonResult();

@@ -133,7 +133,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     void initADReader(){
         anDeDeviceReader = BaseApplication.single.getAppComponent().getAnDeDeviceReader();
         m201Thread =new M201Thread(anDeDeviceReader);
-        //m201Thread.start();
+        m201Thread.start();
     }
 
     @Override
