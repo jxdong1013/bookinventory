@@ -66,7 +66,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     Hashtable<Integer,Integer> menuList=new Hashtable<>();
     long exitTime = 0;
 
-
     M201Thread m201Thread;
     AnDeDeviceReader anDeDeviceReader;
 
@@ -109,10 +108,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
 
         unbinder = ButterKnife.bind(this);
-        //mTextMessage = (TextView) findViewById(R.id.message);
-        //BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
         fragmentList.add(BookSearchFragment.newInstance());
         fragmentList.add(ShelfSearchFragment.newInstance());
         fragmentList.add(ShelfAdaptFragment.newInstance());
@@ -137,7 +133,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     void initADReader(){
         anDeDeviceReader = BaseApplication.single.getAppComponent().getAnDeDeviceReader();
         m201Thread =new M201Thread(anDeDeviceReader);
-        m201Thread.start();
+        //m201Thread.start();
     }
 
     @Override
